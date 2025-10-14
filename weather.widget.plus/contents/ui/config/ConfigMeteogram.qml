@@ -28,6 +28,7 @@ KCM.SimpleKCM {
     property int cfg_mgPressureFontSize
     property int cfg_mgHoursFontSize
     property int cfg_mgTrailingZeroesFontSize
+    // property alias cfg_precLabelVisChoice: precLabelVisChoice.checked
 
     property int cfg_hourSpanOm
     property int cfg_widgetWidth
@@ -451,6 +452,24 @@ KCM.SimpleKCM {
                 anchors.left: hourSpanOm.right
                 anchors.leftMargin: 5
             }
+
+            // CheckBox {
+            //     id: precLabelVisChoice
+            //     Layout.topMargin: -4
+            //     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+            // }
+            //
+            // Label {
+            //     text: i18n("Precipitation label")
+            //     Layout.topMargin: -4
+            //     Layout.alignment: Qt.AlignLeft
+            // }
+            //
+            // Item {
+            //     width: 2
+            //     height: 4
+            //     Layout.columnSpan: 3
+            // }
 
         // Label {
         //     id: reloadWidgetLabel

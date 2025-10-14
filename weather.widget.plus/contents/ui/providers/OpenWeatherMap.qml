@@ -68,7 +68,7 @@ Item {
         } else {
 
             url1 = urlPrefix + '/weather?id=' + placeIdentifier + appIdAndModeSuffix + versionParam
-            url2 = urlPrefix + '/forecast/daily?id=' + placeIdentifier + '&cnt=8' + appIdAndModeSuffix + versionParam
+            url2 = urlPrefix + '/forecast/daily?id=' + placeIdentifier + '&cnt=9' + appIdAndModeSuffix + versionParam
             url3 = urlPrefix + '/forecast?id=' + placeIdentifier + appIdAndModeSuffix + versionParam
         }
         dbgprint("xmlModelCurrent = " + url1)
@@ -408,7 +408,7 @@ dbgprint2("***************************************************")
                 temperature: parseFloat(obj.temperature),
                                 precipitationAvg: parseFloat(prec),
                                 precipitationLabel: "",
-                                precipitationMax: parseFloat(prec),
+                                // precipitationMax: parseFloat(prec),
                                 windDirection: parseFloat(obj.windDirection),
                                 windSpeedMps: parseFloat(obj.windSpeedMps),
                                 pressureHpa: parseFloat(obj.pressureHpa),
@@ -519,7 +519,7 @@ dbgprint2("***************************************************")
                 currentPlace.timezoneShortName =  i18n("UTC")
                 break
             case 2:
-                currentPlace.timezoneShortName="LOCAL"
+                currentPlace.timezoneShortName = getLocalTimeZone()
                 break
         }
         dbgprint("timezoneName changed to:" + currentPlace.timezoneShortName)

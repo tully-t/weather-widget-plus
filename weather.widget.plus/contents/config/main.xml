@@ -16,6 +16,8 @@
           <default>
           [
           <!--{"providerId": "om", "placeIdentifier": "latitude=52.6333&amp;longitude=-1.1333&amp;altitude=65", "placeAlias": "Leicester, UK", "timezoneID": 159},-->
+          <!--{"providerId": "om", "placeIdentifier": "latitude=25.3008&amp;longitude=91.6961&amp;altitude=1505","placeAlias":"Cherrapunji, IN (OM)","timezoneID":192},-->
+          <!--{"providerId": "metno", "placeIdentifier": "lat=25.3008&amp;lon=91.6961&amp;altitude=1505","placeAlias":"Cherrapunji, IN","timezoneID":192},-->
           {"providerId": "om", "placeIdentifier": "latitude=49.2496&amp;longitude=-123.1193&amp;altitude=65", "placeAlias": "Vancouver, CA", "timezoneID": 109},
           {"providerId": "owm", "placeIdentifier": "2644668", "placeAlias": "Leicester, UK (OWM)"},
           {"providerId": "owm", "placeIdentifier": "5368361", "placeAlias": "Los Angeles, USA (OWM)"},
@@ -139,6 +141,9 @@
         <entry name="mgTrailingZeroesFontSize" type="Int">
             <default>6</default>
         </entry>
+        <!--<entry name="precLabelVisChoice" type="Bool">
+            <default>true</default>
+        </entry>-->
         <entry name="tempLabelPosition" type="Enum">
             <choices>
                 <choice name="Top"/>
@@ -171,6 +176,13 @@
                 <choice name="hPa"/>
                 <choice name="inHg"/>
                 <choice name="mmHg"/>
+            </choices>
+            <default>0</default>
+        </entry>
+        <entry name="precType" type="Enum">
+            <choices>
+                <choice name="mm"/>
+                <choice name="in"/>
             </choices>
             <default>0</default>
         </entry>

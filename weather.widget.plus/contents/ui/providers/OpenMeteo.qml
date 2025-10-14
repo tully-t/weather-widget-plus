@@ -1,4 +1,4 @@
-import QtQuick 2.15
+import QtQuick
 import "../../code/model-utils.js" as ModelUtils
 import "../../code/data-loader.js" as DataLoader
 import "../../code/unit-utils.js" as UnitUtils
@@ -291,7 +291,7 @@ Item {
                 //omPtr++
             }
 
-            if ((y < 3) && (x < 8)) {
+            if ((y < 3) && (x < 7)) {
                 nextDaysModel.append(nextDaysData)
             }
             dbgprint("nextDaysModel Count:" + nextDaysModel.count)
@@ -324,6 +324,7 @@ Item {
             dbgprint("Sunset \t(GMT)" + new Date(currentWeatherModel.sunSet).toTimeString() + "\t(LOCAL)" + sunset1.toTimeString())
 
             var hourFrom = dateFromRaw.getHours()
+            var hourFromRound = Math.round(hourFrom)
 
             var localOffset = Math.abs(currentPlace.timezoneOffset / 3600)
 
@@ -336,7 +337,7 @@ Item {
             var precipitation_unit = readingsArray.hourly_units["precipitation"]
             var counter = 0
 
-                while (i < main.hourSpanOm + 1) { // readingsArray.hourly.time[i] / 72 / 65
+                while (i < main.hourSpanOm + 1 + hourFromRound) { // readingsArray.hourly.time[i] / 72 / 65
                     var obj = readingsArray.hourly
                     var dateTo = parseISOString(obj.time[i] + ":00Z")
                     var isDaytime = (dateTo > sunrise1) && (dateTo < sunset1) ? true : false

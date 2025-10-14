@@ -18,18 +18,27 @@ The completely revised UI includes:
     - Open-Meteo is now the recommended provider
 - New appearance options:
     - Choose your size mode: automatic fit or exact size
-    - Drop shadow can be hidden or shown
+    - Icon or text can be hidden
+    - Drop shadow is optional
     - All options, including size, can be applied to the text or the icon independently
 - New layout options:
     - Top, left, right, bottom, and inner margins are adjustable
-    - Icon or text can be hidden, independently
     - Widget order is adjustable: icon first or text first
+    - Default positioning improved - complete rewrite, each layout adapts to all form factors
+- New meteogram options:
     - Meteogram can be used as a desktop widget
+    - Width and height are adjustable
+    - Forecast length, when using Open-Meteo, is adjustable
+    - Temperature axis is labeled
+    - Axis label positions are adjustable
+    - Precipitation label is decorated, and appears automatically in a fixed position
+    - Font sizes are adjustable
+- New unit options:
+    - Precipitation can be displayed in millimeters or inches
 - Tooltip improvements: 
     - Last refreshed time appears under location in the tooltip rather than on the widget itself
     - Tooltip properly hides when widget is expanded
 - Quality of life improvements:
-    - New, more responsive default - complete rewrite, every layout adapts to all form factors
     - Properly uses system font by default
     - Properly uses system icon theme (No hard-coded custom icon)
     - Properly uses system color scheme (No hard-coded colors)
@@ -40,9 +49,9 @@ The completely revised UI includes:
 
 Pull or merge requests to update translations are especially welcome
 
-![Weather Widget Plus panel popups](preview/popups.png)
+![Weather Widget Plus panel popups](preview/popups-2.png)
 
-![Weather Widget Plus configuration pages](preview/config-2.png)
+![Weather Widget Plus configuration pages](preview/config-8.png)
 
 ## Installation
 ### KDE Store/Pling:

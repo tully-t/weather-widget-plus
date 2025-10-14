@@ -215,7 +215,7 @@ Item {
                     let obj = wd[wdPtr].data.next_6_hours.summary["symbol_code"]
                     nextDaysData['iconName' + y] = geticonNumber(obj)
                     nextDaysData['partOfDay' + y] = isDayTime
-                    if (y == 3) {
+                    if ((y == 3) && (x < 7)) {
                         nextDaysModel.append(nextDaysData)
                         nextDaysData=blankObject()
                         x++
@@ -223,9 +223,9 @@ Item {
                 }
                 wdPtr++
             }
-            if ((y < 3) && (x < 8)) {
-                nextDaysModel.append(nextDaysData)
-            }
+            // if ((y < 3) && (x < 7)) {
+            //     nextDaysModel.append(nextDaysData)
+            // }
             dbgprint("nextDaysModel Count:" + nextDaysModel.count)
         }
 

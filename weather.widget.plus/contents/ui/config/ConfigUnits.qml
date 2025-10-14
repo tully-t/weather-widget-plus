@@ -9,6 +9,7 @@ KCM.SimpleKCM {
     property int cfg_pressureType
     property int cfg_windSpeedType
     property int cfg_timezoneType
+    property int cfg_precType
 
 
     onCfg_temperatureTypeChanged: {
@@ -36,6 +37,18 @@ KCM.SimpleKCM {
                 break
             case 2:
                 pressureTypeRadioMmhg.checked = true
+                break
+            default:
+        }
+    }
+
+    onCfg_precTypeChanged: {
+        switch (cfg_precType) {
+            case 0:
+                precTypeRadioMm.checked = true
+                break
+            case 1:
+                precTypeRadioIn.checked = true
                 break
             default:
         }
@@ -74,6 +87,7 @@ KCM.SimpleKCM {
     Component.onCompleted: {
         cfg_temperatureTypeChanged()
         cfg_pressureTypeChanged()
+        cfg_precTypeChanged()
         cfg_windSpeedTypeChanged()
         cfg_timezoneTypeChanged()
     }
@@ -84,6 +98,10 @@ KCM.SimpleKCM {
 
     ButtonGroup {
         id: pressureTypeGroup
+    }
+
+    ButtonGroup {
+        id: precTypeGroup
     }
 
     ButtonGroup {
@@ -156,7 +174,7 @@ KCM.SimpleKCM {
 
         Item {
             width: 2
-            height: 10
+            height: 6
             Layout.columnSpan: 3
         }
 
@@ -205,7 +223,40 @@ KCM.SimpleKCM {
 
         Item {
             width: 2
-            height: 10
+            height: 6
+            Layout.columnSpan: 3
+        }
+
+        Label {
+            text: i18n("Precipitation") + ":"
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+        }
+        RadioButton {
+            id: precTypeRadioMm
+            ButtonGroup.group: precTypeGroup
+            text: i18n("mm")
+            onCheckedChanged: if (checked) cfg_precType = 0
+        }
+        Item {
+            width: 2
+            height: 2
+            Layout.rowSpan: 1
+        }
+        Item {
+            width: 2
+            height: 2
+            Layout.columnSpan: 1
+        }
+        RadioButton {
+            id: precTypeRadioIn
+            ButtonGroup.group: precTypeGroup
+            text: i18n("in")
+            onCheckedChanged: if (checked) cfg_precType = 1
+        }
+
+        Item {
+            width: 2
+            height: 6
             Layout.columnSpan: 3
         }
 
@@ -254,7 +305,7 @@ KCM.SimpleKCM {
 
         Item {
             width: 2
-            height: 10
+            height: 6
             Layout.columnSpan: 3
         }
 

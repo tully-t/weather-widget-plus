@@ -21,188 +21,161 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : "
 "n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: ../../weather.widget.plus-git/metadata.desktop
 #: ../../weather.widget.plus/metadata.desktop
 msgid "Weather Widget Plus"
 msgstr "Виджет погоды плюс"
 
-#: ../../weather.widget.plus-git/metadata.desktop
 #: ../../weather.widget.plus/metadata.desktop
 msgid "Plasmoid showing weather information from Met.no server"
 msgstr "Плазмоид, показывающий информацию о погоде с сервера Met.no"
 
 #: ../../weather.widget.plus/contents/code/data-loader.js
-#: ../../weather.widget.plus-git/contents/code/data-loader.js
-#, fuzzy
 msgid "%1 min ago"
-msgstr "%1 минуту назад"
+msgid_plural "%1 min ago"
+msgstr[0] "%1 минуту назад"
+msgstr[1] "%1 минуты назад"
+msgstr[2] "%1 минут назад"
+msgstr[3] "%1 минуту назад"
 
 #: ../../weather.widget.plus/contents/code/data-loader.js
-#: ../../weather.widget.plus-git/contents/code/data-loader.js
-#, fuzzy
 msgid "%1 hrs ago"
-msgstr "%1 час назад"
+msgid_plural "%1 hrs ago"
+msgstr[0] "%1 час назад"
+msgstr[1] "%1 часа назад"
+msgstr[2] "%1 часов назад"
+msgstr[3] "%1 час назад"
 
 #: ../../weather.widget.plus/contents/code/data-loader.js
-#: ../../weather.widget.plus-git/contents/code/data-loader.js
-#, fuzzy
 msgid "%1 days ago"
-msgstr "%1 минуту назад"
+msgid_plural "%1 days ago"
+msgstr[0] "%1 минуту назад"
+msgstr[1] "%1 минуты назад"
+msgstr[2] "%1 минут назад"
+msgstr[3] "%1 минуту назад"
 
 #: ../../weather.widget.plus/contents/code/data-loader.js
-#: ../../weather.widget.plus-git/contents/code/data-loader.js
 msgid "long ago"
 msgstr "давно"
 
 #: ../../weather.widget.plus/contents/code/unit-utils.js
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
-#: ../../weather.widget.plus-git/contents/code/unit-utils.js
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigUnits.qml
 msgid "°C"
 msgstr "°C"
 
 #: ../../weather.widget.plus/contents/code/unit-utils.js
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
-#: ../../weather.widget.plus-git/contents/code/unit-utils.js
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigUnits.qml
 msgid "°F"
 msgstr "°F"
 
 #: ../../weather.widget.plus/contents/code/unit-utils.js
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
-#: ../../weather.widget.plus-git/contents/code/unit-utils.js
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigUnits.qml
 msgid "K"
 msgstr "K"
 
 #: ../../weather.widget.plus/contents/code/unit-utils.js
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
-#: ../../weather.widget.plus-git/contents/code/unit-utils.js
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigUnits.qml
 msgid "inHg"
 msgstr "дюйм рт. ст."
 
 #: ../../weather.widget.plus/contents/code/unit-utils.js
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
-#: ../../weather.widget.plus-git/contents/code/unit-utils.js
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigUnits.qml
 msgid "mmHg"
 msgstr "мм рт.ст."
 
 #: ../../weather.widget.plus/contents/code/unit-utils.js
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
-#: ../../weather.widget.plus-git/contents/code/unit-utils.js
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigUnits.qml
 msgid "hPa"
 msgstr "гПа"
 
 #: ../../weather.widget.plus/contents/code/unit-utils.js
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
-#: ../../weather.widget.plus-git/contents/code/unit-utils.js
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigUnits.qml
 msgid "mph"
 msgstr "миль/ч"
 
 #: ../../weather.widget.plus/contents/code/unit-utils.js
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
-#: ../../weather.widget.plus-git/contents/code/unit-utils.js
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigUnits.qml
 msgid "km/h"
 msgstr "км/ч"
 
 #: ../../weather.widget.plus/contents/code/unit-utils.js
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
-#: ../../weather.widget.plus-git/contents/code/unit-utils.js
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigUnits.qml
 msgid "m/s"
 msgstr "м/с"
 
 #: ../../weather.widget.plus/contents/config/config.qml
-#: ../../weather.widget.plus-git/contents/config/config.qml
 msgid "Location"
 msgstr "Местоположение"
 
 #: ../../weather.widget.plus/contents/config/config.qml
-#: ../../weather.widget.plus-git/contents/config/config.qml
 msgid "Appearance"
 msgstr "Внешний вид"
 
 #: ../../weather.widget.plus/contents/config/config.qml
-#: ../../weather.widget.plus-git/contents/config/config.qml
 msgid "Layout"
 msgstr "Размещение"
 
 #: ../../weather.widget.plus/contents/config/config.qml
-#: ../../weather.widget.plus-git/contents/config/config.qml
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Meteogram"
+msgstr "Метеограмма"
+
+#: ../../weather.widget.plus/contents/config/config.qml
 msgid "Units"
 msgstr "Единицы измерения"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigAppearance.qml
 msgctxt "Use default font"
 msgid "Default"
 msgstr "По умолчанию"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigAppearance.qml
 msgid "Widget font"
 msgstr "Шрифт виджета"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigAppearance.qml
 msgid "Text size mode"
 msgstr "Размер шрифта"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigAppearance.qml
 msgid "Automatic fit"
 msgstr "Автоматически"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigAppearance.qml
 msgid "Exact size"
 msgstr "Заданный размер"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigAppearance.qml
 msgid "Text size"
 msgstr "Размер"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigAppearance.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgctxt "pixels"
 msgid "px"
 msgstr "пикс"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
 msgid "Text visible"
 msgstr "Текст виден"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigAppearance.qml
 msgid "Text drop shadow"
 msgstr "Включить тень текста"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigAppearance.qml
 msgid "Icon size mode"
 msgstr "Размер иконки"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigAppearance.qml
 msgid "Icon size"
 msgstr "Размер"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
 msgid "Icon visible"
 msgstr "Иконка видна"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigAppearance.qml
 msgid "Icon drop shadow"
 msgstr "Включить тень иконки"
 
@@ -211,186 +184,123 @@ msgid "System tray timeout"
 msgstr "Время ожидания в трее"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigAppearance.qml
 msgctxt "Abbreviation for seconds"
 msgid "sec"
 msgstr "сек"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
 msgid "Layout type"
 msgstr "Тип макета"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
 msgid "Horizontal"
 msgstr "Горизонтально"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
 msgid "Layout type is not available in the system tray"
 msgstr "Установка типа не доступна в системном трее"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
 msgid "Vertical"
 msgstr "Вертикально"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
 msgid "Compact"
 msgstr "Компактно"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
 msgid "Widget order"
 msgstr "Порядок в виджете"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
 msgid "Icon first"
 msgstr "Сначала иконка"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
 msgid ""
 "Widget order is not available in either the system tray or the Compact layout"
 msgstr "Установка порядка не доступна в трее и для типа макета «Компактно»"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
 msgid "Text first"
 msgstr "Сначала текст"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
-msgid "Desktop mode"
-msgstr "Режим рабочего стола"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
-msgid "Icon"
-msgstr "Иконка"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
-msgid "Meteogram"
-msgstr "Метеограмма"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
 msgid "Top Margin"
 msgstr "Отступ сверху"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-msgid "Meteogram width"
-msgstr "Ширина метеограммы"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
 msgid "Left Margin"
 msgstr "Отступ слева"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-msgid "Meteogram height"
-msgstr "Высота метеограммы"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
 msgid "Inner Margin"
 msgstr "Отступ внутри"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-msgid "OM forecast length"
-msgstr "Длительность прогноза OM"
-
-# продолжительность прогноза
-#: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-msgctxt "hours"
-msgid "hrs"
-msgstr "часов"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
 msgid "Right Margin"
 msgstr "Отступ справа"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
 msgid "Bottom Margin"
 msgstr "Отступ снизу"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "Source"
 msgstr "Источник"
 
-#. i18n("Place Identifier") });
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "City Name"
 msgstr "Название города"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "Action"
 msgstr "Действие"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "Reload interval"
 msgstr "Интервал перезагрузки"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgctxt "Abbreviation for minutes"
 msgid "min"
 msgstr "мин"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "Middle-click the widget to reload manually"
 msgstr "Нажмите колёсиком на виджете, чтобы обновить вручную"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "Plasmoid version"
 msgstr "Версия Plasmoid"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "Weather icons created by Erik Flowers"
 msgstr "Иконки погоды созданы Erik Flowers"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "Met.no forecast data provided by The Norwegian Meteorological Institute"
 msgstr ""
 "Данные о прогнозе погоды на Met.no предоставлены Норвежским "
 "метеорологическим институтом"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "Sunrise/sunset data provided by Sunrise - Sunset"
 msgstr "Данные о восходе/закате предоставлены Sunrise - Sunset"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "OWM forecast data provided by OpenWeather"
 msgstr "Данные о прогнозе погоды на OWM предоставлены OpenWeather"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "OM forecast data provided by Open-Meteo"
 msgstr "Данные о прогнозе погоды на OM предоставлены Open-Meteo"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "Change City Name"
 msgstr "Изменить название города"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "Enter city name"
 msgstr "Введите название города"
 
@@ -399,17 +309,14 @@ msgid "Add OpenWeather Map Location"
 msgstr "Добавить местоположение для OpenWeather"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "Paste URL here"
 msgstr "Вставьте URL-адрес сюда"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "Find your city ID by searching here"
 msgstr "Найдите ID вашего города, поискав здесь"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid ""
 "and then paste the whole URL into the corresponding field\n"
 "e.g. http://openweathermap.org/city/2946447 for Bonn, Germany"
@@ -418,218 +325,221 @@ msgstr ""
 "например, http://openweathermap.org/city/2747891 для Роттердама, Нидерланды"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "Add Met.no Map Location"
 msgstr "Добавить местоположение для Met.no"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "Latitude"
 msgstr "Широта"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "Longitude"
 msgstr "Долгота"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "Altitude"
 msgstr "Высота"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "URL"
 msgstr "URL-адрес"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigUnits.qml
 msgid "Timezone"
 msgstr "Часовой пояс"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "Find your city data by searching here"
 msgstr "Найдите данные вашего города, поискав здесь"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "and then paste the appropriate data into the corresponding fields"
 msgstr "и затем вставьте данные в соответствующие им поля"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "e.g. Latitude: 19.4284 Longitude: -99.1276 Altitude: 2240"
 msgstr "например, широта: 59.9375, долгота: 30.3086, высота: 5"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "for Mexico City, Mexico"
 msgstr "для Санкт-Петербурга, Россия"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid " (Maximum of 4 decimal places)"
 msgstr "Максимум 4 знака после запятой"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
 msgid "Add Open-Meteo Map Location"
 msgstr "Добавить местоположение для Open-Meteo"
 
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Desktop mode"
+msgstr "Режим рабочего стола"
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Icon"
+msgstr "Иконка"
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Meteogram width"
+msgstr "Ширина метеограммы"
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Meteogram height"
+msgstr "Высота метеограммы"
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "OM forecast length"
+msgstr "Длительность прогноза OM"
+
+# продолжительность прогноза
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgctxt "hours"
+msgid "hrs"
+msgstr "часов"
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Temperature label"
+msgstr "Температурная метка"
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Top"
+msgstr "Верхний"
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Bottom"
+msgstr "Нижний"
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "None"
+msgstr "Никто"
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Pressure label"
+msgstr "Метка давления"
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Vertical axis font size"
+msgstr "Размер шрифта по вертикальной оси"
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Time font size"
+msgstr "Временной размер шрифта"
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Trailing zeroes font size"
+msgstr "Размер шрифта с конечными нулями"
+
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigUnits.qml
 msgid "Temperature"
 msgstr "Температура"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigUnits.qml
 msgid "Pressure"
 msgstr "Давление"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigUnits.qml
+msgid "Precipitation"
+msgstr "Осадков"
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
+msgid "mm"
+msgstr "мм"
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
+msgid "in"
+msgstr "дм"
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "Wind speed"
 msgstr "Скорость ветра"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigUnits.qml
 msgid "My local-time"
 msgstr "Местное время"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 #: ../../weather.widget.plus/contents/ui/FullRepresentation.qml
 #: ../../weather.widget.plus/contents/ui/providers/OpenWeatherMap.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigUnits.qml
-#: ../../weather.widget.plus-git/contents/ui/FullRepresentation.qml
-#: ../../weather.widget.plus-git/contents/ui/providers/OpenWeatherMap.qml
 msgid "UTC"
 msgstr "UTC"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigUnits.qml
 msgid "Location Timezone"
 msgstr "Часовой пояс местоположения"
 
 #: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 #: ../../weather.widget.plus/contents/ui/FullRepresentation.qml
-#: ../../weather.widget.plus-git/contents/ui/FullRepresentationInTray.qml
-#: ../../weather.widget.plus-git/contents/ui/FullRepresentation.qml
 msgid "Reload"
 msgstr "Обновить"
 
 #: ../../weather.widget.plus/contents/ui/FullRepresentation.qml
-#: ../../weather.widget.plus-git/contents/ui/FullRepresentation.qml
 msgid "Next Location"
 msgstr "Следующее место"
 
 #: ../../weather.widget.plus/contents/ui/FullRepresentation.qml
-#: ../../weather.widget.plus-git/contents/ui/FullRepresentation.qml
 msgid "Previous Location"
 msgstr "Предыдущее место"
 
 #: ../../weather.widget.plus/contents/ui/main.qml
-#: ../../weather.widget.plus-git/contents/ui/main.qml
 msgid "%1 ago"
 msgstr "%1 назад"
 
 #: ../../weather.widget.plus/contents/ui/main.qml
-#: ../../weather.widget.plus-git/contents/ui/main.qml
 msgid "near future"
 msgstr "ближайшее время"
 
-#: ../../weather.widget.plus/contents/ui/Meteogram.qml
-#: ../../weather.widget.plus-git/contents/ui/Meteogram.qml
-msgid "mm"
-msgstr "мм"
-
-#: ../../weather.widget.plus/contents/ui/Meteogram.qml
-#: ../../weather.widget.plus-git/contents/ui/Meteogram.qml
-msgid "cm"
-msgstr "см"
-
-#: ../../weather.widget.plus/contents/ui/Meteogram.qml
-#: ../../weather.widget.plus-git/contents/ui/Meteogram.qml
-msgid "in"
-msgstr "дм"
-
 #: ../../weather.widget.plus/contents/ui/providers/MetNo.qml
-#: ../../weather.widget.plus-git/contents/ui/providers/MetNo.qml
 msgid "Forecast data provided by the Norwegian Meteorological Institute"
 msgstr ""
 "Данные о прогнозе погоды предоставлены Норвежским метеорологическим "
 "институтом"
 
 #: ../../weather.widget.plus/contents/ui/providers/OpenMeteo.qml
-#: ../../weather.widget.plus-git/contents/ui/providers/OpenMeteo.qml
 msgid "Forecast data provided by Open-Meteo"
 msgstr "Данные о прогнозе погоды предоставлены Open-Meteo"
 
 #: ../../weather.widget.plus/contents/ui/providers/OpenWeatherMap.qml
-#: ../../weather.widget.plus-git/contents/ui/providers/OpenWeatherMap.qml
 msgid "Forecast data provided by OpenWeather"
 msgstr "Данные о прогнозе погоды предоставлены OpenWeather"
 
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigAppearance.qml
-msgid "Active tray timeout"
-msgstr "Время ожидания в трее"
+#~ msgid "General"
+#~ msgstr "Основное"
 
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigAppearance.qml
-msgid ""
-"If the widget is set to \"Show when relevant\" in the system tray, after "
-"this timeout the widget will be hidden in the tray until it reloads"
-msgstr ""
-"Если виджет установлен на «Показывать при необходимости» в трее, то по "
-"истечении времени ожидания виджет будет скрыт в трее до перезагрузки"
+#~ msgid "cm"
+#~ msgstr "см"
 
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLayout.qml
-msgid ""
-"Desktop meteogram mode is not affected by any other Layout or Appearance "
-"options"
-msgstr "На режим «Метеограмма» не влияет макет или настройки внешнего вида"
+#~ msgid "%1 m"
+#~ msgstr "%1 м"
 
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigLocation.qml
-msgid "Add Open Weather Map Location"
-msgstr "Добавить местоположение для Open Weather"
+#~ msgid "%1 h"
+#~ msgstr "%1 ч"
 
-#: ../../weather.widget.plus-git/contents/ui/config/ConfigUnits.qml
-msgid "Reload widget to see changes"
-msgstr "Обновите виджет, чтобы увидеть изменения"
+#~ msgid "%1 d"
+#~ msgstr "%1 д"
+
+#~ msgid "hours"
+#~ msgstr "много часов"
+
+#~ msgid "NOTE: Setting layout type for in-tray plasmoid has no effect."
+#~ msgstr ""
+#~ "ВНИМАНИЕ: Настройка типа размещения не работает для плазмоида в лотке."
+
+#~ msgid "In-Tray Settings"
+#~ msgstr "Настройки лотка"
+
+#~ msgid ""
+#~ "NOTE: After this timeout widget will be hidden in system tray until "
+#~ "refreshed. You can always set the widget to be always \"Shown\" in system "
+#~ "tray \"Entries\" settings."
+#~ msgstr ""
+#~ "ВНИМАНИЕ: По истечении указанного времени виджет будет скрыт в системном "
+#~ "лотке, пока не обновятся данные. Также в разделе  \"Элементы\" настроек "
+#~ "системного лотка можно установить значение \"Показывать всегда\"."
 
 #~ msgid "Place Identifier"
 #~ msgstr "Идентификатор места"
-
-#~ msgid "Location Search"
-#~ msgstr "Поиск местоположения"
-
-#~ msgid "Area"
-#~ msgstr "Зона"
-
-#~ msgid "Alt"
-#~ msgstr "Высота"
-
-#~ msgid "Search data provided by Geonames.org"
-#~ msgstr "Данные для поиска предоставлены Geonames.org"
-
-#~ msgid "Country"
-#~ msgstr "Страна"
-
-#~ msgid "Filter"
-#~ msgstr "Фильтр"
-
-#~ msgid "Confirmation"
-#~ msgstr "Подтверждение"
-
-#~ msgid "Do you want to select"
-#~ msgstr "Вы хотите выбрать"
-
-#~ msgid "Weather Widget 2"
-#~ msgstr "Виджет погоды 2"
-
-#~ msgid "Plasmoid showing weather information from met.no server"
-#~ msgstr "Плазмоид, показывающий информацию о погоде с сервера met.no"
 
 #~ msgid "Displayed as"
 #~ msgstr "Отображать как"
@@ -678,46 +588,75 @@ msgstr "Обновите виджет, чтобы увидеть изменен�
 #~ msgid "Search"
 #~ msgstr "Поиск"
 
+#~ msgid "Location Search"
+#~ msgstr "Поиск местоположения"
+
+#~ msgid "Area"
+#~ msgstr "Зона"
+
+#~ msgid "Alt"
+#~ msgstr "Высота"
+
 #~ msgid "Search data extracted from data provided by Geonames.org."
 #~ msgstr ""
 #~ "Данные для поиска извлечены из данных, предоставленных Geonames.org."
 
-#~ msgid "%1 m"
-#~ msgstr "%1 м"
+#~ msgid "Country"
+#~ msgstr "Страна"
 
-#~ msgid "%1 h"
-#~ msgstr "%1 ч"
+#~ msgid "Filter"
+#~ msgstr "Фильтр"
 
-#~ msgid "%1 d"
-#~ msgstr "%1 д"
+#~ msgid "Confirmation"
+#~ msgstr "Подтверждение"
 
-#~ msgid "hours"
-#~ msgstr "много часов"
+#~ msgid "Do you want to select"
+#~ msgstr "Вы хотите выбрать"
 
-#~ msgid "General"
-#~ msgstr "Основное"
+#~ msgid ""
+#~ "Weather forecast data provided by The Norwegian Meteorological Institute."
+#~ msgstr ""
+#~ "Данные прогноза погоды предоставлены Норвежским метеорологическим "
+#~ "институтом."
 
-#~ msgid "In-Tray Settings"
-#~ msgstr "Настройки лотка"
+#~ msgid "Weather forecast data provided by OpenWeather."
+#~ msgstr "Данные прогноза погоды предоставлены OpenWeather."
+
+#~ msgid "Active tray timeout"
+#~ msgstr "Время ожидания в трее"
+
+#~ msgid ""
+#~ "If the widget is set to \"Show when relevant\" in the system tray, after "
+#~ "this timeout the widget will be hidden in the tray until it reloads"
+#~ msgstr ""
+#~ "Если виджет установлен на «Показывать при необходимости» в трее, то по "
+#~ "истечении времени ожидания виджет будет скрыт в трее до перезагрузки"
+
+#~ msgid ""
+#~ "Desktop meteogram mode is not affected by any other Layout or Appearance "
+#~ "options"
+#~ msgstr "На режим «Метеограмма» не влияет макет или настройки внешнего вида"
+
+#~ msgid "Add Open Weather Map Location"
+#~ msgstr "Добавить местоположение для Open Weather"
+
+#~ msgid "Reload widget to see changes"
+#~ msgstr "Обновите виджет, чтобы увидеть изменения"
+
+#~ msgid "Search data provided by Geonames.org"
+#~ msgstr "Данные для поиска предоставлены Geonames.org"
+
+#~ msgid "Weather Widget 2"
+#~ msgstr "Виджет погоды 2"
+
+#~ msgid "Plasmoid showing weather information from met.no server"
+#~ msgstr "Плазмоид, показывающий информацию о погоде с сервера met.no"
 
 #~ msgid "Layout type:"
 #~ msgstr "Тип размещения:"
 
-#~ msgid "NOTE: Setting layout type for in-tray plasmoid has no effect."
-#~ msgstr ""
-#~ "ВНИМАНИЕ: Настройка типа размещения не работает для плазмоида в лотке."
-
 #~ msgid "Active timeout:"
 #~ msgstr "Время отображения:"
-
-#~ msgid ""
-#~ "NOTE: After this timeout widget will be hidden in system tray until "
-#~ "refreshed. You can always set the widget to be always \"Shown\" in system "
-#~ "tray \"Entries\" settings."
-#~ msgstr ""
-#~ "ВНИМАНИЕ: По истечении указанного времени виджет будет скрыт в системном "
-#~ "лотке, пока не обновятся данные. Также в разделе  \"Элементы\" настроек "
-#~ "системного лотка можно установить значение \"Показывать всегда\"."
 
 #~ msgid "Widget font style:"
 #~ msgstr "Шрифт виджета"
@@ -792,17 +731,8 @@ msgstr "Обновите виджет, чтобы увидеть изменен�
 #~ msgid "Pause Updating"
 #~ msgstr "Приостановить обновление"
 
-#~ msgid ""
-#~ "Weather forecast data provided by The Norwegian Meteorological Institute."
-#~ msgstr ""
-#~ "Данные прогноза погоды предоставлены Норвежским метеорологическим "
-#~ "институтом."
-
 #~ msgid "today"
 #~ msgstr "сегодня"
-
-#~ msgid "Weather forecast data provided by OpenWeather."
-#~ msgstr "Данные прогноза погоды предоставлены OpenWeather."
 
 #~ msgid "The Latitude is not numeric."
 #~ msgstr "Значение широта не числовое."

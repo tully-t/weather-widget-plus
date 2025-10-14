@@ -248,7 +248,7 @@ KCM.SimpleKCM {
                 id: myhorizontalHeader
                 // anchors.left: mytableView.left
                 // anchors.leftMargin: 0
-                // anchors.topMargin: 2
+                anchors.topMargin: -6
                 // anchors.top: parent.top
                 // anchors.right: parent.right
                 // anchors.rightMargin: 2
@@ -610,6 +610,9 @@ KCM.SimpleKCM {
     }
     Item {
         anchors.bottom: parent.bottom
+        anchors.bottomMargin: -6
+        // anchors.top: rhsColumn.bottom
+        // anchors.topMargin: 132
         Rectangle {
             anchors.fill: parent
             // anchors.top:
