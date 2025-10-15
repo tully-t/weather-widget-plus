@@ -205,8 +205,8 @@ msgstr "Icono primero"
 msgid ""
 "Widget order is not available in either the system tray or the Compact layout"
 msgstr ""
-"El orden de widget no está disponible en plasmoide de la bandeja del sistema o "
-"en el diseño compacto"
+"El orden de widget no está disponible en plasmoide de la bandeja del sistema "
+"o en el diseño compacto"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Text first"
@@ -236,6 +236,7 @@ msgstr "Margen Inferior"
 msgid "Source"
 msgstr "Origen"
 
+#. i18n("Place Identifier") });
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "City Name"
 msgstr "Nombre de la ciudad"
