@@ -238,10 +238,10 @@ Item {
             let airTemp = -999
 
             let srasPtr = parseInt(wdPtr / 24)
-            var sunrise1 = UnitUtils.convertDate(new Date(readingsArray.daily.sunrise[srasPtr] + ":00Z"), 2, currentPlace.timezoneOffset)
+            var sunrise1 = UnitUtils.convertDate(new Date(readingsArray.daily.sunrise[srasPtr] + ":00Z"), main.timezoneType, offset)
             // new Date(readingsArray.daily.sunrise[srasPtr] + ":00Z")
             // // UnitUtils.convertDate(currentWeatherModel.sunRise,2,currentPlace.timezoneOffset)
-            var sunset1 = UnitUtils.convertDate(new Date(readingsArray.daily.sunset[srasPtr] + ":00Z"), 2, currentPlace.timezoneOffset)
+            var sunset1 = UnitUtils.convertDate(new Date(readingsArray.daily.sunset[srasPtr] + ":00Z"), main.timezoneType, offset)
             // new Date(readingsArray.daily.sunset[srasPtr] + ":00Z")
             // UnitUtils.convertDate(currentWeatherModel.sunSet,2,currentPlace.timezoneOffset)
             // var targetTime = new Date(wd.time[wdPtr])
@@ -318,8 +318,8 @@ Item {
             var dateFrom = parseISOString(readingsArray.current.time + ":00Z")
             var dateFromRaw = new Date(readingsArray.current.time)
             // dbgprint2("current time:" + readingsArray.current.time + ":00Z")
-            var sunrise1 = UnitUtils.convertDate(currentWeatherModel.sunRise,2,currentPlace.timezoneOffset)
-            var sunset1 = UnitUtils.convertDate(currentWeatherModel.sunSet,2,currentPlace.timezoneOffset)
+            var sunrise1 = UnitUtils.convertDate(currentWeatherModel.sunRise,main.timezoneType, offset)
+            var sunset1 = UnitUtils.convertDate(currentWeatherModel.sunSet,main.timezoneType, offset)
             dbgprint("Sunrise \t(GMT)" + new Date(currentWeatherModel.sunRise).toTimeString() + "\t(LOCAL)" + sunrise1.toTimeString())
             dbgprint("Sunset \t(GMT)" + new Date(currentWeatherModel.sunSet).toTimeString() + "\t(LOCAL)" + sunset1.toTimeString())
 
@@ -348,7 +348,7 @@ Item {
                     var icon = obj.weather_code[i] + 1
                     var prec = obj.precipitation[i]
                     counter = (prec > 0) ? counter + 1 : 0
-                    let localtimestamp = UnitUtils.convertDate(dateTo, 2 , currentPlace.timezoneOffset)
+                    let localtimestamp = UnitUtils.convertDate(dateTo, main.timezoneType, offset)
 
                     if (localtimestamp >= sunrise1) {
                         if (localtimestamp < sunset1) {

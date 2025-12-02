@@ -206,18 +206,21 @@ dbgprint("main.timezoneType= " + timezoneType + "\t= " + offset)
                     if (y === 0) {
                         nextDaysData['temperature0'] = parseInt(obj.temperatureMorning)
                         nextDaysData['iconName0'] = obj.iconName
+                        // nextDaysData['partOfDay' + y] = isDayTime
                         dbgprint("Added data for Row " + (x + 1) + " Column " + (y + 1))
                         nextDaysData['hidden0'] = false
                     }
                     if (y === 1) {
                         nextDaysData['temperature1'] = parseInt(obj.temperatureDay)
                         nextDaysData['iconName1'] = obj.iconName
+                        // nextDaysData['partOfDay' + y] = isDayTime
                         dbgprint("Added data for Row " + (x + 1) + " Column " + (y + 1))
                         nextDaysData['hidden1'] = false
                     }
                     if (y === 2) {
                         nextDaysData['temperature2'] = parseInt(obj.temperatureEvening)
                         nextDaysData['iconName2'] = obj.iconName
+                        // nextDaysData['partOfDay' + y] = isDayTime
                         dbgprint("Added data for Row " + (x + 1) + " Column " + (y + 1))
                         nextDaysData['hidden2'] = false
                     }
@@ -228,6 +231,7 @@ dbgprint("main.timezoneType= " + timezoneType + "\t= " + offset)
 
                         nextDaysData['temperature3'] = parseInt(obj.temperatureEvening)
                         nextDaysData['iconName3'] = obj.iconName
+                        // nextDaysData['partOfDay' + y] = isDayTime
                         dbgprint("Added data for Row " + (x + 1) + " Column " + (y + 1))
                         nextDaysData['hidden3'] = false
                         nextDaysModel.append(nextDaysData)
@@ -372,6 +376,8 @@ dbgprint2("***************************************************")
         var dateTo = now
         var sunrise1 = (currentWeatherModel.sunRise)
         var sunset1 = (currentWeatherModel.sunSet)
+        // var sunrise1 = UnitUtils.convertDate(currentWeatherModel.sunRise,main.timezoneType, offset)
+        // var sunset1 = UnitUtils.convertDate(currentWeatherModel.sunSet,main.timezoneType, offset)
 
         for (var i = 0; i < xmlModelHourByHour.count; i++) {
         var obj = xmlModelHourByHour.get(i)
@@ -381,8 +387,9 @@ dbgprint2("***************************************************")
                 var firstFromMs = dateFrom.getTime()
             }
 
-        var isDaytime = (dateFrom > sunrise1) && (dateFrom < sunset1)
-        let localtimestamp = UnitUtils.convertDate(dateTo, 2 , currentPlace.timezoneOffset)
+        // var isDaytime = (dateFrom > sunrise1) && (dateFrom < sunset1)
+        var isDaytime = (dateTo > sunrise1) && (dateTo < sunset1)
+        let localtimestamp = UnitUtils.convertDate(dateTo, main.timezoneType, offset)
 
         if (localtimestamp >= sunrise1) {
             if (localtimestamp < sunset1) {

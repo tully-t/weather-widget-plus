@@ -201,8 +201,11 @@ msgid "Icon first"
 msgstr "Napřed ikona"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
-msgid "Widget order is not available in either the system tray or the Compact layout"
-msgstr "Pořadí widgetu není buďto dostupné v systémovém panelu nebo v kompaktním rozložení"
+msgid ""
+"Widget order is not available in either the system tray or the Compact layout"
+msgstr ""
+"Pořadí widgetu není buďto dostupné v systémovém panelu nebo v kompaktním "
+"rozložení"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Text first"
@@ -341,7 +344,8 @@ msgstr "a poté vložte správná data to odpovídajích políček"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "e.g. Latitude: 19.4284 Longitude: -99.1276 Altitude: 2240"
-msgstr "např. Zeměpisná délka:50.36874 Zeměpisná šířka: 12.81826 Nadmořská výška: 891"
+msgstr ""
+"např. Zeměpisná délka:50.36874 Zeměpisná šířka: 12.81826 Nadmořská výška: 891"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "for Mexico City, Mexico"
@@ -492,8 +496,14 @@ msgstr "Data předpovědi poskytlo OpenWeather"
 #~ msgid "In-Tray Settings"
 #~ msgstr "Nastavení pro lištu"
 
-#~ msgid "NOTE: After this timeout widget will be hidden in system tray until refreshed. You can always set the widget to be always \"Shown\" in system tray \"Entries\" settings."
-#~ msgstr "Pozn.: Po tomto čase bude aplet skryt dokud nedojde k jeho aktualizaci. Vždy je však možné aplet nastavit tak, aby byl stále viditelný tím, že u něj nastavíte \"Zobrazeno\" v sekci \"Položky\" v nastavení lišty."
+#~ msgid ""
+#~ "NOTE: After this timeout widget will be hidden in system tray until "
+#~ "refreshed. You can always set the widget to be always \"Shown\" in system "
+#~ "tray \"Entries\" settings."
+#~ msgstr ""
+#~ "Pozn.: Po tomto čase bude aplet skryt dokud nedojde k jeho aktualizaci. "
+#~ "Vždy je však možné aplet nastavit tak, aby byl stále viditelný tím, že u "
+#~ "něj nastavíte \"Zobrazeno\" v sekci \"Položky\" v nastavení lišty."
 
 #~ msgid "Place Identifier"
 #~ msgstr "ID lokace"
@@ -576,7 +586,8 @@ msgstr "Data předpovědi poskytlo OpenWeather"
 
 #~ msgid ""
 #~ "Find your town string in yr.no (english version)\n"
-#~ "and use the URL from your browser to add a new location. E.g. paste this:\n"
+#~ "and use the URL from your browser to add a new location. E.g. paste "
+#~ "this:\n"
 #~ "http://www.yr.no/place/Germany/North_Rhine-Westphalia/Bonn/"
 #~ msgstr ""
 #~ "Najděte svou lokalitu na stránkách yr.no (zvolte anglickou verzi)\n"

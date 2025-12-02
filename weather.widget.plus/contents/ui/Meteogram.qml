@@ -73,7 +73,7 @@ Item {
     property color gridColorBrightHighlight: textColorLight ? Qt.tint(Kirigami.Theme.textColor, '#25000000') : Qt.tint(Kirigami.Theme.textColor, '#25FFFFFF')
     property color pressureColor: Kirigami.Theme.positiveTextColor
     property color temperatureWarmColor: Kirigami.Theme.negativeTextColor
-    property color temperatureColdColor: Kirigami.Theme.activeTextColor
+    property color temperatureColdColor: Kirigami.Theme.visitedLinkColor
     property color rainColor: Kirigami.Theme.linkColor // textColorLight ? Qt.tint(Kirigami.Theme.linkColor, '#25FFFFFF') : Qt.tint(Kirigami.Theme.linkColor, '#50000000')
 
 
@@ -543,7 +543,7 @@ Item {
             anchors.topMargin: -parent.anchors.topMargin
             // clip: false
             width: parent.width
-            height: bufferArea.height - temperatureIncrementPixels * (temperatureIncrementDegrees - 1) + 0
+            height: graphArea.height - temperatureIncrementPixels * (temperatureIncrementDegrees - 1) + 0
 
             onWidthChanged: {
 

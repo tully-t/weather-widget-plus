@@ -48,10 +48,10 @@ msgstr[3] "%1 час назад"
 #: ../../weather.widget.plus/contents/code/data-loader.js
 msgid "%1 days ago"
 msgid_plural "%1 days ago"
-msgstr[0] "%1 минуту назад"
-msgstr[1] "%1 минуты назад"
-msgstr[2] "%1 минут назад"
-msgstr[3] "%1 минуту назад"
+msgstr[0] "%1 дней назад"
+msgstr[1] "%1 день назад"
+msgstr[2] "%1 дня назад"
+msgstr[3] "%1 дней назад"
 
 #: ../../weather.widget.plus/contents/code/data-loader.js
 msgid "long ago"
