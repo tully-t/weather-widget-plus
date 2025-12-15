@@ -124,10 +124,10 @@
             <default>800</default>
         </entry>
         <entry name="widgetHeight" type="Int">
-            <default>320</default>
+            <default>300</default>
         </entry>
         <entry name="hourSpanOm" type="Int">
-            <default>60</default>
+            <default>56</default>
         </entry>
         <entry name="mgAxisFontSize" type="Int">
             <default>11</default>

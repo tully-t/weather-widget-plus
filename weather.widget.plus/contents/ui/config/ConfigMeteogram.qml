@@ -352,7 +352,7 @@ KCM.SimpleKCM {
                 anchors.topMargin: -8
                 anchors.leftMargin: 5
                 stepSize: 1
-                from: 320
+                from: 300
                 value: cfg_widgetHeight
                 to: Screen.desktopAvailableHeight * 0.75
                 onValueChanged: {

@@ -19,6 +19,7 @@ import QtQuick.Layouts
 import org.kde.plasma.plasmoid
 import org.kde.plasma.core as PlasmaCore
 import QtQuick.Controls
+// import QtQuick.Window
 import org.kde.plasma.components 3.0 as PlasmaComponents
 import org.kde.plasma.plasma5support as Plasma5Support
 import org.kde.kirigami as Kirigami
@@ -31,6 +32,7 @@ import "../code/timezoneData.js" as TZ
 
 PlasmoidItem {
     id: main
+    Plasmoid.backgroundHints: PlasmaCore.Types.DefaultBackground | PlasmaCore.Types.ConfigurableBackground
 
     /* Includes */
     WeatherCache {
@@ -373,12 +375,12 @@ PlasmoidItem {
         loadFromCache()
     }
     function updateLastReloadedText() {
-        dbgprint("updateLastReloadedText: " + loadingData.lastloadingSuccessTime)
+        // dbgprint("updateLastReloadedText: " + loadingData.lastloadingSuccessTime)
         if (loadingData.lastloadingSuccessTime > 0) {
             lastReloadedText = '⬇ ' + DataLoader.getLastReloadedTimeText(dateNow() - loadingData.lastloadingSuccessTime)
         }
-        plasmoid.status = DataLoader.getPlasmoidStatus(loadingData.lastloadingSuccessTime, inTrayActiveTimeoutSec)
-        dbgprint(plasmoid.status)
+        // plasmoid.status = DataLoader.getPlasmoidStatus(loadingData.lastloadingSuccessTime, inTrayActiveTimeoutSec)
+        // dbgprint(plasmoid.status)
     }
     function updateCompactItem(){
         dbgprint2("updateCompactItem")
@@ -448,10 +450,10 @@ PlasmoidItem {
             xhr.open('GET', URL)
             xhr.setRequestHeader("User-Agent","Mozilla/5.0 (X11; Linux x86_64) Gecko/20100101 ")
             xhr.send()
-            xhr.onload =  (event) => {
-                dbgprint("env_QML_XHR_ALLOW_FILE_READ = 1. Using Builtin Location databases...")
-                env_QML_XHR_ALLOW_FILE_READ = true
-            }
+            // xhr.onload =  (event) => {
+            //     dbgprint("env_QML_XHR_ALLOW_FILE_READ = 1. Using Builtin Location databases...")
+            //     env_QML_XHR_ALLOW_FILE_READ = true
+            // }
 
             if (plasmoid.configuration.widgetFontSize === undefined) {
                 plasmoid.configuration.widgetFontSize = 30
@@ -602,14 +604,14 @@ PlasmoidItem {
         running: true
         repeat: true
         onTriggered: {
-            dbgprint2("Timer Triggered")
+            // dbgprint2("Timer Triggered")
             var now=dateNow()
-            dbgprint("*** loadingData Flag : " + loadingData.loadingDatainProgress)
-            dbgprint("*** loadingData failedAttemptCount : " + loadingData.failedAttemptCount)
-            dbgprint("*** Last Load Success: " + (loadingData.lastloadingSuccessTime))
-            dbgprint("*** Next Load Due    : " + (currentPlace.nextReload))
-            dbgprint("*** Time Now         : " + now)
-            dbgprint("*** Next Load in     : " + Math.round((currentPlace.nextReload - now) / 1000) + " sec = "+ ((currentPlace.nextReload - now) / 60000).toFixed(2) + " min")
+            // dbgprint("*** loadingData Flag : " + loadingData.loadingDatainProgress)
+            // dbgprint("*** loadingData failedAttemptCount : " + loadingData.failedAttemptCount)
+            // dbgprint("*** Last Load Success: " + (loadingData.lastloadingSuccessTime))
+            // dbgprint("*** Next Load Due    : " + (currentPlace.nextReload))
+            // dbgprint("*** Time Now         : " + now)
+            // dbgprint("*** Next Load in     : " + Math.round((currentPlace.nextReload - now) / 1000) + " sec = "+ ((currentPlace.nextReload - now) / 60000).toFixed(2) + " min")
 
             updateLastReloadedText()
             // if ((loadingData.lastloadingSuccessTime === 0) && (updatingPaused)) {

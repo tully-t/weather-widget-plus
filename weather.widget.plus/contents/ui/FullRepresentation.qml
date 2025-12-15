@@ -43,9 +43,9 @@ Item {
     implicitHeight: headingHeight + imageHeight + footerHeight + nextDaysHeight + 14
 
     Layout.minimumWidth: imageWidth
-    Layout.minimumHeight: headingHeight + imageHeight + footerHeight + nextDaysHeight + 14 + 69 //36
+    Layout.minimumHeight: headingHeight + imageHeight + footerHeight + nextDaysHeight + 14 + 56 //36
     Layout.preferredWidth: imageWidth
-    Layout.preferredHeight: headingHeight + imageHeight + footerHeight + nextDaysHeight + 14 + 69 //36
+    Layout.preferredHeight: headingHeight + imageHeight + footerHeight + nextDaysHeight + 14 + 56 //36 69
 
     onFullRepresentationAliasChanged: {
 
