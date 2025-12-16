@@ -490,7 +490,7 @@ KCM.SimpleKCM {
                     newOmCityLongitudeField.text = ''
                     newOmCityAltitudeField.text = ''
                     newOmUrl.text = ''
-                    newOmCityLatitudeField.focus = true
+                    newOmCityAlias.focus = true
                     addOmCityIdDialog.placeNumberID=-1
                     addOmCityIdDialog.open()
                 }
@@ -530,7 +530,7 @@ KCM.SimpleKCM {
                     newMetnoCityLongitudeField.text = ''
                     newMetnoCityAltitudeField.text = ''
                     newMetnoUrl.text = ''
-                    newMetnoCityLatitudeField.focus = true
+                    newMetnoCityAlias.focus = true
                     addMetnoCityIdDialog.placeNumberID=-1
                     addMetnoCityIdDialog.open()
                 }
@@ -771,31 +771,31 @@ KCM.SimpleKCM {
     }
 
     // changePlaceAliasDialog
-    Dialog {
-        id: changePlaceAliasDialog
-        title: i18n("Change City Name")
-        implicitWidth: generalConfigPage.width
-        implicitHeight: rhsColumn.height + 20
-        background: Rectangle {
-            color: Kirigami.Theme.backgroundColor
-        }
-
-        standardButtons: Dialog.Ok | Dialog.Cancel
-
-        onAccepted: {
-            placesModel.setProperty(changePlaceAliasDialog.tableIndex, 'placeAlias', newPlaceAliasField.text)
-            placesModelChanged()
-            changePlaceAliasDialog.close()
-        }
-
-        property int tableIndex: 0
-
-        TextField {
-            id: newPlaceAliasField
-            placeholderText: i18n("Enter city name")
-            width: parent.width
-        }
-    }
+    // Dialog {
+    //     id: changePlaceAliasDialog
+    //     title: i18n("Change City Name")
+    //     implicitWidth: generalConfigPage.width
+    //     implicitHeight: rhsColumn.height + 20
+    //     background: Rectangle {
+    //         color: Kirigami.Theme.backgroundColor
+    //     }
+    //
+    //     standardButtons: Dialog.Ok | Dialog.Cancel
+    //
+    //     onAccepted: {
+    //         placesModel.setProperty(changePlaceAliasDialog.tableIndex, 'placeAlias', newPlaceAliasField.text)
+    //         placesModelChanged()
+    //         changePlaceAliasDialog.close()
+    //     }
+    //
+    //     property int tableIndex: 0
+    //
+    //     TextField {
+    //         id: newPlaceAliasField
+    //         placeholderText: i18n("Enter city name")
+    //         width: parent.width
+    //     }
+    // }
 
     // addOwmCityIdDialog
     Dialog {
@@ -855,7 +855,7 @@ KCM.SimpleKCM {
             id: newOwmCityIdField
             placeholderText: i18n("Paste URL here")
             width: parent.width
-            onTextChanged: {
+            onTextEdited: {
                 var match = /https?:\/\/openweathermap\.org\/city\/([0-9]+)(\/)?/.exec(newOwmCityIdField.text)
                 if (match === null) {
                     owmButtons.standardButton(Dialog.Ok).enabled = false
@@ -871,6 +871,14 @@ KCM.SimpleKCM {
             anchors.topMargin: 10
             placeholderText: i18n("City Name")
             width: parent.width
+            Keys.onReturnPressed: {
+                var match = /https?:\/\/openweathermap\.org\/city\/([0-9]+)(\/)?/.exec(newOwmCityIdField.text)
+                if (match === null) {
+                    owmButtons.standardButton(Dialog.Ok).enabled = false
+                } else if (newOwmCityAlias.length > 0) {
+                    addOwmCityIdDialog.accept()
+                }
+            }
         }
 
         Label {
@@ -961,11 +969,17 @@ KCM.SimpleKCM {
                     }
                     TextField {
                         id: newMetnoCityAlias
+                        focus: true
                         Layout.alignment: Qt.AlignVCenter
                         Layout.preferredWidth: (omRowLayout.labelWidth * 3.5)
                         // placeholderText: i18n("City Name")
-                        onTextChanged: {
+                        onTextEdited: {
                             updateUrl()
+                        }
+                        Keys.onReturnPressed: {
+                            if (newMetnoCityAlias.length > 0 && buttons.standardButton(Dialog.Ok).enabled) {
+                                addMetnoCityIdDialog.accept()
+                            }
                         }
                     }
                     Item {
@@ -999,8 +1013,13 @@ KCM.SimpleKCM {
                         Layout.fillWidth: true
                         validator: DoubleValidator { bottom: -90; top: 90; decimals: 4 }
                         color: newMetnoCityAltitudeLabel.color
-                        onTextChanged: {
+                        onTextEdited: {
                             updateUrl()
+                        }
+                        Keys.onReturnPressed: {
+                            if (newMetnoCityLatitudeField.length > 0 && buttons.standardButton(Dialog.Ok).enabled) {
+                                addMetnoCityIdDialog.accept()
+                            }
                         }
                     }
 
@@ -1017,8 +1036,13 @@ KCM.SimpleKCM {
                         Layout.fillWidth: true
                         Layout.preferredWidth:  metNoRowLayout.textboxWidth
                         color: newMetnoCityAltitudeLabel.color
-                        onTextChanged: {
+                        onTextEdited: {
                             updateUrl()
+                        }
+                        Keys.onReturnPressed: {
+                            if (newMetnoCityLongitudeField.length > 0 && buttons.standardButton(Dialog.Ok).enabled) {
+                                addMetnoCityIdDialog.accept()
+                            }
                         }
                     }
                     Label {
@@ -1034,8 +1058,13 @@ KCM.SimpleKCM {
                         Layout.preferredWidth:  metNoRowLayout.textboxWidth
                         validator: IntValidator { bottom: -999; top: 5000 }
                         color: newMetnoCityAltitudeLabel.color
-                        onTextChanged: {
+                        onTextEdited: {
                             updateUrl()
+                        }
+                        Keys.onReturnPressed: {
+                            if (newMetnoCityAltitudeField.length > 0 && buttons.standardButton(Dialog.Ok).enabled) {
+                                addMetnoCityIdDialog.accept()
+                            }
                         }
                     }
                 }
@@ -1083,7 +1112,7 @@ KCM.SimpleKCM {
                                 updatenewMetnoCityOKButton()
                         }
 
-                        onTextChanged: {
+                        onTextEdited: {
                             updateFields()
                         }
 
@@ -1112,6 +1141,11 @@ KCM.SimpleKCM {
                                 addMetnoCityIdDialog.timezoneID = timezoneDataModel.get(tzComboBox.currentIndex).id
                             }
                             updateUrl()
+                        }
+                        Keys.onReturnPressed: {
+                            if (tzComboBox.currentIndex > 0 && buttons.standardButton(Dialog.Ok).enabled) {
+                                addMetnoCityIdDialog.accept()
+                            }
                         }
                     }
                 }
@@ -1282,8 +1316,13 @@ KCM.SimpleKCM {
                         Layout.alignment: Qt.AlignVCenter
                         // placeholderText: i18n("City Name")
                         Layout.preferredWidth: (omRowLayout.labelWidth * 3.5)
-                        onTextChanged: {
+                        onTextEdited: {
                             updateOmUrl()
+                        }
+                        Keys.onReturnPressed: {
+                            if (newOmCityAlias.length > 0 && buttonsOM.standardButton(Dialog.Ok).enabled) {
+                                addOmCityIdDialog.accept()
+                            }
                         }
                     }
                     Item {
@@ -1317,8 +1356,13 @@ KCM.SimpleKCM {
                         Layout.fillWidth: true
                         validator: DoubleValidator { bottom: -90; top: 90; decimals: 4 }
                         color: newOmCityAltitudeLabel.color
-                        onTextChanged: {
+                        onTextEdited: {
                             updateOmUrl()
+                        }
+                        Keys.onReturnPressed: {
+                            if (newOmCityLatitudeField.length > 0 && buttonsOM.standardButton(Dialog.Ok).enabled) {
+                                addOmCityIdDialog.accept()
+                            }
                         }
                     }
 
@@ -1335,8 +1379,13 @@ KCM.SimpleKCM {
                         Layout.fillWidth: true
                         Layout.preferredWidth:  omRowLayout.textboxWidth
                         color: newOmCityAltitudeLabel.color
-                        onTextChanged: {
+                        onTextEdited: {
                             updateOmUrl()
+                        }
+                        Keys.onReturnPressed: {
+                            if (newOmCityLongitudeField.length > 0 && buttonsOM.standardButton(Dialog.Ok).enabled) {
+                                addOmCityIdDialog.accept()
+                            }
                         }
                     }
                     Label {
@@ -1352,8 +1401,13 @@ KCM.SimpleKCM {
                         Layout.preferredWidth:  omRowLayout.textboxWidth
                         validator: IntValidator { bottom: -999; top: 5000 }
                         color: newOmCityAltitudeLabel.color
-                        onTextChanged: {
+                        onTextEdited: {
                             updateOmUrl()
+                        }
+                        Keys.onReturnPressed: {
+                            if (newOmCityAltitudeField.length > 0 && buttonsOM.standardButton(Dialog.Ok).enabled) {
+                                addOmCityIdDialog.accept()
+                            }
                         }
                     }
                 }
@@ -1401,7 +1455,7 @@ KCM.SimpleKCM {
                                 updatenewOmCityOKButton()
                         }
 
-                        onTextChanged: {
+                        onTextEdited: {
                             updateFields()
                         }
 
@@ -1435,6 +1489,11 @@ KCM.SimpleKCM {
                             }
                             updateOmUrl()
                         }
+                        Keys.onReturnPressed: {
+                            if (tzComboBoxOm.currentIndex > 0 && buttonsOM.standardButton(Dialog.Ok).enabled) {
+                                addOmCityIdDialog.accept()
+                            }
+                        }
                     }
                     Item {
                         // spacer item
@@ -1454,7 +1513,7 @@ KCM.SimpleKCM {
                 //         id: newMetnoCityAlias
                 //         Layout.alignment: Qt.AlignVCenter
                 //         // placeholderText: i18n("City Name")
-                //         onTextChanged: {
+                //         onTextEdited: {
                 //             updateUrl()
                 //         }
                 //     }
@@ -1931,7 +1990,7 @@ KCM.SimpleKCM {
     //             Keys.onReturnPressed: {
     //                 event.accepted = true
     //             }
-    //             onTextChanged: {
+    //             onTextEdited: {
     //                 Helper.updateListView(locationEdit.text)
     //             }
     //         }
