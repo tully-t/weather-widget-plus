@@ -1,6 +1,6 @@
-import QtQuick 2.2
+import QtQuick
 import QtQuick.Controls
-import QtQuick.Layouts 1.1
+import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 import org.kde.kcmutils as KCM
 // import "../"
@@ -220,6 +220,7 @@ KCM.SimpleKCM {
         Item {
             SpinBox {
                 id: topOuterMargin
+                live: true
                 Layout.alignment: Qt.AlignVCenter
                 anchors.verticalCenter: parent.verticalCenter
                 stepSize: 1
@@ -228,6 +229,15 @@ KCM.SimpleKCM {
                 to: 999
                 onValueChanged: {
                     cfg_topOuterMargin = topOuterMargin.value
+                }
+                contentItem: TextInput {
+                    text: topOuterMargin.value
+                    horizontalAlignment: Qt.AlignLeft
+                    verticalAlignment: Qt.AlignVCenter
+                    color: Kirigami.Theme.textColor
+                    selectionColor: Kirigami.Theme.highlightColor
+                    leftPadding: 8
+                    rightPadding: 2
                 }
             }
             Label {
@@ -297,6 +307,7 @@ KCM.SimpleKCM {
         Item {
             SpinBox {
                 id: leftOuterMargin
+                live: true
                 Layout.alignment: Qt.AlignVCenter
                 anchors.verticalCenter: parent.verticalCenter
                 stepSize: 1
@@ -305,6 +316,15 @@ KCM.SimpleKCM {
                 to: 999
                 onValueChanged: {
                     cfg_leftOuterMargin = leftOuterMargin.value
+                }
+                contentItem: TextInput {
+                    text: leftOuterMargin.value
+                    horizontalAlignment: Qt.AlignLeft
+                    verticalAlignment: Qt.AlignVCenter
+                    color: Kirigami.Theme.textColor
+                    selectionColor: Kirigami.Theme.highlightColor
+                    leftPadding: 8
+                    rightPadding: 2
                 }
             }
             Label {
@@ -379,6 +399,7 @@ KCM.SimpleKCM {
         Item {
             SpinBox {
                 id: innerMargin
+                live: true
                 Layout.alignment: Qt.AlignVCenter
                 anchors.verticalCenter: parent.verticalCenter
                 stepSize: 1
@@ -387,6 +408,15 @@ KCM.SimpleKCM {
                 to: 999
                 onValueChanged: {
                     cfg_innerMargin = innerMargin.value
+                }
+                contentItem: TextInput {
+                    text: innerMargin.value
+                    horizontalAlignment: Qt.AlignLeft
+                    verticalAlignment: Qt.AlignVCenter
+                    color: Kirigami.Theme.textColor
+                    selectionColor: Kirigami.Theme.highlightColor
+                    leftPadding: 8
+                    rightPadding: 2
                 }
             }
             Label {
@@ -455,6 +485,7 @@ KCM.SimpleKCM {
         Item {
             SpinBox {
                 id: rightOuterMargin
+                live: true
                 Layout.alignment: Qt.AlignVCenter
                 anchors.verticalCenter: parent.verticalCenter
                 // decimals: 0
@@ -464,6 +495,15 @@ KCM.SimpleKCM {
                 to: 999
                 onValueChanged: {
                     cfg_rightOuterMargin = rightOuterMargin.value
+                }
+                contentItem: TextInput {
+                    text: rightOuterMargin.value
+                    horizontalAlignment: Qt.AlignLeft
+                    verticalAlignment: Qt.AlignVCenter
+                    color: Kirigami.Theme.textColor
+                    selectionColor: Kirigami.Theme.highlightColor
+                    leftPadding: 8
+                    rightPadding: 2
                 }
             }
             Label {
@@ -490,6 +530,7 @@ KCM.SimpleKCM {
         Item {
             SpinBox {
                 id: bottomOuterMargin
+                live: true
                 Layout.alignment: Qt.AlignVCenter
                 anchors.verticalCenter: parent.verticalCenter
                 stepSize: 1
@@ -498,6 +539,15 @@ KCM.SimpleKCM {
                 to: 999
                 onValueChanged: {
                     cfg_bottomOuterMargin = bottomOuterMargin.value
+                }
+                contentItem: TextInput {
+                    text: bottomOuterMargin.value
+                    horizontalAlignment: Qt.AlignLeft
+                    verticalAlignment: Qt.AlignVCenter
+                    color: Kirigami.Theme.textColor
+                    selectionColor: Kirigami.Theme.highlightColor
+                    leftPadding: 8
+                    rightPadding: 2
                 }
             }
 

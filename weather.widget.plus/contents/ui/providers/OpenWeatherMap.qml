@@ -520,7 +520,7 @@ dbgprint2("***************************************************")
     }
 
     function getCreditLink(placeIdentifier) {
-        return 'http://openweathermap.org/city/' + placeIdentifier
+        return 'http://old.openweathermap.org/city/' + placeIdentifier
     }
 
     function reloadMeteogramImage(placeIdentifier) {

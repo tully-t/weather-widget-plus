@@ -457,7 +457,7 @@ KCM.SimpleKCM {
                                             addOmCityIdDialog.open()
                                         }
                                         if (entry.providerId === "owm") {
-                                            newOwmCityIdField.text = "https://openweathermap.org/city/"+entry.placeIdentifier
+                                            newOwmCityIdField.text = "https://old.openweathermap.org/city/"+entry.placeIdentifier
                                             newOwmCityAlias.text = entry.placeAlias
                                             addOwmCityIdDialog.placeNumberID = row
                                             addOwmCityIdDialog.open()
@@ -482,8 +482,8 @@ KCM.SimpleKCM {
             // anchors.topMargin: Kirigami.Units.largeSpacing * 2
             Button {
                 icon.name: 'list-add'
-                text: 'OM'
-                width: 100
+                text: 'Open-Meteo'
+                // width: 250
                 onClicked: {
                     newOmCityAlias.text = ''
                     newOmCityLatitudeField.text = ''
@@ -503,8 +503,8 @@ KCM.SimpleKCM {
 
         Button {
             icon.name: 'list-add'
-            text: 'OWM'
-            width: 100
+            text: 'OpenWeather'
+            // width: 100
             onClicked: {
                 addOwmCityIdDialog.placeNumberID = -1
                 newOwmCityIdField.text = ''
@@ -522,7 +522,7 @@ KCM.SimpleKCM {
             Button {
                 icon.name: 'list-add'
                 text: 'Met.no'
-                width: 100
+                // width: 100
                 onClicked: {
 
                     newMetnoCityAlias.text = ''
@@ -562,20 +562,41 @@ KCM.SimpleKCM {
                 rightPadding: 6
             }
             SpinBox {
+                id: reloadIntervalMin
+                live: true
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left:reloadLabel1.right
-                id: reloadIntervalMin
                 stepSize: 10
+                // width: (reloadIntervalMinText.length * (font.pixelSize * 0.86)) + 48 //64
+                // width: implicitWidth
 
                 from: 20
                 to: 120
                 // suffix: i18nc("Abbreviation for minutes", "min")
+                // width: 72
 
+                // background: Rectangle {
+                //     implicitWidth: 72
+                // }
+
+                contentItem: TextInput {
+                    id: reloadIntervalMinText
+                    text: reloadIntervalMin.value// + "  "
+                    horizontalAlignment: Qt.AlignLeft
+                    verticalAlignment: Qt.AlignVCenter
+                    color: Kirigami.Theme.textColor
+                    selectionColor: Kirigami.Theme.highlightColor
+                    leftPadding: 8
+                    rightPadding: 2
+                    // validator: reloadIntervalMin.validator
+                    // Layout.leftMargin: 4
+                    // Layout.minimumWidth: 32
+                }
             }
             Label {
                 id: reloadIntervalAbbreviation
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.left:reloadIntervalMin.right
+                anchors.left: reloadIntervalMin.right
                 text: i18nc("Abbreviation for minutes", "min")
                 leftPadding: 6
             }
@@ -823,7 +844,7 @@ KCM.SimpleKCM {
 
         onAccepted: {
             var url = newOwmCityIdField.text
-            var match = /https?:\/\/openweathermap\.org\/city\/([0-9]+)(\/)?/.exec(url)
+            var match = /https?:\/\/old\.openweathermap\.org\/city\/([0-9]+)(\/)?/.exec(url)
 
             var resultString = null
 
@@ -856,7 +877,7 @@ KCM.SimpleKCM {
             placeholderText: i18n("Paste URL here")
             width: parent.width
             onTextEdited: {
-                var match = /https?:\/\/openweathermap\.org\/city\/([0-9]+)(\/)?/.exec(newOwmCityIdField.text)
+                var match = /https?:\/\/old\.openweathermap\.org\/city\/([0-9]+)(\/)?/.exec(newOwmCityIdField.text)
                 if (match === null) {
                     owmButtons.standardButton(Dialog.Ok).enabled = false
                 } else {
@@ -872,7 +893,7 @@ KCM.SimpleKCM {
             placeholderText: i18n("City Name")
             width: parent.width
             Keys.onReturnPressed: {
-                var match = /https?:\/\/openweathermap\.org\/city\/([0-9]+)(\/)?/.exec(newOwmCityIdField.text)
+                var match = /https?:\/\/old\.openweathermap\.org\/city\/([0-9]+)(\/)?/.exec(newOwmCityIdField.text)
                 if (match === null) {
                     owmButtons.standardButton(Dialog.Ok).enabled = false
                 } else if (newOwmCityAlias.length > 0) {
@@ -893,7 +914,8 @@ KCM.SimpleKCM {
             id: owmLink
             anchors.top: owmInfo.bottom
             font.italic: true
-            text: 'http://openweathermap.org/find'
+            text: 'http://old.openweathermap.org/find'
+            //'http://openweathermap.org/find'
         }
 
         MouseArea {
@@ -918,7 +940,7 @@ KCM.SimpleKCM {
         Label {
             anchors.top: owmLink.bottom
             font.italic: true
-            text: i18n("and then paste the whole URL into the corresponding field\ne.g. http://openweathermap.org/city/2946447 for Bonn, Germany")
+            text: i18n("and then paste the whole URL into the corresponding field\ne.g. https://old.openweathermap.org/city/2946447 for Bonn, Germany")
         }
 
     }
@@ -1313,6 +1335,7 @@ KCM.SimpleKCM {
                     }
                     TextField {
                         id: newOmCityAlias
+                        focus: true
                         Layout.alignment: Qt.AlignVCenter
                         // placeholderText: i18n("City Name")
                         Layout.preferredWidth: (omRowLayout.labelWidth * 3.5)
@@ -1634,419 +1657,5 @@ KCM.SimpleKCM {
         }
 
     }
-
-    // searchWindow
-    // Dialog {
-    //     title: i18n("Location Search")
-    //     id: searchWindow
-    //     z: 1
-    //     implicitWidth: generalConfigPage.width
-    //     implicitHeight: rhsColumn.height + 20
-    //     background: Rectangle {
-    //         color: Kirigami.Theme.backgroundColor
-    //     }
-    //     footer: DialogButtonBox {
-    //         id: searchWindowButtons
-    //         standardButtons: Dialog.Ok | Dialog.Cancel
-    //     }
-    //
-    //     HorizontalHeaderView {
-    //         id: mysearchhorizontalHeader
-    //         syncView: searchtableView
-    //         clip: true
-    //         model: ListModel {
-    //             Component.onCompleted: {
-    //                 append({ display: i18n("Location")  });
-    //                 append({ display: i18n("Area") });
-    //                 append({ display: i18n("Latitude") });
-    //                 append({ display: i18n("Longitude") });
-    //                 append({ display: i18n("Alt") });
-    //                 append({ display: i18n("Timezone") });
-    //                 // append({ display: ("TBA") });
-    //             }
-    //         }
-    //     }
-    //
-    //     ScrollView {
-    //         id: placesTable1
-    //         width: parent.width
-    //         clip: true
-    //         Layout.preferredHeight: 190
-    //         Layout.preferredWidth: parent.width
-    //         Layout.maximumHeight: 190
-    //
-    //         Layout.columnSpan: 2
-    //         // anchors.fill: parent
-    //         anchors.bottom: row2.top
-    //         anchors.right: parent.right
-    //         anchors.left: parent.left
-    //         anchors.top: parent.top
-    //         // anchors.bottomMargin: 10
-    //         anchors.topMargin: mysearchhorizontalHeader.height + 2
-    //
-    //         TableView {
-    //             id: searchtableView
-    //             anchors.fill: parent
-    //             anchors.bottomMargin: 10 + placesTable1.effectiveScrollBarHeight
-    //             anchors.rightMargin: 10 + placesTable1.effectiveScrollBarWidth
-    //             // verticalScrollBarPolicy: Qt.ScrollBarAsNeeded
-    //             // highlightOnFocus: true
-    //             property var columnWidths: [30, 15, 15, 12, 12, 30, -1]
-    //             property int selectedRow: -1
-    //             columnWidthProvider: function (column) {
-    //                 let aw = placesTable1.width - placesTable1.effectiveScrollBarWidth
-    //                 return parseInt(aw * columnWidths[column] / 100 )
-    //
-    //             }
-    //
-    //             model: filteredCSVData
-    //             clip: true
-    //             interactive: true
-    //             rowSpacing: 1
-    //             columnSpacing: 1
-    //
-    //             boundsBehavior: Flickable.StopAtBounds
-    //             implicitHeight: 200
-    //             implicitWidth: 600
-    //             Layout.maximumHeight: 200
-    //
-    //
-    //             selectionBehavior: TableView.SelectRows
-    //             selectionModel: ItemSelectionModel { }
-    //
-    //             delegate: searchtableChooser
-    //
-    //             DelegateChooser {
-    //                 id: searchtableChooser
-    //                 DelegateChoice {
-    //                     column: 0
-    //
-    //                     delegate: Rectangle {
-    //                         required property bool selected
-    //                         required property bool current
-    //                         border.width: current ? 2 : 0
-    //                         implicitWidth: searchtableView.width * 0.3
-    //                         implicitHeight: defaultFontPixelSize + 4
-    //                             color: (row === searchtableView.selectedRow) ? highlightColor : (row % 2) === 0 ? backgroundColor : alternateBackgroundColor
-    //                         Text {
-    //                             text: display
-    //                             color: Kirigami.Theme.textColor
-    //                             font.family: Kirigami.Theme.defaultFont.family
-    //                             font.pixelSize: defaultFontPixelSize
-    //                             anchors.verticalCenter: parent.verticalCenter
-    //                             anchors.fill: parent
-    //                         }
-    //                         MouseArea {
-    //                             anchors.fill: parent
-    //                             onClicked: {
-    //                                 searchtableView.selectedRow = row
-    //                             }
-    //                             onDoubleClicked: {
-    //                                 saveSearchedData.rowNumber = row
-    //                                 saveSearchedData.visible = true
-    //                                 saveSearchedData.open()
-    //                             }
-    //                         }
-    //                     }
-    //                 }
-    //                 DelegateChoice {
-    //                     column: 1
-    //                     delegate: Rectangle {
-    //                         implicitHeight: defaultFontPixelSize + 4
-    //                         // implicitWidth: searchtableView.width * 0.1
-    //                         color: (row === searchtableView.selectedRow) ? highlightColor : (row % 2) === 0 ? backgroundColor : alternateBackgroundColor
-    //                         Text {
-    //                             text: display
-    //                             color: Kirigami.Theme.textColor
-    //                             font.family: Kirigami.Theme.defaultFont.family
-    //                             font.pixelSize: defaultFontPixelSize
-    //                             anchors.verticalCenter: parent.verticalCenter
-    //                         }
-    //                         MouseArea {
-    //                             anchors.fill: parent
-    //                             onClicked: {
-    //                                 searchtableView.selectedRow = row
-    //                             }
-    //                             onDoubleClicked: {
-    //                                 saveSearchedData.rowNumber = row
-    //                                 saveSearchedData.visible = true
-    //                                 saveSearchedData.open()
-    //                             }
-    //                         }
-    //                     }
-    //                 }
-    //                 DelegateChoice {
-    //                     column: 2
-    //                     delegate: Rectangle {
-    //                         required property bool selected
-    //                         required property bool current
-    //                         implicitHeight: defaultFontPixelSize + 4
-    //                         color: (row === searchtableView.selectedRow) ? highlightColor : (row % 2) === 0 ? backgroundColor : alternateBackgroundColor
-    //                         Text {
-    //                             text: display
-    //                             color: Kirigami.Theme.textColor
-    //                             font.family: Kirigami.Theme.defaultFont.family
-    //                             font.pixelSize: defaultFontPixelSize
-    //                             anchors.verticalCenter: parent.verticalCenter
-    //                         }
-    //                         MouseArea {
-    //                             anchors.fill: parent
-    //                             onClicked: {
-    //                                 searchtableView.selectedRow = row
-    //                             }
-    //                             onDoubleClicked: {
-    //                                 saveSearchedData.rowNumber = row
-    //                                 saveSearchedData.visible = true
-    //                                 saveSearchedData.open()
-    //                             }
-    //                         }
-    //                     }
-    //                 }
-    //                 DelegateChoice {
-    //                     column: 3
-    //                     delegate: Rectangle {
-    //                         implicitHeight: defaultFontPixelSize + 4
-    //                         color: (row === searchtableView.selectedRow) ? highlightColor : (row % 2) === 0 ? backgroundColor : alternateBackgroundColor
-    //                         Text {
-    //                             text: display
-    //                             color: Kirigami.Theme.textColor
-    //                             font.family: Kirigami.Theme.defaultFont.family
-    //                             font.pixelSize: defaultFontPixelSize
-    //                             anchors.verticalCenter: parent.verticalCenter
-    //                         }
-    //                         MouseArea {
-    //                             anchors.fill: parent
-    //                             onClicked: {
-    //                                 searchtableView.selectedRow = row
-    //                             }
-    //                             onDoubleClicked: {
-    //                                 saveSearchedData.rowNumber = row
-    //                                 saveSearchedData.visible = true
-    //                                 saveSearchedData.open()
-    //                             }
-    //                         }
-    //                     }
-    //                 }
-    //                 DelegateChoice {
-    //                     column: 4
-    //                     delegate: Rectangle {
-    //                         implicitHeight: defaultFontPixelSize + 4
-    //                         color: (row === searchtableView.selectedRow) ? highlightColor : (row % 2) === 0 ? backgroundColor : alternateBackgroundColor
-    //                         Text {
-    //                             text: display
-    //                             color: Kirigami.Theme.textColor
-    //                             font.family: Kirigami.Theme.defaultFont.family
-    //                             font.pixelSize: defaultFontPixelSize
-    //                             anchors.verticalCenter: parent.verticalCenter
-    //                         }
-    //                         MouseArea {
-    //                             anchors.fill: parent
-    //                             onClicked: {
-    //                                 searchtableView.selectedRow = row
-    //                             }
-    //                             onDoubleClicked: {
-    //                                 saveSearchedData.rowNumber = row
-    //                                 saveSearchedData.visible = true
-    //                                 saveSearchedData.open()
-    //                             }
-    //                         }
-    //                     }
-    //                 }
-    //                 DelegateChoice {
-    //                     column: 5
-    //                     delegate: Rectangle {
-    //                         height: defaultFontPixelSize + 4
-    //                         color: (row === searchtableView.selectedRow) ? highlightColor : (row % 2) === 0 ? backgroundColor : alternateBackgroundColor
-    //                         Text {
-    //                             text: display
-    //                             color: Kirigami.Theme.textColor
-    //                             font.family: Kirigami.Theme.defaultFont.family
-    //                             font.pixelSize: defaultFontPixelSize
-    //                             anchors.verticalCenter: parent.verticalCenter
-    //                         }
-    //                         MouseArea {
-    //                             anchors.fill: parent
-    //                             onClicked: {
-    //                                 searchtableView.selectedRow = row
-    //                             }
-    //                             onDoubleClicked: {
-    //                                 saveSearchedData.rowNumber = row
-    //                                 saveSearchedData.visible = true
-    //                                 saveSearchedData.open()
-    //                             }
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     standardButtons: Dialog.Ok | Dialog.Cancel
-    //     onAccepted: {
-    //         if (searchtableView.selectedRow > -1) {
-    //             saveSearchedData.rowNumber = searchtableView.selectedRow
-    //             saveSearchedData.visible = true
-    //             saveSearchedData.open()
-    //         }
-    //     }
-    //     onOpened: {
-    //         let locale = Qt.locale().name.substr(3,2)
-    //         dbgprint(locale)
-    //         let userCountry = Helper.getDisplayName(locale)
-    //         let tmpDB = Helper.getDisplayNames()
-    //         for (var i=0; i < tmpDB.length - 1 ; i++) {
-    //             countryCodesModel.append({ id: tmpDB[i] })
-    //             if (tmpDB[i] === userCountry) {
-    //                 countryList.currentIndex = i
-    //             }
-    //         }
-    //         dbgprint(Helper.getshortCode(userCountry))
-    //     }
-    //     Item {
-    //         id: row1
-    //         anchors.bottom: parent.bottom
-    //         height: 20
-    //         width: parent.width
-    //         Label {
-    //             id:locationDataCredit
-    //             text: i18n("Search data provided by Geonames.org")
-    //             anchors.horizontalCenter: parent.horizontalCenter
-    //         }
-    //     }
-    //     MouseArea {
-    //         cursorShape: Qt.PointingHandCursor
-    //         anchors.fill: row1
-    //
-    //         hoverEnabled: true
-    //
-    //         onClicked: {
-    //             Qt.openUrlExternally("https://www.geonames.org/")
-    //         }
-    //
-    //         onEntered: {
-    //             locationDataCredit.font.underline = true
-    //         }
-    //
-    //         onExited: {
-    //             locationDataCredit.font.underline = false
-    //         }
-    //     }
-    //
-    //     Item {
-    //         id: row2
-    //         x: 0
-    //         y: 0
-    //         height: 54
-    //         anchors.left: parent.left
-    //         anchors.leftMargin: 0
-    //         anchors.right: parent.right
-    //         anchors.rightMargin: 0
-    //         anchors.bottom: row1.top
-    //         anchors.bottomMargin: 0
-    //         Label {
-    //             id: countryLabel
-    //             text: i18n("Country") + ":"
-    //             anchors.left: parent.left
-    //             anchors.leftMargin: 10
-    //             anchors.verticalCenter: parent.verticalCenter
-    //         }
-    //
-    //         ComboBox {
-    //             id: countryList
-    //             anchors.left: countryLabel.right
-    //             anchors.leftMargin: 20
-    //             anchors.verticalCenterOffset: 0
-    //             anchors.verticalCenter: parent.verticalCenter
-    //             model: countryCodesModel
-    //             width: 200
-    //             editable: false
-    //             onCurrentIndexChanged: {
-    //                 if (countryList.currentIndex > 0) {
-    //                     // dbgprint("Loading Database: "+countryList.textAt(countryList.currentIndex))
-    //                     Helper.loadCSVDatabase(countryList.textAt(countryList.currentIndex))
-    //                     // Helper.loadCSVDatabase("Malta")
-    //                 }
-    //                 dbgprint(myCSVData.length)
-    //             }
-    //         }
-    //         Label {
-    //             id: locationLabel
-    //             anchors.right: locationEdit.left
-    //             anchors.rightMargin: 10
-    //             anchors.verticalCenter: parent.verticalCenter
-    //             text: i18n("Filter") + ":"
-    //         }
-    //         TextField {
-    //             id: locationEdit
-    //             anchors.right: parent.right
-    //             anchors.verticalCenter: parent.verticalCenter
-    //             verticalAlignment: Text.AlignVCenter
-    //             width: 160
-    //             height: 31
-    //             text: ""
-    //             focus: true
-    //             font.capitalization: Font.Capitalize
-    //             selectByMouse: true
-    //             clip: false
-    //             Keys.onReturnPressed: {
-    //                 event.accepted = true
-    //             }
-    //             onTextEdited: {
-    //                 Helper.updateListView(locationEdit.text)
-    //             }
-    //         }
-    //     }
-    // }
-
-
-
-    // Loader {
-    //     id: saveSearchedData
-    //     property int rowNumber
-    //     function open() {
-    //         if (item) {
-    //             item.open();
-    //         } else {
-    //             active = true;
-    //         }
-    //         item.visible = true;
-    //     }
-    //
-    //     active: false
-    //
-    //     sourceComponent: Dialog {
-    //         title: i18n("Confirmation")
-    //         z:2
-    //         standardButtons: Dialog.Yes | Dialog.No
-    //         visible: true
-    //         Text {
-    //             anchors.fill: parent
-    //             text: i18n("Do you want to select") + " \"" + filteredCSVData.getRow(saveSearchedData.rowNumber).Location + "\" ?"
-    //
-    //         }
-    //         onAccepted: {
-    //             let data = filteredCSVData.getRow(rowNumber)
-    //             newMetnoCityLatitudeField.text = data["Latitude"]
-    //             newMetnoCityLongitudeField.text = data["Longitude"]
-    //             newMetnoCityAltitudeField.text = data["Altitude"]
-    //             newMetnoUrl.text="lat="+data["Latitude"]+"&lon="+data["Longitude"]+"&altitude="+data["Altitude"]
-    //             let loc = data["Location"]+", "+Helper.getshortCode(countryList.textAt(countryList.currentIndex))
-    //             newMetnoCityAlias.text = loc
-    //             addMetnoCityIdDialog.timezoneID = data["timezoneId"]
-    //             for (var i=0; i < timezoneDataModel.count; i++) {
-    //                 if (timezoneDataModel.get(i).id == Number(data["timezoneId"])) {
-    //                     tzComboBox.currentIndex = i
-    //                     break
-    //                 }
-    //             }
-    //             searchWindow.close()
-    //             addMetnoCityIdDialog.open()
-    //             updatenewMetnoCityOKButton()
-    //         }
-    //         onRejected: {
-    //             visible = false
-    //             searchWindow.visible = true
-    //         }
-    //     }
-    // }
 
 }

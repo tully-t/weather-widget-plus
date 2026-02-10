@@ -1,6 +1,6 @@
-import QtQuick 2.2
+import QtQuick
 import QtQuick.Controls
-import QtQuick.Layouts 1.1
+import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 import org.kde.kcmutils as KCM
 
@@ -158,6 +158,7 @@ KCM.SimpleKCM {
         Item {
             SpinBox {
                 id: widgetFontSize
+                live: true
                 Layout.alignment: Qt.AlignVCenter
                 anchors.verticalCenter: parent.verticalCenter
                 stepSize: 1
@@ -166,6 +167,16 @@ KCM.SimpleKCM {
                 to: 512
                 onValueChanged: {
                     cfg_widgetFontSize = widgetFontSize.value
+                }
+
+                contentItem: TextInput {
+                    text: widgetFontSize.value
+                    horizontalAlignment: Qt.AlignLeft
+                    verticalAlignment: Qt.AlignVCenter
+                    color: Kirigami.Theme.textColor
+                    selectionColor: Kirigami.Theme.highlightColor
+                    leftPadding: 8
+                    rightPadding: 2
                 }
             }
             Label {
@@ -261,6 +272,7 @@ KCM.SimpleKCM {
         Item {
             SpinBox {
                 id: widgetIconSize
+                live: true
                 Layout.alignment: Qt.AlignVCenter
                 anchors.verticalCenter: parent.verticalCenter
                 stepSize: 1
@@ -269,6 +281,16 @@ KCM.SimpleKCM {
                 to: 512
                 onValueChanged: {
                     cfg_widgetIconSize = widgetIconSize.value
+                }
+
+                contentItem: TextInput {
+                    text: widgetIconSize.value
+                    horizontalAlignment: Qt.AlignLeft
+                    verticalAlignment: Qt.AlignVCenter
+                    color: Kirigami.Theme.textColor
+                    selectionColor: Kirigami.Theme.highlightColor
+                    leftPadding: 8
+                    rightPadding: 2
                 }
             }
             Label {
@@ -330,11 +352,22 @@ KCM.SimpleKCM {
         Item {
             SpinBox {
                 id: inTrayActiveTimeoutSec
+                live: true
                 Layout.alignment: Qt.AlignVCenter
                 stepSize: 10
                 from: 10
                 to: 8000
                 anchors.verticalCenter: parent.verticalCenter
+
+                contentItem: TextInput {
+                    text: inTrayActiveTimeoutSec.value
+                    horizontalAlignment: Qt.AlignLeft
+                    verticalAlignment: Qt.AlignVCenter
+                    color: Kirigami.Theme.textColor
+                    selectionColor: Kirigami.Theme.highlightColor
+                    leftPadding: 8
+                    rightPadding: 2
+                }
             }
             Label {
                 text: i18nc("Abbreviation for seconds", "sec")

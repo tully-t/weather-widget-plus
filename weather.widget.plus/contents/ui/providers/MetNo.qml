@@ -19,7 +19,7 @@ Item {
     property bool sunRiseSetFlag: false
 
     function getCreditLabel(placeIdentifier) {
-        return i18n("Forecast data provided by the Norwegian Meteorological Institute")
+        return i18n("Forecast data provided by Met.no")
     }
 
     // function extLongLat(placeIdentifier) {

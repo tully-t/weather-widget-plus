@@ -1,6 +1,6 @@
-import QtQuick 2.2
+import QtQuick
 import QtQuick.Controls
-import QtQuick.Layouts 1.1
+import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 import org.kde.kcmutils as KCM
 // import "../"
@@ -271,6 +271,7 @@ KCM.SimpleKCM {
 
             SpinBox {
                 id: widgetWidth
+                live: true
                 Layout.alignment: Qt.AlignVCenter
                 anchors.left: widgetWidthLabel.right
                 anchors.top: widgetWidthLabel.top
@@ -283,6 +284,16 @@ KCM.SimpleKCM {
                 to: Screen.desktopAvailableWidth * 0.9
                 onValueChanged: {
                     cfg_widgetWidth = widgetWidth.value
+                }
+
+                contentItem: TextInput {
+                    text: widgetWidth.value
+                    horizontalAlignment: Qt.AlignLeft
+                    verticalAlignment: Qt.AlignVCenter
+                    color: Kirigami.Theme.textColor
+                    selectionColor: Kirigami.Theme.highlightColor
+                    leftPadding: 8
+                    rightPadding: 2
                 }
                 // Component.onCompleted: {
                 //     // loadingData.failedAttemptCount = 0
@@ -345,6 +356,7 @@ KCM.SimpleKCM {
 
             SpinBox {
                 id: widgetHeight
+                live: true
                 Layout.alignment: Qt.AlignVCenter
                 anchors.left: widgetHeightLabel.right
                 anchors.top: widgetHeightLabel.top
@@ -357,6 +369,16 @@ KCM.SimpleKCM {
                 to: Screen.desktopAvailableHeight * 0.75
                 onValueChanged: {
                     cfg_widgetHeight = widgetHeight.value
+                }
+
+                contentItem: TextInput {
+                    text: widgetHeight.value
+                    horizontalAlignment: Qt.AlignLeft
+                    verticalAlignment: Qt.AlignVCenter
+                    color: Kirigami.Theme.textColor
+                    selectionColor: Kirigami.Theme.highlightColor
+                    leftPadding: 8
+                    rightPadding: 2
                 }
                 // Component.onCompleted: {
                 //     // loadingData.failedAttemptCount = 0
@@ -426,6 +448,7 @@ KCM.SimpleKCM {
 
             SpinBox {
                 id: hourSpanOm
+                live: true
                 Layout.alignment: Qt.AlignVCenter
                 anchors.left: hourSpanOmLabel.right
                 anchors.top: hourSpanOmLabel.top
@@ -438,6 +461,16 @@ KCM.SimpleKCM {
                 to: 144
                 onValueChanged: {
                     cfg_hourSpanOm = hourSpanOm.value
+                }
+
+                contentItem: TextInput {
+                    text: hourSpanOm.value
+                    horizontalAlignment: Qt.AlignLeft
+                    verticalAlignment: Qt.AlignVCenter
+                    color: Kirigami.Theme.textColor
+                    selectionColor: Kirigami.Theme.highlightColor
+                    leftPadding: 8
+                    rightPadding: 2
                 }
                 // Component.onCompleted: {
                 //     // loadingData.failedAttemptCount = 0
@@ -712,6 +745,7 @@ KCM.SimpleKCM {
 
             SpinBox {
                 id: mgAxisFontSize
+                live: true
                 Layout.alignment: Qt.AlignVCenter
                 anchors.left: mgAxisFontSizeLabel.right
                 anchors.top: mgAxisFontSizeLabel.top
@@ -724,6 +758,16 @@ KCM.SimpleKCM {
                 to: 64
                 onValueChanged: {
                     cfg_mgAxisFontSize = mgAxisFontSize.value
+                }
+
+                contentItem: TextInput {
+                    text: mgAxisFontSize.value
+                    horizontalAlignment: Qt.AlignLeft
+                    verticalAlignment: Qt.AlignVCenter
+                    color: Kirigami.Theme.textColor
+                    selectionColor: Kirigami.Theme.highlightColor
+                    leftPadding: 8
+                    rightPadding: 2
                 }
             }
 
@@ -770,6 +814,7 @@ KCM.SimpleKCM {
 
             SpinBox {
                 id: mgHoursFontSize
+                live: true
                 Layout.alignment: Qt.AlignVCenter
                 anchors.left: mgHoursFontSizeLabel.right
                 anchors.top: mgHoursFontSizeLabel.top
@@ -782,6 +827,16 @@ KCM.SimpleKCM {
                 to: 64
                 onValueChanged: {
                     cfg_mgHoursFontSize = mgHoursFontSize.value
+                }
+
+                contentItem: TextInput {
+                    text: mgHoursFontSize.value
+                    horizontalAlignment: Qt.AlignLeft
+                    verticalAlignment: Qt.AlignVCenter
+                    color: Kirigami.Theme.textColor
+                    selectionColor: Kirigami.Theme.highlightColor
+                    leftPadding: 8
+                    rightPadding: 2
                 }
             }
 
@@ -831,6 +886,7 @@ KCM.SimpleKCM {
 
             SpinBox {
                 id: mgTrailingZeroesFontSize
+                live: true
                 Layout.alignment: Qt.AlignVCenter
                 anchors.left: mgTrailingZeroesFontSizeLabel.right
                 anchors.top: mgTrailingZeroesFontSizeLabel.top
@@ -843,6 +899,16 @@ KCM.SimpleKCM {
                 to: 64
                 onValueChanged: {
                     cfg_mgTrailingZeroesFontSize = mgTrailingZeroesFontSize.value
+                }
+
+                contentItem: TextInput {
+                    text: mgTrailingZeroesFontSize.value
+                    horizontalAlignment: Qt.AlignLeft
+                    verticalAlignment: Qt.AlignVCenter
+                    color: Kirigami.Theme.textColor
+                    selectionColor: Kirigami.Theme.highlightColor
+                    leftPadding: 8
+                    rightPadding: 2
                 }
             }
 

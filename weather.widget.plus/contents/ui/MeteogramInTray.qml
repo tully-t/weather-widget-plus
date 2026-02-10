@@ -30,18 +30,18 @@ Item {
     width: imageWidth
     height: imageHeight + labelHeight// Day Label + Time Label
 
-    property int widgetWidth: main.widgetWidth
-    property int widgetHeight: main.widgetHeight
+    property int widgetWidth: main.widgetWidth / 1.6
+    property int widgetHeight: main.widgetHeight// / 1.2
     property int hourSpanOm: main.hourSpanOm
-    property int imageWidth: widgetWidth - (labelWidth * 2) // 800 950
-    property int imageHeight: widgetHeight  - (labelHeight * 1.75) - cloudarea - windarea
+    property int imageWidth: widgetWidth - (labelWidth * 2) - 2 // 800 950
+    property int imageHeight: widgetHeight  - (labelHeight * 1.75) - cloudarea - windarea - 2
     property int labelWidth: textMetrics.width
     property int labelHeight: textMetrics.height
 
-    property int mgAxisFontSize: main.mgAxisFontSize
-    property int mgPressureFontSize: main.mgPressureFontSize
-    property int mgHoursFontSize: main.mgHoursFontSize
-    property int mgTrailingZeroesFontSize: main.mgTrailingZeroesFontSize
+    property int mgAxisFontSize: 9
+    property int mgPressureFontSize: 9
+    property int mgHoursFontSize: 7
+    property int mgTrailingZeroesFontSize: 4
 
     // property bool tempLabelVisible: plasmoid.configuration.tempLabelVisible
     // property bool pressureLabelVisible: plasmoid.configuration.pressureLabelVisible
@@ -77,7 +77,7 @@ Item {
     property color rainColor: Kirigami.Theme.linkColor // textColorLight ? Qt.tint(Kirigami.Theme.linkColor, '#25FFFFFF') : Qt.tint(Kirigami.Theme.linkColor, '#50000000')
 
 
-    property int precipitationFontPixelSize: 8
+    property int precipitationFontPixelSize: 6
     property int precipitationHeightMultiplier: 15
     property int precipitationLabelMargin: 8
     // property bool precLabelVisible: counter > 0
@@ -251,7 +251,7 @@ Item {
         width: labelWidth
         horizontalAlignment: Text.AlignLeft //(UnitUtils.getPressureEnding(pressureType).length > 4) ? Text.AlignRight : Text.AlignLeft
         anchors.right: (graphArea.right)
-        anchors.rightMargin: pressureType === 2 ? -labelWidth * 1.1 : -labelWidth * 1.15 //textMetrics.width
+        anchors.rightMargin: pressureType === 2 ? -labelWidth * 1.05 : -labelWidth * 1.1 //textMetrics.width
         visible: pressureLabelPosition === 2 ? false : true
         font.pixelSize: mgAxisFontSize
         font.pointSize: -1
@@ -322,7 +322,7 @@ Item {
                 height: labelHeight
                 width: hourGrid.hourItemWidth
                 anchors.top: verticalLine.bottom
-                anchors.topMargin: 2
+                anchors.topMargin: 1 //2
 //                anchors.horizontalCenter: verticalLine.left
                 anchors.horizontalCenter: verticalLine.horizontalCenter
                 font.pixelSize: mgHoursFontSize //10 11
@@ -339,7 +339,7 @@ Item {
                 anchors.left: hourText.right
                 font.pixelSize: mgTrailingZeroesFontSize //5 6
                 font.pointSize: -1
-                visible: textVisible
+                visible: false
             }
             function windFrom(rotation) {
                 rotation = (Math.round( rotation / 22.5 ) * 22.5)
@@ -383,8 +383,8 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     rotation: windFrom(windDirection)
                     anchors.top: windspeedAnchor.top
-                    width: 16
-                    height: 16
+                    width: 12
+                    height: 12
                     fillMode: Image.PreserveAspectFit
                     visible: (index % 2 == 1) && (index < hourGridModel.count-1)
                     anchors.leftMargin: -9 //-8
@@ -445,7 +445,7 @@ Item {
             }
 
             PlasmaComponents.Label {
-                font.pixelSize: 14
+                font.pixelSize: 12
                 font.pointSize: -1
                 width: parent.width
                 anchors.top: parent.top
@@ -696,6 +696,12 @@ Item {
         dbgprint2("buildCurves")
         var newPathElements = []
         var newPressureElements = []
+
+        // if (temperatureIncrementDegrees > 21) {
+        //     temperatureYGridCount = 42
+        // } else {
+        //     temperatureYGridCount = 21
+        // }
 
         if (meteogramModel.count === 0) {
             return

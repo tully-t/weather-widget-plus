@@ -15,101 +15,200 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 import QtQuick
+import org.kde.plasma.components 3.0 as PlasmaComponents
+import org.kde.plasma.core as PlasmaCore
+import org.kde.kirigami as Kirigami
+import org.kde.plasma.plasma5support as Plasma5Support
 import QtQuick.Layouts
 import QtQuick.Controls
-import org.kde.plasma.components 3.0 as PlasmaComponents
-import org.kde.ksvg as KSvg
-import org.kde.kirigami as Kirigami
+// import org.kde.ksvg as KSvg
 
 Item {
     id: fullRepresentation
 
+    property int imageWidth: widgetWidth // 800 950
+    property int imageHeight: widgetHeight // + defaultFontPixelSize // 320
+
     property double defaultFontPixelSize: Kirigami.Theme.defaultFont.pixelSize
+    property double footerHeight: defaultFontPixelSize
 
-    Layout.minimumWidth: 256
-    Layout.minimumHeight: headingHeight + (nextDayHeight * 5) + footerHeight
-
-    Layout.preferredWidth: defaultFontPixelSize * 30
-    Layout.preferredHeight: headingHeight + (nextDayHeight * 5) + footerHeight
-
+    // property int nextDayItemSpacing: defaultFontPixelSize * 0.5
+    // property int nextDaysHeight: defaultFontPixelSize * 9
+    // property int nextDaysVerticalMargin: defaultFontPixelSize
+    // property int hourLegendMargin: defaultFontPixelSize * 2 + 2
+    // property double nextDayItemWidth: (imageWidth / nextDaysCount) - nextDayItemSpacing - hourLegendMargin / nextDaysCount
     property int headingHeight: defaultFontPixelSize * 2
-    property double footerHeight: defaultFontPixelSize * 2
+    // property double hourLegendBottomMargin: defaultFontPixelSize * 0.2
+    property string fullRepresentationAlias: main.fullRepresentationAlias
 
+    implicitWidth: imageWidth
+    implicitHeight: headingHeight + imageHeight + footerHeight + nextDaysHeight + 14
+
+    Layout.minimumWidth: imageWidth
+    Layout.minimumHeight: headingHeight + imageHeight + footerHeight + nextDaysHeight + 14 + 56 //36
+    Layout.preferredWidth: imageWidth
+    Layout.preferredHeight: headingHeight + imageHeight + footerHeight + nextDaysHeight + 14 + 56 //36 69
+
+    property int nextDayItemSpacing: defaultFontPixelSize * 2
     property int nextDaysSpacing: defaultFontPixelSize
     property int nextDayHeight: defaultFontPixelSize * 4
-    property int nextDayItemSpacing: defaultFontPixelSize
 
-    property double headingTopMargin: defaultFontPixelSize
+    onFullRepresentationAliasChanged: {
 
-    property color lineColor: Kirigami.Theme.textColor
+        // for(const [key,value] of Object.entries(currentPlace)) { console.log(`  ${key}: ${value}`) }
+        var t = main.fullRepresentationAlias
 
+        switch (main.timezoneType) {
+            case 0:
+                t += " (" + getLocalTimeZone()+ ")"
+                break
+            case 1:
+                t += " (" + i18n("UTC") + ")"
+                break
+            case 2:
+                if (main.currentPlace.timezoneShortName === "") {
+                    main.currentPlace.timezoneShortName = "unknown"
+                }
+                t += " (" +  main.currentPlace.timezoneShortName + ")"
+                break
+            default:
+                t += " (" + "TBA" + ")"
+                break
+        }
+        currentLocationText.text = t
+    }
 
     PlasmaComponents.Label {
         id: currentLocationText
-        text: main.currentPlace.alias
 
+        anchors.left: parent.left
         anchors.top: parent.top
-        // anchors.left: parent.left
-        anchors.right: parent.right
-
-        height: headingHeight
-        width: parent.width / 2
-
-        color: Kirigami.Theme.textColor
-
+        // anchors.topMargin: -10
         verticalAlignment: Text.AlignTop
-        horizontalAlignment:Text.AlignRight
+
+        text: ""
+        Component.onCompleted: {
+            dbgprint2("FullRepresentationInTray")
+            dbgprint((main.currentPlace.alias))
+            dbgprint2(currentLocationText.text)
+            // nextDaysCount = nextDaysModel.count
+        }
     }
 
-    // PlasmaComponents.Label {
-    //     id: nextLocationText
-    //     text: i18n("Next Location")
-    //
-    //     anchors.top: parent.top
-    //     anchors.right: parent.right
-    //
-    //     height: headingHeight
-    //     width: parent.width / 2
-    //
-    //     visible: false //(placesCount > 1)
-    //
-    //     color: Kirigami.Theme.textColor
-    //
-    //     horizontalAlignment:Text.AlignRight
-    //     verticalAlignment: Text.AlignTop
-    //
-    //     MouseArea {
-    //         anchors.fill: parent
-    //         cursorShape: Qt.PointingHandCursor
-    //
-    //         hoverEnabled: true
-    //
-    //         onClicked: {
-    //             main.setNextPlace()
-    //         }
-    //         onEntered: {
-    //             nextLocationText.font.underline = true
-    //         }
-    //         onExited: {
-    //             nextLocationText.font.underline = false
-    //         }
-    //     }
-    // }
+    PlasmaComponents.Button {
+        id: nextDaysButton
 
+        anchors.right: parent.right
+        anchors.top: currentLocationText.top
+        anchors.topMargin: -8
+        // verticalAlignment: Text.AlignTop
+        // visible: true
+        // color: Kirigami.Theme.textColor
+        text: i18n("List") + " >>"
+
+        onClicked: {
+            dbgprint('clicked weekly forecast button')
+            meteogram3.visible = false
+            nextDays.visible = true
+            // hourLegend.visible = true
+            meteogramButton.visible = true
+            nextDaysButton.visible = false
+        }
+    }
+
+//     MouseArea {
+//         cursorShape: (nextLocationText.visible) ? Qt.PointingHandCursor : Qt.ArrowCursor
+//         anchors.fill: nextLocationText
+//
+//         hoverEnabled: nextLocationText.visible
+//         enabled: nextLocationText.visible
+//
+//         onClicked: {
+//             dbgprint('clicked next location')
+//             main.setNextPlace(false,"+")
+//         }
+//
+//         onEntered: {
+//             nextLocationText.font.underline = true
+//         }
+//
+//         onExited: {
+//             nextLocationText.font.underline = false
+//         }
+//     }
+
+    PlasmaComponents.Button {
+        id: meteogramButton
+
+        anchors.right: parent.right
+        anchors.top: currentLocationText.top
+        anchors.topMargin: -8
+        // anchors.rightMargin: 15
+        // verticalAlignment: Text.AlignTop
+        visible: false
+        // color: Kirigami.Theme.textColor
+        text: i18n("Meteogram") + " >>"
+        // text: "<< " + i18n("Previous")
+
+        onClicked: {
+            dbgprint('clicked meteogram button')
+            nextDays.visible = false
+            // hourLegend.visible = false
+            meteogram3.visible = true
+            nextDaysButton.visible = true
+            meteogramButton.visible = false
+        }
+    }
+
+//     MouseArea {
+//         cursorShape: (prevLocationText.visible) ? Qt.PointingHandCursor : Qt.ArrowCursor
+//         anchors.fill: prevLocationText
+//
+//         hoverEnabled: prevLocationText.visible
+//         enabled: prevLocationText.visible
+//
+//         onClicked: {
+//             dbgprint('clicked previous location')
+//             main.setNextPlace(false,"-")
+//         }
+//
+//         onEntered: {
+//             prevLocationText.font.underline = true
+//         }
+//
+//         onExited: {
+//             prevLocationText.font.underline = false
+//         }
+//     }
+
+    MeteogramInTray {
+        id: meteogram3
+        anchors.top: parent.top
+        anchors.topMargin: headingHeight + 2
+        anchors.left: parent.left
+        anchors.leftMargin: -6 - (labelWidth / 2)
+        // width: 256
+        // height: 360
+
+        // visible: true
+    }
 
     ScrollView {
         id: nextDays
+        visible: false
 
         anchors.top: currentLocationText.bottom
+        anchors.topMargin: defaultFontPixelSize
         anchors.bottom: frFooter.top
         anchors.bottomMargin: footerHeight * 2 //defaultFontPixelSize / 2
 
         width: parent.width
+        height: nextDayHeight * 5.5 //6
 
         ListView {
             id: nextDaysView
 
-            anchors.fill: parent
+            anchors.fill: nextDays.area
             model: nextDaysModel
 
             orientation: Qt.Vertical
@@ -121,18 +220,18 @@ Item {
                 width: nextDaysView.width - 50
                 height: (defaultFontPixelSize * 3.6)
 
-                property string svgLineName: 'horizontal-line'
+                // property string svgLineName: 'horizontal-line'
 
-                KSvg.SvgItem {
-                    anchors.top: dayTitleText.top
-                    width: parent.width
-                    height: lineSvg.elementSize(svgLineName).height
-                    elementId: svgLineName
-                    svg: KSvg.Svg {
-                        id: lineSvg
-                        imagePath: 'widgets/line'
-                    }
-                }
+                // KSvg.SvgItem {
+                //     anchors.top: dayTitleText.top
+                //     width: parent.width
+                //     height: lineSvg.elementSize(svgLineName).height
+                //     elementId: svgLineName
+                //     svg: KSvg.Svg {
+                //         id: lineSvg
+                //         imagePath: 'widgets/line'
+                //     }
+                // }
 
                 PlasmaComponents.Label {
                     id: dayTitleText
@@ -213,110 +312,244 @@ Item {
                         pixelFontSize: defaultFontPixelSize * 1.5
                     }
                 }
+
+                RowLayout {
+                    // anchors.fill: parent
+                    // id: hourLegend
+                    // visible: false
+                    // anchors.bottom: frFooter.top
+                    // anchors.bottomMargin: defaultFontPixelSize
+                    anchors.right: nextDaysView.right
+                    anchors.rightMargin: defaultFontPixelSize
+                    anchors.top: dayTitleText.bottom
+                    anchors.topMargin: defaultFontPixelSize * 2 + 2
+                    anchors.left: dayTitleText.left
+                    anchors.leftMargin: defaultFontPixelSize * 1.5
+
+                    height: 12
+                    width: nextDaysView.width - 25
+                    spacing: nextDayItemSpacing * 3
+
+                    PlasmaComponents.Label {
+                        text: twelveHourClockEnabled ? '3AM' : '3:00'
+                        horizontalAlignment: Text.AlignRight
+                        opacity: 0.5
+                        height: 12
+                        // anchors.left: period1.left
+                        // anchors.leftMargin: defaultFontPixelSize * 1.5
+                    }
+                    PlasmaComponents.Label {
+                        text: twelveHourClockEnabled ? '9AM' : '9:00'
+                        horizontalAlignment: Text.AlignRight
+                        opacity: 0.5
+                        height: 12
+                        // anchors.left: period2.left
+                        // anchors.leftMargin: defaultFontPixelSize * 1.5
+                    }
+                    PlasmaComponents.Label {
+                        text: twelveHourClockEnabled ? '3PM' : '15:00'
+                        horizontalAlignment: Text.AlignRight
+                        opacity: 0.5
+                        height: 12
+                        // anchors.left: period3.left
+                        // anchors.leftMargin: defaultFontPixelSize * 1.5
+                    }
+                    PlasmaComponents.Label {
+                        text: twelveHourClockEnabled ? '9PM' : '21:00'
+                        horizontalAlignment: Text.AlignRight
+                        opacity: 0.5
+                        height: 12
+                        // anchors.left: period4.left
+                        // anchors.leftMargin: defaultFontPixelSize * 1.5
+                    }
+                }
             }
         }
     }
 
-    Rectangle {
+    // Row {
+    //     id: hourLegend
+    //     visible: false
+    //     anchors.bottom: frFooter.top
+    //     anchors.bottomMargin: defaultFontPixelSize
+    //     // anchors.right: parent.right
+    //     // anchors.rightMargin: defaultFontPixelSize
+    //     height: 12
+    //     width: parent.width
+    //     spacing: nextDayItemSpacing * 2
+    //
+    //     PlasmaComponents.Label {
+    //         text: twelveHourClockEnabled ? '3AM' : '3:00'
+    //         horizontalAlignment: Text.AlignRight
+    //         opacity: 0.6
+    //     }
+    //     PlasmaComponents.Label {
+    //         text: twelveHourClockEnabled ? '9AM' : '9:00'
+    //         horizontalAlignment: Text.AlignRight
+    //         opacity: 0.6
+    //     }
+    //     PlasmaComponents.Label {
+    //         text: twelveHourClockEnabled ? '3PM' : '15:00'
+    //         horizontalAlignment: Text.AlignRight
+    //         opacity: 0.6
+    //     }
+    //     PlasmaComponents.Label {
+    //         text: twelveHourClockEnabled ? '9PM' : '21:00'
+    //         horizontalAlignment: Text.AlignRight
+    //         opacity: 0.6
+    //     }
+    // }
+
+    // ListView {
+    //     id: nextDaysViewTray
+    //     anchors.top: meteogram3.bottom
+    //     anchors.topMargin: 84
+    //     anchors.bottomMargin: footerHeight + nextDaysVerticalMargin
+    //     anchors.left: parent.left
+    //     anchors.leftMargin: hourLegendMargin// - 2
+    //     anchors.right: parent.right
+    //     height: nextDaysHeight
+    //
+    //     model: nextDaysModel
+    //     orientation: Qt.Horizontal
+    //     spacing: nextDayItemSpacing
+    //     interactive: false
+    //
+    //     delegate: NextDayItemInTray {
+    //         width: nextDayItemWidth
+    //         height: nextDaysHeight
+    //     }
+    // }
+
+    // Column {
+    //     id: hourLegend
+    //     anchors.top: meteogram3.bottom
+    //     anchors.topMargin: 124
+    //     anchors.bottomMargin: footerHeight + nextDaysVerticalMargin - 4
+    //     // anchors.leftMargin: 12
+    //     spacing: 1
+    //
+    //     width: hourLegendMargin * 1.3
+    //     height: nextDaysHeight - defaultFontPixelSize
+    //
+    //     PlasmaComponents.Label {
+    //         text: twelveHourClockEnabled ? '3AM' : '3:00'
+    //         width: parent.width
+    //         height: parent.height / 4
+    //         font.pixelSize: defaultFontPixelSize * 0.75
+    //         font.pointSize: -1
+    //         horizontalAlignment: Text.AlignRight
+    //         opacity: 0.6
+    //     }
+    //     PlasmaComponents.Label {
+    //         text: twelveHourClockEnabled ? '9AM' : '9:00'
+    //         width: parent.width
+    //         height: parent.height / 4
+    //         font.pixelSize: defaultFontPixelSize * 0.75
+    //         font.pointSize: -1
+    //         horizontalAlignment: Text.AlignRight
+    //         opacity: 0.6
+    //     }
+    //     PlasmaComponents.Label {
+    //         text: twelveHourClockEnabled ? '3PM' : '15:00'
+    //         width: parent.width
+    //         height: parent.height / 4
+    //         font.pixelSize: defaultFontPixelSize * 0.75
+    //         font.pointSize: -1
+    //         horizontalAlignment: Text.AlignRight
+    //         opacity: 0.6
+    //     }
+    //     PlasmaComponents.Label {
+    //         text: twelveHourClockEnabled ? '9PM' : '21:00'
+    //         width: parent.width
+    //         height: parent.height / 4
+    //         font.pixelSize: defaultFontPixelSize * 0.75
+    //         font.pointSize: -1
+    //         horizontalAlignment: Text.AlignRight
+    //         opacity: 0.6
+    //     }
+    // }
+
+
+    /*
+     *
+     * FOOTER
+     *
+     */
+
+    MouseArea {
         id: frFooter
+        anchors.left: parent.left
+        anchors.bottom: parent.bottom
 
-        anchors.bottom: fullRepresentation.bottom
-        anchors.left: fullRepresentation.left
-        anchors.right: fullRepresentation.right
-        height: footerHeight
+        width: lastReloadedTextComponent.contentWidth
+        height: lastReloadedTextComponent.contentHeight
 
-        color: "transparent"
+        hoverEnabled: true
+        cursorShape: Qt.PointingHandCursor
 
-        MouseArea {
-            id: lastReloadArea
-            cursorShape: Qt.PointingHandCursor
-
-            anchors.bottom: parent.bottom
+        PlasmaComponents.Label {
+            id: lastReloadedTextComponent
             anchors.left: parent.left
-
-            height: footerHeight
-            width: parent.width * 0.25
-
-            hoverEnabled: true
-
-            PlasmaComponents.Label {
-                id: lastReloadedTextComponent
-
-                anchors.fill: parent
-
-                text: main.lastReloadedText
-
-                color: Kirigami.Theme.textColor
-                elide: Text.ElideRight
-                maximumLineCount: 3
-                verticalAlignment: Text.AlignBottom
-                wrapMode: Text.WordWrap
-            }
-
-            PlasmaComponents.Label {
-                id: reloadTextComponent
-
-                anchors.fill: parent
-
-                text: '\u21bb '+ i18n("Reload")
-
-                verticalAlignment: Text.AlignBottom
-                visible: false
-            }
-
-            onClicked: {
-                main.loadDataFromInternet()
-            }
-            onEntered: {
-                lastReloadedTextComponent.visible = false
-                reloadTextComponent.visible = true
-                // reloadTextComponent.font.underline = true
-            }
-            onExited: {
-                lastReloadedTextComponent.visible = true
-                reloadTextComponent.visible = false
-                // reloadTextComponent.font.underline = false
-            }
-        }
-
-        MouseArea {
-            // id: frFooter
-
-            cursorShape: Qt.PointingHandCursor
-            anchors.top: parent.top
             anchors.bottom: parent.bottom
-            anchors.right: parent.right
-            anchors.left: lastReloadArea.right
+            // verticalAlignment: Text.AlignBottom
 
-            hoverEnabled: true
-
-            PlasmaComponents.Label {
-                id: creditText
-                anchors.fill: parent
-
-                text: main.currentPlace.creditLabel
-
-                color: Kirigami.Theme.textColor
-                font: Kirigami.Theme.smallFont
-
-                elide: Text.ElideRight
-                horizontalAlignment: Text.AlignRight
-                verticalAlignment: Text.AlignBottom
-                maximumLineCount: 3
-                wrapMode: Text.WordWrap
-
-            }
-
-            onClicked: {
-                Qt.openUrlExternally(main.currentPlace.creditLink)
-            }
-            onEntered: {
-                creditText.font.underline = true
-            }
-            onExited: {
-                creditText.font.underline = false
-            }
+            text: lastReloadedText
         }
 
+        PlasmaComponents.Label {
+            id: reloadTextComponent
+            anchors.left: parent.left
+            anchors.bottom: parent.bottom
+            // verticalAlignment: Text.AlignBottom
+            // font.underline: true
+
+            text: '\u21bb '+ i18n("Reload")
+            visible: false
+        }
+
+        onEntered: {
+            lastReloadedTextComponent.visible = false
+            reloadTextComponent.visible = true
+        }
+
+        onExited: {
+            lastReloadedTextComponent.visible = true
+            reloadTextComponent.visible = false
+        }
+
+        onClicked: {
+            main.loadDataFromInternet()
+        }
+    }
+
+    PlasmaComponents.Label {
+        id: creditText
+
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        verticalAlignment: Text.AlignBottom
+
+        text: currentPlace.creditLabel
+    }
+
+    MouseArea {
+        cursorShape: Qt.PointingHandCursor
+        anchors.fill: creditText
+
+        hoverEnabled: true
+
+        onClicked: {
+            dbgprint('opening: ', currentPlace.creditLink)
+            Qt.openUrlExternally(currentPlace.creditLink)
+        }
+
+        onEntered: {
+            creditText.font.underline = true
+        }
+
+        onExited: {
+            creditText.font.underline = false
+        }
     }
 }

@@ -81,7 +81,7 @@ PlasmoidItem {
 
     // User Preferences
     property int mgAxisFontSize: plasmoid.configuration.mgAxisFontSize
-    property int mgPressureFontSize: plasmoid.configuration.mgPressureFontSize
+    property int mgPressureFontSize: plasmoid.configuration.mgAxisFontSize
     property int mgHoursFontSize: plasmoid.configuration.mgHoursFontSize
     property int mgTrailingZeroesFontSize: plasmoid.configuration.mgTrailingZeroesFontSize
     // property int tempLabelPosition: plasmoid.configuration.tempLabelPosition
@@ -429,7 +429,7 @@ PlasmoidItem {
         subText += "</table>"
 
         subText += "<br /><br />"
-        subText += "<font size=\"3\">" + i18n("near future") + ":" + "</font>"
+        subText += "<font size=\"3\">" + i18n("next hour") + ":" + "</font>"
         subText += "<b>"
         subText += "<font size=\"6\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + UnitUtils.getTemperatureNumber(nearFutureWeather.temperature, temperatureType) + "°"
         subText += "&nbsp;&nbsp;<font style=\"font-family: weathericons\">" + futureWeatherIcon + "</font></font>"
