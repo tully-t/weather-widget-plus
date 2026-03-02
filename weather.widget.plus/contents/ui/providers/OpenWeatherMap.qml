@@ -76,7 +76,29 @@ Item {
         dbgprint("xmlModelHourByHour = " + url3)
         xmlModelCurrent.source = url1
         xmlModelLongTerm.source = url2
-        xmlModelHourByHour.source = url3
+        // Fetch the hourly forecast XML manually so we can inject value="0" on any
+        // <precipitation> elements that omit the attribute (dry periods). Without this,
+        // XmlListModel fires "Attribute value not found" warnings for every dry time slot.
+        var xhr = new XMLHttpRequest()
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState !== XMLHttpRequest.DONE) return
+            // status 0 covers successful local file:// reads (Qt returns 0 for those)
+            if (xhr.status !== 200 && xhr.status !== 0) {
+                dbgprint("xmlModelHourByHour XHR error: " + xhr.status)
+                return
+            }
+            var patched = xhr.responseText.replace(
+                /<precipitation\b([^>]*?)\/>/g,
+                function(match, attrs) {
+                    return attrs.indexOf('value=') === -1
+                        ? '<precipitation' + attrs + ' value="0"/>'
+                        : match
+                }
+            )
+            xmlModelHourByHour.xml = patched
+        }
+        xhr.open("GET", url3)
+        xhr.send()
     }
 
     function updatecurrentWeather() {
@@ -404,10 +426,11 @@ dbgprint2("***************************************************")
         dbgprint("DATETO\t" + obj.to + "\t\t" + dateTo  + "\t\t" +  dateTo.toUTCString())
         dbgprint(dateTo + "\t\t" + new Date(dateTo).getTime()  + "\t\t" + firstFromMs  + "\t\t" + (new Date(dateTo).getTime() - firstFromMs)  + "\t\t" + limitMsDifference )
         // dbgprint("dateFrom = " + dateFrom.toUTCString()  + "\tSunrise = " + sunrise1.toUTCString() + "\tSunset = " + sunset1.toUTCString() + "\t" + (isDaytime ? "isDay" : "isNight"))
-            if (obj.precipitation !== 0) {
-                var prec = obj.precipitation
-            } else {
-                var prec = 0
+            // The OWM API omits the "value" attribute on <precipitation> when there is no rain,
+            // causing XmlListModel to return "" for those entries. Guard against NaN.
+            var prec = parseFloat(obj.precipitation)
+            if (isNaN(prec)) {
+                prec = 0
             }
             // if (obj.precipitationProbability !== 0) {
             //     var prec = obj.precipitationValue
@@ -415,9 +438,6 @@ dbgprint2("***************************************************")
             //     var prec = 0
             // }
             // var prec = obj.precipitationAvg
-            // if ((typeof(prec) === "string")  && (prec === "")) {
-            //     prec = 0
-            // }
 
             meteogramModel.append({
                 from: dateFrom,
