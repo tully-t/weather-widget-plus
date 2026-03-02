@@ -87,15 +87,15 @@ Item {
                 dbgprint("xmlModelHourByHour XHR error: " + xhr.status)
                 return
             }
+            // Inject value="0" on any <precipitation> tag that lacks a value attribute.
+            // Handles self-closing and non-self-closing forms alike.
             var patched = xhr.responseText.replace(
-                /<precipitation\b([^>]*?)\/>/g,
-                function(match, attrs) {
-                    return attrs.indexOf('value=') === -1
-                        ? '<precipitation' + attrs + ' value="0"/>'
-                        : match
-                }
+                /<precipitation\b(?=[^>]*>)(?![^>]*\bvalue=)/g,
+                '<precipitation value="0" '
             )
-            xmlModelHourByHour.xml = patched
+            dbgprint("xmlModelHourByHour XML patch applied, length: " + patched.length)
+            // Qt6 XmlListModel dropped the .xml string property; use a data URI instead.
+            xmlModelHourByHour.source = "data:text/xml," + encodeURIComponent(patched)
         }
         xhr.open("GET", url3)
         xhr.send()
