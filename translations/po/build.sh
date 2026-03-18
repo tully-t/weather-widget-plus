@@ -18,11 +18,31 @@ if [ -z "$plasmoidName" ]; then
 	exit
 fi
 
-if [ -z "$(which msgfmt)" ]; then
-	echo "[build] Error: msgfmt command not found. Need to install gettext"
-	echo "[build] Running 'sudo apt install gettext'"
-	sudo apt install gettext
-	echo "[build] gettext installation should be finished. Going back to installing translations."
+echo "[build] Checking the 'gettext' package installation..."
+if ! command -v msgfmt > /dev/null; then
+	echo "[build] Error: msgfmt command not found. The 'gettext' package is required for it."
+	echo "[build] Installing 'gettext'..."
+
+	if command -v apt > /dev/null; then
+		sudo apt install gettext
+	elif command -v dnf > /dev/null; then
+		sudo dnf install gettext
+	elif command -v pacman > /dev/null; then
+		sudo pacman -S gettext
+	elif command -v yum > /dev/null; then
+		sudo yum install gettext
+	elif command -v zypper > /dev/null; then
+		sudo zypper install gettext
+	else
+		echo "[build] Your package manager is not apt, dnf, pacman, yum, or zypper."
+	fi
+fi
+
+if command -v msgfmt > /dev/null; then
+	echo "[build] The 'gettext' package is installed."
+else
+	echo "Please install the 'gettext' package, then run this script again."
+	exit
 fi
 
 #---
