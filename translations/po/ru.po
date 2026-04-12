@@ -70,7 +70,7 @@ msgstr "°F"
 #: ../../weather.widget.plus/contents/code/unit-utils.js
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "K"
-msgstr "K"
+msgstr "К"
 
 #: ../../weather.widget.plus/contents/code/unit-utils.js
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
@@ -80,12 +80,12 @@ msgstr "дюйм рт. ст."
 #: ../../weather.widget.plus/contents/code/unit-utils.js
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "mmHg"
-msgstr "мм рт.ст."
+msgstr "мм рт. ст."
 
 #: ../../weather.widget.plus/contents/code/unit-utils.js
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "hPa"
-msgstr "гПа"
+msgstr "ГПа"
 
 #: ../../weather.widget.plus/contents/code/unit-utils.js
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
@@ -112,7 +112,7 @@ msgstr "Внешний вид"
 
 #: ../../weather.widget.plus/contents/config/config.qml
 msgid "Layout"
-msgstr "Размещение"
+msgstr "Макет"
 
 #: ../../weather.widget.plus/contents/config/config.qml
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
@@ -134,19 +134,19 @@ msgstr "Шрифт виджета"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Text size mode"
-msgstr "Размер шрифта"
+msgstr "Режим размера текста"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Automatic fit"
-msgstr "Автоматически"
+msgstr "Автоматический"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Exact size"
-msgstr "Заданный размер"
+msgstr "Заданный вручную"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Text size"
-msgstr "Размер"
+msgstr "Размер текста"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
@@ -161,15 +161,15 @@ msgstr "Текст виден"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Text drop shadow"
-msgstr "Включить тень текста"
+msgstr "Тень от текста"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Icon size mode"
-msgstr "Размер иконки"
+msgstr "Режим размера иконки"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Icon size"
-msgstr "Размер"
+msgstr "Размер иконки"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Icon visible"
@@ -177,11 +177,11 @@ msgstr "Иконка видна"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Icon drop shadow"
-msgstr "Включить тень иконки"
+msgstr "Тень от иконки"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "System tray timeout"
-msgstr "Время ожидания в трее"
+msgstr "Время ожидания в лотке"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgctxt "Abbreviation for seconds"
@@ -194,19 +194,19 @@ msgstr "Тип макета"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Horizontal"
-msgstr "Горизонтально"
+msgstr "Горизонтальный"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Layout type is not available in the system tray"
-msgstr "Установка типа не доступна в системном трее"
+msgstr "Установка типа недоступна в системном лотке"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Vertical"
-msgstr "Вертикально"
+msgstr "Вертикальный"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Compact"
-msgstr "Компактно"
+msgstr "Компактный"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Widget order"
@@ -219,7 +219,7 @@ msgstr "Сначала иконка"
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid ""
 "Widget order is not available in either the system tray or the Compact layout"
-msgstr "Установка порядка не доступна в трее и для типа макета «Компактно»"
+msgstr "Установка порядка недоступна в лотке и для компактного макета"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Text first"
@@ -277,7 +277,7 @@ msgstr "Версия Plasmoid"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Weather icons created by Erik Flowers"
-msgstr "Иконки погоды созданы Erik Flowers"
+msgstr "Иконки погоды созданы Эриком Флауэрсом"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Met.no forecast data provided by The Norwegian Meteorological Institute"
@@ -315,15 +315,15 @@ msgstr "Вставьте URL-адрес сюда"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Find your city ID by searching here"
-msgstr "Найдите ID вашего города, поискав здесь"
+msgstr "Найдите ID вашего города здесь"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid ""
 "and then paste the whole URL into the corresponding field\n"
 "e.g. http://openweathermap.org/city/2946447 for Bonn, Germany"
 msgstr ""
-"и затем вставьте URL полностью в соответствующее поле\n"
-"например, http://openweathermap.org/city/2747891 для Роттердама, Нидерланды"
+"и затем вставьте URL полностью в соответствующее поле.\n"
+"Например, http://openweathermap.org/city/2747891 для Роттердама (Нидерланды)"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Add Met.no Map Location"
@@ -352,15 +352,15 @@ msgstr "Часовой пояс"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Find your city data by searching here"
-msgstr "Найдите данные вашего города, поискав здесь"
+msgstr "Найдите данные вашего города здесь"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "and then paste the appropriate data into the corresponding fields"
-msgstr "и затем вставьте данные в соответствующие им поля"
+msgstr "и затем вставьте их в соответствующие им поля."
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "e.g. Latitude: 19.4284 Longitude: -99.1276 Altitude: 2240"
-msgstr "например, широта: 59.9375, долгота: 30.3086, высота: 5"
+msgstr "Например, широта: 59,9375, долгота: 30,3086, высота: 5"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "for Mexico City, Mexico"
@@ -368,7 +368,7 @@ msgstr "для Санкт-Петербурга, Россия"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid " (Maximum of 4 decimal places)"
-msgstr "Максимум 4 знака после запятой"
+msgstr " (максимум 4 знака после запятой)."
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Add Open-Meteo Map Location"
@@ -402,35 +402,35 @@ msgstr "часов"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Temperature label"
-msgstr "Температурная метка"
+msgstr "Подпись оси температур"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Top"
-msgstr "Верхний"
+msgstr "Сверху"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Bottom"
-msgstr "Нижний"
+msgstr "Сниху"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "None"
-msgstr "Никто"
+msgstr "Не показывать"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Pressure label"
-msgstr "Метка давления"
+msgstr "Подпись оси давлений"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Vertical axis font size"
-msgstr "Размер шрифта по вертикальной оси"
+msgstr "Размер шрифта на вертикальной оси"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Time font size"
-msgstr "Временной размер шрифта"
+msgstr "Размер шрифта на горизонтальной оси"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Trailing zeroes font size"
-msgstr "Размер шрифта с конечными нулями"
+msgstr "Размер шрифта конечных нулей"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "Temperature"
@@ -442,7 +442,7 @@ msgstr "Давление"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "Precipitation"
-msgstr "Осадков"
+msgstr "Осадки"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "mm"
@@ -525,7 +525,7 @@ msgstr "Данные о прогнозе погоды предоставлены
 
 #~ msgid "NOTE: Setting layout type for in-tray plasmoid has no effect."
 #~ msgstr ""
-#~ "ВНИМАНИЕ: Настройка типа размещения не работает для плазмоида в лотке."
+#~ "ВНИМАНИЕ. Настройка типа макета не влияет на внешний вид плазмоида в лотке."
 
 #~ msgid "In-Tray Settings"
 #~ msgstr "Настройки лотка"
@@ -535,8 +535,8 @@ msgstr "Данные о прогнозе погоды предоставлены
 #~ "refreshed. You can always set the widget to be always \"Shown\" in system "
 #~ "tray \"Entries\" settings."
 #~ msgstr ""
-#~ "ВНИМАНИЕ: По истечении указанного времени виджет будет скрыт в системном "
-#~ "лотке, пока не обновятся данные. Также в разделе  \"Элементы\" настроек "
+#~ "ВНИМАНИЕ. По истечении указанного времени виджет будет скрыт в системном "
+#~ "лотке, пока не обновятся данные погоды. Также в разделе \"Элементы\" настроек "
 #~ "системного лотка можно установить значение \"Показывать всегда\"."
 
 #~ msgid "Place Identifier"
@@ -666,7 +666,7 @@ msgstr "Данные о прогнозе погоды предоставлены
 #~ msgstr "Размер шрифта виджета"
 
 #~ msgid "Find your city ID by searching here:"
-#~ msgstr "Найдите ID нужного города через поиск здесь:"
+#~ msgstr "Найдите ID нужного города здесь:"
 
 #~ msgid "Error!"
 #~ msgstr "Ошибка!"
@@ -678,19 +678,19 @@ msgstr "Данные о прогнозе погоды предоставлены
 #~ msgstr "Некорректное значение широты."
 
 #~ msgid "The Latitude is not between -90 and 90."
-#~ msgstr "Широта вне интервала между -90 и 90."
+#~ msgstr "Широта не в интервале от -90 до 90."
 
 #~ msgid "The Longitude is not valid."
 #~ msgstr "Некорректное значение долготы."
 
 #~ msgid "The Longitude is not between -180 and 180."
-#~ msgstr "Долгота вне интервала между -180 и 180."
+#~ msgstr "Долгота не в интервале от -180 до 180."
 
 #~ msgid "The Altitude is not valid."
 #~ msgstr "Некорректное значение высоты"
 
 #~ msgid "The Altitude is not between -999 and 5000."
-#~ msgstr "Высота вне интервала между -999 и 5000."
+#~ msgstr "Высота не в интервале от -999 до 5000."
 
 #~ msgid "The Place Name is empty."
 #~ msgstr "Название места пусто."
@@ -736,7 +736,7 @@ msgstr "Данные о прогнозе погоды предоставлены
 #~ msgstr "сегодня"
 
 #~ msgid "The Latitude is not numeric."
-#~ msgstr "Значение широта не числовое."
+#~ msgstr "Значение широты не числовое."
 
 #~ msgid "The Longitude is not numeric."
 #~ msgstr "Значение долготы не числовое."
