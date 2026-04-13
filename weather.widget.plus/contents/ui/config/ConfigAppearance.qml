@@ -43,26 +43,6 @@ KCM.SimpleKCM {
         }
     }
 
-    onCfg_iconSizeModeChanged: {
-        switch (cfg_iconSizeMode) {
-            case 0:
-                iconSizeModeGroup.checkedButton = iconSizeModeFit;
-                break;
-            case 1:
-                iconSizeModeGroup.checkedButton = iconSizeModeFixed;
-                break;
-            default:
-        }
-    }
-
-    Component.onCompleted: {
-        cfg_iconSizeModeChanged()
-    }
-
-    ButtonGroup {
-        id: iconSizeModeGroup
-    }
-
     onCfg_textSizeModeChanged: {
         switch (cfg_textSizeMode) {
             case 0:
@@ -71,7 +51,7 @@ KCM.SimpleKCM {
             case 1:
                 textSizeModeGroup.checkedButton = textSizeModeFixed;
                 break;
-            default:
+            default: 0
         }
     }
 
@@ -81,6 +61,27 @@ KCM.SimpleKCM {
         Component.onCompleted: {
                 cfg_textSizeModeChanged()
             }
+    }
+
+    onCfg_iconSizeModeChanged: {
+        switch (cfg_iconSizeMode) {
+            case 0:
+                iconSizeModeGroup.checkedButton = iconSizeModeFit;
+                break;
+            case 1:
+                iconSizeModeGroup.checkedButton = iconSizeModeFixed;
+                break;
+            default: 0
+        }
+    }
+
+
+    ButtonGroup {
+        id: iconSizeModeGroup
+
+        Component.onCompleted: {
+            cfg_iconSizeModeChanged()
+        }
     }
 
     GridLayout {
@@ -193,20 +194,20 @@ KCM.SimpleKCM {
             Layout.columnSpan: 3
         }
 
-        // Item {
-            CheckBox {
-                id: textVisible
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-            }
 
-            Label {
-                text: i18n("Text visible")
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                // Layout.leftMargin: 4
-                // anchors.left: textVisible.right
-                // anchors.leftMargin: 4
-            }
-        // }
+        CheckBox {
+            id: textVisible
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+        }
+
+        Label {
+            text: i18n("Text visible")
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+            // Layout.leftMargin: 4
+            // anchors.left: textVisible.right
+            // anchors.leftMargin: 4
+        }
+
 
         Item {
             width: 2

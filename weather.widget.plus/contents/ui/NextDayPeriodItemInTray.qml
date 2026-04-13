@@ -29,52 +29,19 @@ Item {
     
     onPixelFontSizeChanged: {
         if (pixelFontSize > 0) {
-            temperatureText.font.pixelSize = pixelFontSize
             temperatureIcon.font.pixelSize = pixelFontSize
         }
     }
-
-    // Rectangle {
-    //     id: testRect
-    //     width: parent.width
-    //     height: parent.height
-    //     anchors.top: parent.top
-    //     anchors.left: parent.left
-    //     anchors.right: parent.right
-    //     // width: parent.width
-    //     // height: parent.height
-    //     // width: precType === 1 ? precipitationLabelLeft.width * 1.8 : precipitationLabelLeft.width + 5
-    //     // height: precType === 1 ? precipitationLabelLeft.height : precipitationLabelLeft.height - 1 //2 // labelHeight / 1.8
-    //     // color: white
-    //     // z: -1
-    //     // anchors.leftMargin: -2
-    //     // anchors.bottomMargin: -2
-    //     // anchors.bottomMargin: -2
-    // }
     
-    Text {
-        id: temperatureText
-        font.pixelSize: defaultFontPixelSize
-        text: UnitUtils.getTemperatureNumberExt(temperature, temperatureType)
-        // Math.round(temperature) + '[]' + temperatureType
-        visible: ! hidden
-        width: parent.width / 2
-        horizontalAlignment: Text.AlignHCenter //Text.AlignRight
-        color: Kirigami.Theme.textColor
-        anchors.left: parent.left
-
-    }
     Text {
         anchors.left: temperatureText.right
         id: temperatureIcon
         font.family: 'weathericons'
         font.pixelSize: defaultFontPixelSize
-        text: (iconName > 0) ? IconTools.getIconCode(iconName, currentPlace.providerId, partOfDay) : '\uf07b'
+        text: (dailyIcon > 0) ? IconTools.getIconCode(dailyIcon, currentPlace.providerId, partOfDay) : '\uf07b'
         visible: ! hidden
         width: parent.width / 2
-        horizontalAlignment: Text.AlignHCenter //Text.AlignHCenter
-        // anchors.rightMargin: 8 //parent.width / 4
+        horizontalAlignment: Text.AlignHCenter
         color: Kirigami.Theme.textColor
-        anchors.right: parent.right
     }
 }

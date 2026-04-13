@@ -14,12 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
-import QtQuick 2.15
+import QtQuick
 import org.kde.plasma.components 3.0 as PlasmaComponents
 import org.kde.plasma.core as PlasmaCore
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasma5support as Plasma5Support
 import QtQuick.Layouts
+// import QtQuick.Controls
+// import org.kde.ksvg as KSvg
 
 Item {
     id: fullRepresentation
@@ -33,19 +35,27 @@ Item {
     property int nextDayItemSpacing: defaultFontPixelSize * 0.5
     property int nextDaysHeight: defaultFontPixelSize * 9
     property int nextDaysVerticalMargin: defaultFontPixelSize
-    property int hourLegendMargin: defaultFontPixelSize * 2 + 2
-    property double nextDayItemWidth: (imageWidth / nextDaysCount) - nextDayItemSpacing - hourLegendMargin / nextDaysCount
+    property int hourLegendMargin: defaultFontPixelSize * 2 + 4 //+ 2
+    property double nextDayItemWidth: (meteogram2.width / nextDaysCount) - nextDayItemSpacing - hourLegend.width / nextDaysCount
     property int headingHeight: defaultFontPixelSize * 2
     property double hourLegendBottomMargin: defaultFontPixelSize * 0.2
     property string fullRepresentationAlias: main.fullRepresentationAlias
+    property bool weeklyForecastVisible: plasmoid.configuration.weeklyForecastVisible
 
-    implicitWidth: imageWidth
-    implicitHeight: headingHeight + imageHeight + footerHeight + nextDaysHeight + 14
+    width: main.widgetWidth
+    height: weeklyForecastVisible ? main.widgetHeight + headingHeight + footerHeight + nextDaysHeight + 14 + 56 : main.widgetHeight + headingHeight + footerHeight + 56
 
-    Layout.minimumWidth: imageWidth
-    Layout.minimumHeight: headingHeight + imageHeight + footerHeight + nextDaysHeight + 14 + 56 //36
-    Layout.preferredWidth: imageWidth
-    Layout.preferredHeight: headingHeight + imageHeight + footerHeight + nextDaysHeight + 14 + 56 //36 69
+    // implicitWidth: imageWidth
+    // implicitHeight: headingHeight + imageHeight + footerHeight + nextDaysHeight + 14
+
+    // Layout.minimumWidth: imageWidth
+    // Layout.minimumHeight: headingHeight + imageHeight + footerHeight + nextDaysHeight + 14 + 56
+
+    Layout.minimumWidth: main.widgetWidth
+    Layout.minimumHeight: weeklyForecastVisible ? main.widgetHeight + headingHeight + footerHeight + nextDaysHeight + 14 + 56 : main.widgetHeight + headingHeight + footerHeight + 56
+
+    // Layout.preferredWidth: imageWidth
+    // Layout.preferredHeight: headingHeight + imageHeight + footerHeight + nextDaysHeight + 14 + 56 //36 69
 
     onFullRepresentationAliasChanged: {
 
@@ -158,41 +168,55 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: headingHeight
         anchors.left: parent.left
-        anchors.leftMargin: -2
-        width: imageWidth
-        height: imageHeight
+        anchors.leftMargin: -4 //-2
+        anchors.right: parent.right
+        anchors.bottom: weeklyForecastVisible ? nextDaysView.top : creditText.top //parent.bottom
+        anchors.bottomMargin: weeklyForecastVisible ? 69 : 64
+        // width: imageWidth
+        // height: imageHeight
+
+        // implicitWidth: 800 //915
+        // implicitHeight: 300
     }
 
     ListView {
         id: nextDaysView
-        anchors.top: meteogram2.bottom
-        anchors.topMargin: 108
-        anchors.bottomMargin: footerHeight + nextDaysVerticalMargin
-        anchors.left: parent.left
-        anchors.leftMargin: hourLegendMargin// - 2
-        anchors.right: parent.right
-        height: nextDaysHeight
+        visible: weeklyForecastVisible
+        // anchors.top: meteogram2.bottom
+        // anchors.topMargin: 42
+        anchors.bottom: fullRepresentation.bottom
+        anchors.bottomMargin: nextDaysHeight + footerHeight + nextDaysVerticalMargin
+        anchors.left: hourLegend.right
+        anchors.leftMargin: Kirigami.Units.smallSpacing //hourLegendMargin * 4 //hourLegend.width// - 2
+        anchors.right: meteogram2.right //fullRepresentation.right
+        // anchors.rightMargin: -hourLegend.width// * 1.5
 
         model: nextDaysModel
         orientation: Qt.Horizontal
         spacing: nextDayItemSpacing
+        Layout.fillWidth: true
         interactive: false
+        displayMarginEnd: 1
 
         delegate: NextDayItem {
-            width: nextDayItemWidth
+            width: nextDaysView.width / 7.5
+            //8 //nextDaysCount //nextDayItemWidth //nextDaysView.width / 7
             height: nextDaysHeight
+            visible: index < 7
         }
     }
 
     Column {
         id: hourLegend
-        anchors.top: meteogram2.bottom
-        anchors.topMargin: 124
+        visible: weeklyForecastVisible
+        anchors.top: nextDaysView.top
+        anchors.topMargin: 18
+        anchors.bottom: parent.bottom
         anchors.bottomMargin: footerHeight + nextDaysVerticalMargin - 4
         // anchors.leftMargin: 12
         spacing: 1
 
-        width: hourLegendMargin * 1.3
+        width: hourLegendMargin * 1.5 //1.3
         height: nextDaysHeight - defaultFontPixelSize
 
         PlasmaComponents.Label {

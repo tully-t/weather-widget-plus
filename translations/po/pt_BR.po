@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/tully-t/weather-widget-plus\n"
-"POT-Creation-Date: 2025-10-12 10:13-0700\n"
+"POT-Creation-Date: 2026-04-12 13:18-0700\n"
 "PO-Revision-Date: 2025-06-07 11:18-0300\n"
 "Last-Translator: Júlia Patricia Wolschick <juliapwols@pm.me>\n"
 "Language-Team: brazilian portuguese <LL@li.org>\n"
@@ -22,8 +22,8 @@ msgid "Weather Widget Plus"
 msgstr "Widget do Tempo Plus"
 
 #: ../../weather.widget.plus/metadata.desktop
-msgid "Plasmoid showing weather information from Met.no server"
-msgstr "Plasmoide que exibe informações meteorológicas do servidor Met.no"
+msgid "Plasmoid showing weather information"
+msgstr "Plasmoide que exibe informações meteorológicas"
 
 #: ../../weather.widget.plus/contents/code/data-loader.js
 msgid "%1 min ago"
@@ -100,6 +100,7 @@ msgstr "Leioute"
 
 #: ../../weather.widget.plus/contents/config/config.qml
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+#: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 msgid "Meteogram"
 msgstr "Meteograma"
 
@@ -284,14 +285,6 @@ msgid "OM forecast data provided by Open-Meteo"
 msgstr "Previsão do tempo de OM fornecida por Open-Meteo"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-msgid "Change City Name"
-msgstr "Mudar o nome da cidade"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-msgid "Enter city name"
-msgstr "Digite o nome da cidade"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Add OpenWeather Map Location"
 msgstr "Adicionar Localização OpenWeather"
 
@@ -306,10 +299,8 @@ msgstr "Encontre o ID da sua cidade pesquisando aqui"
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid ""
 "and then paste the whole URL into the corresponding field\n"
-"e.g. http://openweathermap.org/city/2946447 for Bonn, Germany"
-msgstr ""
-"e então cole a URL inteira no seu campo correspondente\n"
-"por exemplo: http://openweathermap.org/city/2946447 para Bonn, Germany"
+"e.g. https://old.openweathermap.org/city/2946447 for Bonn, Germany"
+msgstr "http://old.openweathermap.org/city/2946447 para Bonn, Alemanha"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Add Met.no Map Location"
@@ -377,8 +368,16 @@ msgid "Meteogram height"
 msgstr "Altura do meteograma"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "OM forecast length"
-msgstr "Duração da previsão OM"
+msgid "Meteogram width in tray"
+msgstr ""
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Meteogram height in tray"
+msgstr ""
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Open-Meteo forecast length"
+msgstr "Duração da previsão Open-Meteo"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgctxt "hours"
@@ -386,24 +385,12 @@ msgid "hrs"
 msgstr "hrs"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Temperature label"
-msgstr "Rótulo do temperatura"
+msgid "Weekly forecast visible"
+msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Top"
-msgstr "Alto"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Bottom"
-msgstr "Baixo"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "None"
-msgstr "Nenhum"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Pressure label"
-msgstr "Rótulo do pressão"
+msgid "Trailing zeroes visible"
+msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Vertical axis font size"
@@ -446,6 +433,7 @@ msgid "My local-time"
 msgstr "Meu horário local"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
+#: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 #: ../../weather.widget.plus/contents/ui/FullRepresentation.qml
 #: ../../weather.widget.plus/contents/ui/providers/OpenWeatherMap.qml
 msgid "UTC"
@@ -454,6 +442,10 @@ msgstr "UTC"
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "Location Timezone"
 msgstr "Fuso-horário da Localização"
+
+#: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
+msgid "List"
+msgstr "Lista"
 
 #: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 #: ../../weather.widget.plus/contents/ui/FullRepresentation.qml
@@ -473,12 +465,12 @@ msgid "%1 ago"
 msgstr "%1 atrás"
 
 #: ../../weather.widget.plus/contents/ui/main.qml
-msgid "near future"
+msgid "next hour"
 msgstr "em breve"
 
 #: ../../weather.widget.plus/contents/ui/providers/MetNo.qml
-msgid "Forecast data provided by the Norwegian Meteorological Institute"
-msgstr "Previsão do tempo fornecida por The Norwegian Meteorological Institute"
+msgid "Forecast data provided by Met.no"
+msgstr "Previsão do tempo fornecida por Met.no"
 
 #: ../../weather.widget.plus/contents/ui/providers/OpenMeteo.qml
 msgid "Forecast data provided by Open-Meteo"
@@ -487,6 +479,47 @@ msgstr "Previsão do tempo fornecida por Open-Meteo"
 #: ../../weather.widget.plus/contents/ui/providers/OpenWeatherMap.qml
 msgid "Forecast data provided by OpenWeather"
 msgstr "Previsão do tempo fornecida por OpenWeather"
+
+#~ msgid "Plasmoid showing weather information from Met.no server"
+#~ msgstr "Plasmoide que exibe informações meteorológicas do servidor Met.no"
+
+#~ msgid "Change City Name"
+#~ msgstr "Mudar o nome da cidade"
+
+#~ msgid "Enter city name"
+#~ msgstr "Digite o nome da cidade"
+
+#~ msgid ""
+#~ "and then paste the whole URL into the corresponding field\n"
+#~ "e.g. http://openweathermap.org/city/2946447 for Bonn, Germany"
+#~ msgstr ""
+#~ "e então cole a URL inteira no seu campo correspondente\n"
+#~ "por exemplo: http://openweathermap.org/city/2946447 para Bonn, Germany"
+
+#~ msgid "OM forecast length"
+#~ msgstr "Duração da previsão OM"
+
+#~ msgid "Temperature label"
+#~ msgstr "Rótulo do temperatura"
+
+#~ msgid "Top"
+#~ msgstr "Alto"
+
+#~ msgid "Bottom"
+#~ msgstr "Baixo"
+
+#~ msgid "None"
+#~ msgstr "Nenhum"
+
+#~ msgid "Pressure label"
+#~ msgstr "Rótulo do pressão"
+
+#~ msgid "near future"
+#~ msgstr "em breve"
+
+#~ msgid "Forecast data provided by the Norwegian Meteorological Institute"
+#~ msgstr ""
+#~ "Previsão do tempo fornecida por The Norwegian Meteorological Institute"
 
 #~ msgid "cm"
 #~ msgstr "cm"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: weatherWidget-2\n"
 "Report-Msgid-Bugs-To: https://github.com/tully-t/weather-widget-plus\n"
-"POT-Creation-Date: 2025-10-12 10:13-0700\n"
+"POT-Creation-Date: 2026-04-12 13:18-0700\n"
 "PO-Revision-Date: 2022-03-13 19:39+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -23,8 +23,8 @@ msgid "Weather Widget Plus"
 msgstr "Weerwidget Plus"
 
 #: ../../weather.widget.plus/metadata.desktop
-msgid "Plasmoid showing weather information from Met.no server"
-msgstr "Een plasmoid die weerinformatie toont van de Met.no-server"
+msgid "Plasmoid showing weather information"
+msgstr ""
 
 #: ../../weather.widget.plus/contents/code/data-loader.js
 msgid "%1 min ago"
@@ -101,6 +101,7 @@ msgstr "Indeling"
 
 #: ../../weather.widget.plus/contents/config/config.qml
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+#: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 msgid "Meteogram"
 msgstr ""
 
@@ -281,14 +282,6 @@ msgid "OM forecast data provided by Open-Meteo"
 msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-msgid "Change City Name"
-msgstr ""
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-msgid "Enter city name"
-msgstr ""
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Add OpenWeather Map Location"
 msgstr ""
 
@@ -303,7 +296,7 @@ msgstr ""
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid ""
 "and then paste the whole URL into the corresponding field\n"
-"e.g. http://openweathermap.org/city/2946447 for Bonn, Germany"
+"e.g. https://old.openweathermap.org/city/2946447 for Bonn, Germany"
 msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
@@ -372,7 +365,15 @@ msgid "Meteogram height"
 msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "OM forecast length"
+msgid "Meteogram width in tray"
+msgstr ""
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Meteogram height in tray"
+msgstr ""
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Open-Meteo forecast length"
 msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
@@ -381,23 +382,11 @@ msgid "hrs"
 msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Temperature label"
+msgid "Weekly forecast visible"
 msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Top"
-msgstr ""
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Bottom"
-msgstr ""
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "None"
-msgstr ""
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Pressure label"
+msgid "Trailing zeroes visible"
 msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
@@ -441,6 +430,7 @@ msgid "My local-time"
 msgstr "Lokale tijd"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
+#: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 #: ../../weather.widget.plus/contents/ui/FullRepresentation.qml
 #: ../../weather.widget.plus/contents/ui/providers/OpenWeatherMap.qml
 msgid "UTC"
@@ -448,6 +438,10 @@ msgstr "UTC"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "Location Timezone"
+msgstr ""
+
+#: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
+msgid "List"
 msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
@@ -468,11 +462,11 @@ msgid "%1 ago"
 msgstr "%1 geleden"
 
 #: ../../weather.widget.plus/contents/ui/main.qml
-msgid "near future"
-msgstr "toekomstig"
+msgid "next hour"
+msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/providers/MetNo.qml
-msgid "Forecast data provided by the Norwegian Meteorological Institute"
+msgid "Forecast data provided by Met.no"
 msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/providers/OpenMeteo.qml
@@ -482,6 +476,12 @@ msgstr ""
 #: ../../weather.widget.plus/contents/ui/providers/OpenWeatherMap.qml
 msgid "Forecast data provided by OpenWeather"
 msgstr ""
+
+#~ msgid "Plasmoid showing weather information from Met.no server"
+#~ msgstr "Een plasmoid die weerinformatie toont van de Met.no-server"
+
+#~ msgid "near future"
+#~ msgstr "toekomstig"
 
 #~ msgid "General"
 #~ msgstr "Algemeen"

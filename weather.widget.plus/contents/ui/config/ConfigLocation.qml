@@ -30,6 +30,8 @@ KCM.SimpleKCM {
     property var alternateBackgroundColor: Kirigami.Theme.alternateBackgroundColor
     property var highlightColor: Kirigami.Theme.highlightColor
 
+    // implicitHeight: rhsColumn.height + (footerText.height * 2) + (Kirigami.Units.largeSpacing * 4)
+
 
     Component.onCompleted: {
 
@@ -478,9 +480,11 @@ KCM.SimpleKCM {
         }
 
         Row {
+            id: addButtonRow
             // anchors.top: mytableView.bottom
             // anchors.topMargin: Kirigami.Units.largeSpacing * 2
             Button {
+                id: omButton
                 icon.name: 'list-add'
                 text: 'Open-Meteo'
                 // width: 250
@@ -544,14 +548,15 @@ KCM.SimpleKCM {
         //     //font.bold: true
         //     Layout.alignment: Qt.AlignLeft
         // }
-        Item {
-            width: 2
-            height: 24
-            Layout.rowSpan: 2
-        }
+        // Item {
+        //     width: 2
+        //     height: Kirigami.Units.largeSpacing * 3
+        //     Layout.rowSpan: 2
+        // }
         Item {
             id: reloadItem
             width: parent.width
+            Layout.topMargin: Kirigami.Units.largeSpacing * 3
 
             Label {
                 id: reloadLabel1
@@ -601,15 +606,33 @@ KCM.SimpleKCM {
                 leftPadding: 6
             }
 
+            // Item {
+            //     id: reloadItemNote
+            //     width: parent.width
+            //     Layout.topMargin: Kirigami.Units.largeSpacing //30
+            //     Label {
+            //         id: reloadIntervalNote
+            //         font: Kirigami.Theme.smallFont
+            //         text: i18n("Middle-click the widget to reload manually")
+            //         anchors.verticalCenter: parent.verticalCenter
+            //         // anchors.left:reloadItem.right
+            //         // leftPadding: 18
+            //         Layout.rowSpan: 3
+            //         Layout.preferredWidth: 75
+            //         wrapMode: Text.WordWrap
+            //     }
+            // }
+
         }
+
         Item {
             id: reloadItemNote
             width: parent.width
             // anchors.top: reloadItem.bottom
-            Layout.topMargin: 30
+            Layout.topMargin: Kirigami.Units.largeSpacing * 4
             Label {
                 id: reloadIntervalNote
-                // font: Kirigami.Theme.smallFont
+                font: Kirigami.Theme.smallFont
                 text: i18n("Middle-click the widget to reload manually")
                 anchors.verticalCenter: parent.verticalCenter
                 // anchors.left:reloadItem.right
@@ -617,6 +640,13 @@ KCM.SimpleKCM {
                 Layout.rowSpan: 3
                 Layout.preferredWidth: 75
                 wrapMode: Text.WordWrap
+            }
+
+            Item {
+                width: 2
+                height: 2
+                Layout.columnSpan: 3
+                // Layout.rowSpan: 3
             }
         }
 
@@ -629,15 +659,27 @@ KCM.SimpleKCM {
         }
 
     }
+
+    // Item {
+    //     width: 2
+    //     height: 2
+    //     Layout.columnSpan: 3
+    //     // Layout.rowSpan: 3
+    // }
+
     Item {
+        id:footerText
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: -6
-        // anchors.top: rhsColumn.bottom
-        // anchors.topMargin: 132
-        Rectangle {
-            anchors.fill: parent
-            // anchors.top:
-        }
+        anchors.bottomMargin: -8 //-6
+
+        anchors.top: reloadItemNote.bottom //rhsColumn
+        anchors.topMargin: Kirigami.Units.largeSpacing// * 4
+
+        // Rectangle {
+        //     anchors.fill: parent
+        //     // anchors.top:
+        // }
+
         Label {
             id: versionNumber
             anchors.bottom: attributionIcons.top
@@ -663,6 +705,7 @@ KCM.SimpleKCM {
                 }
             }
         }
+
         Label {
             id: attributionIcons
             anchors.bottom: attribution1.top
@@ -688,6 +731,7 @@ KCM.SimpleKCM {
                 }
             }
         }
+
         Label {
             id: attribution1
             anchors.bottom: attribution2.top
@@ -713,6 +757,7 @@ KCM.SimpleKCM {
                 }
             }
         }
+
         Label {
             id: attribution2
             anchors.bottom: attribution3.top
@@ -738,6 +783,7 @@ KCM.SimpleKCM {
                 }
             }
         }
+
         Label {
             id: attribution3
             anchors.bottom: attributionOm.top
@@ -763,6 +809,7 @@ KCM.SimpleKCM {
                 }
             }
         }
+
         Label {
             id: attributionOm
             anchors.bottom: parent.bottom

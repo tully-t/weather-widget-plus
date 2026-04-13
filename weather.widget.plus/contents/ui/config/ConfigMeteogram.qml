@@ -33,8 +33,12 @@ KCM.SimpleKCM {
     property int cfg_hourSpanOm
     property int cfg_widgetWidth
     property int cfg_widgetHeight
+    property int cfg_widgetWidthInTray
+    property int cfg_widgetHeightInTray
     property int cfg_widgetOrder
     property int cfg_desktopMode
+    property alias cfg_trailingZeroesVisible: trailingZeroesVisible.checked
+    property alias cfg_weeklyForecastVisible: weeklyForecastVisible.checked
 
 
 
@@ -58,51 +62,51 @@ KCM.SimpleKCM {
         }
     }
 
-    onCfg_tempLabelPositionChanged: {
-        switch (cfg_tempLabelPosition) {
-            case 0:
-                tempLabelPositionGroup.checkedButton = tempLabelPositionTop;
-                break;
-            case 1:
-                tempLabelPositionGroup.checkedButton = tempLabelPositionBottom;
-                break;
-            case 2:
-                tempLabelPositionGroup.checkedButton = tempLabelPositionNone;
-                break;
-            default:
-        }
-    }
-
-    ButtonGroup {
-        id: tempLabelPositionGroup
-
-        Component.onCompleted: {
-            cfg_tempLabelPositionChanged()
-        }
-    }
-
-    onCfg_pressureLabelPositionChanged: {
-        switch (cfg_pressureLabelPosition) {
-            case 0:
-                pressureLabelPositionGroup.checkedButton = pressureLabelPositionTop;
-                break;
-            case 1:
-                pressureLabelPositionGroup.checkedButton = pressureLabelPositionBottom;
-                break;
-            case 2:
-                pressureLabelPositionGroup.checkedButton = pressureLabelPositionNone;
-                break;
-            default:
-        }
-    }
-
-    ButtonGroup {
-        id: pressureLabelPositionGroup
-
-        Component.onCompleted: {
-            cfg_pressureLabelPositionChanged()
-        }
-    }
+    // onCfg_tempLabelPositionChanged: {
+    //     switch (cfg_tempLabelPosition) {
+    //         case 0:
+    //             tempLabelPositionGroup.checkedButton = tempLabelPositionTop;
+    //             break;
+    //         case 1:
+    //             tempLabelPositionGroup.checkedButton = tempLabelPositionBottom;
+    //             break;
+    //         case 2:
+    //             tempLabelPositionGroup.checkedButton = tempLabelPositionNone;
+    //             break;
+    //         default:
+    //     }
+    // }
+    //
+    // ButtonGroup {
+    //     id: tempLabelPositionGroup
+    //
+    //     Component.onCompleted: {
+    //         cfg_tempLabelPositionChanged()
+    //     }
+    // }
+    //
+    // onCfg_pressureLabelPositionChanged: {
+    //     switch (cfg_pressureLabelPosition) {
+    //         case 0:
+    //             pressureLabelPositionGroup.checkedButton = pressureLabelPositionTop;
+    //             break;
+    //         case 1:
+    //             pressureLabelPositionGroup.checkedButton = pressureLabelPositionBottom;
+    //             break;
+    //         case 2:
+    //             pressureLabelPositionGroup.checkedButton = pressureLabelPositionNone;
+    //             break;
+    //         default:
+    //     }
+    // }
+    //
+    // ButtonGroup {
+    //     id: pressureLabelPositionGroup
+    //
+    //     Component.onCompleted: {
+    //         cfg_pressureLabelPositionChanged()
+    //     }
+    // }
 
     GridLayout {
         anchors.left: parent.left
@@ -200,10 +204,15 @@ KCM.SimpleKCM {
         }
         Label {
             id: spacer
-            // text: i18n("Desktop meteogram mode is not affected by any other Layout or Appearance options")
+            // text: i18n("Dimension adjustment is not available in the system tray")
             Layout.rowSpan: 3
             Layout.preferredWidth: 250
-            // wrapMode: Text.WordWrap
+            wrapMode: Text.WordWrap
+            // anchors.top: widgetWidthLabel.bottom
+            // anchors.topMargin: -Kirigami.Units.smallSpacing
+
+            // anchors.left: widgetHeightPx.right
+            // anchors.leftMargin: Kirigami.Units.gridUnit
         }
         // Item {
         //     width: 2
@@ -222,11 +231,22 @@ KCM.SimpleKCM {
             onCheckedChanged: if (checked) cfg_desktopMode = 1;
         }
 
-        Item {
-            width: 2
-            height: 2
-            Layout.columnSpan: 3
-        }
+        // Label {
+        //     text: i18n("Dimension adjustment is not available in the system tray")
+        //     Layout.rowSpan: 3
+        //     Layout.preferredWidth: 200
+            // wrapMode: Text.WordWrap
+            // anchors.top: widgetWidthLabel.bottom
+            // anchors.left: widgetHeightPx.right
+            // anchors.topMargin: -Kirigami.Units.smallSpacing
+            // anchors.leftMargin: Kirigami.Units.gridUnit
+        // }
+
+        // Item {
+        //     width: 2
+        //     height: 2
+        //     Layout.columnSpan: 3
+        // }
 
         // Label {
         //     text: i18n("Top Margin") + ":"
@@ -262,24 +282,30 @@ KCM.SimpleKCM {
         //     }
         // }
 
+        Item {
+            width: 2
+            height: 2
+            Layout.columnSpan: 3
+        }
+
             // Layout.alignment: Qt.AlignVCenter
             Label {
                 id: widgetWidthLabel
                 text: i18n("Meteogram width") + ":"
-                Layout.alignment: Qt.AlignTop | Qt.AlignRight
+                Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
             }
 
             SpinBox {
                 id: widgetWidth
                 live: true
                 Layout.alignment: Qt.AlignVCenter
-                anchors.left: widgetWidthLabel.right
-                anchors.top: widgetWidthLabel.top
+                // anchors.left: widgetWidthLabel.right
+                // anchors.top: widgetWidthLabel.top
                 // anchors.verticalCenter: parent.verticalCenter
                 anchors.topMargin: -8
                 anchors.leftMargin: 5
                 stepSize: 1
-                from: 800
+                from: plasmoid.configuration.weeklyForecastVisible ? 650 : 460 //650 //800 460
                 value: cfg_widgetWidth
                 to: Screen.desktopAvailableWidth * 0.9
                 onValueChanged: {
@@ -295,11 +321,6 @@ KCM.SimpleKCM {
                     leftPadding: 8
                     rightPadding: 2
                 }
-                // Component.onCompleted: {
-                //     // loadingData.failedAttemptCount = 0
-                //     //EndMe.loadDataFromInternet()
-                //     Reload.reload()
-                // }
             }
 
             Label {
@@ -309,70 +330,85 @@ KCM.SimpleKCM {
                 anchors.leftMargin: 5
             }
 
-        // Item {
-        //     width: 2
-        //     height: 2
-        //     Layout.columnSpan: 3
-        // }
+        Item {
+            width: 2
+            height: 2
+            Layout.columnSpan: 3
+        }
 
-        // Item {
-        //     width: 2
-        //     height: 4
-        //     Layout.columnSpan: 3
-        //     Layout.rowSpan: 1
-        // }
+        Label {
+            id: widgetHeightLabel
+            text: i18n("Meteogram height") + ":"
+            Layout.alignment: Qt.AlignTop | Qt.AlignRight
+        }
 
-        // Label {
-        //     text: i18n("Left Margin") + ":"
-        //     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-        // }
-        //
-        // Item {
-        //     SpinBox {
-        //         id: leftOuterMargin
-        //         Layout.alignment: Qt.AlignVCenter
-        //         anchors.verticalCenter: parent.verticalCenter
-        //         stepSize: 1
-        //         from: -999
-        //         value: cfg_leftOuterMargin
-        //         to: 999
-        //         onValueChanged: {
-        //             cfg_leftOuterMargin = leftOuterMargin.value
-        //         }
-        //     }
-        //     Label {
-        //         anchors.verticalCenter: parent.verticalCenter
-        //         anchors.left:leftOuterMargin.right
-        //         anchors.leftMargin: 4
-        //         text: i18nc("pixels", "px")
-        //     }
-        // }
-            // Layout.alignment: Qt.AlignVCenter
-            Label {
-                id: widgetHeightLabel
-                text: i18n("Meteogram height") + ":"
-                Layout.alignment: Qt.AlignTop | Qt.AlignRight
+        SpinBox {
+            id: widgetHeight
+            live: true
+            Layout.alignment: Qt.AlignVCenter
+            anchors.left: widgetHeightLabel.right
+            anchors.top: widgetHeightLabel.top
+            // anchors.verticalCenter: parent.verticalCenter
+            anchors.topMargin: -8
+            anchors.leftMargin: 5
+            stepSize: 1
+            from: plasmoid.configuration.weeklyForecastVisible ? 200 : 100 //300 200
+            value: cfg_widgetHeight
+            to: Screen.desktopAvailableHeight * 0.75
+            onValueChanged: {
+                cfg_widgetHeight = widgetHeight.value
+            }
+
+            contentItem: TextInput {
+                text: widgetHeight.value
+                horizontalAlignment: Qt.AlignLeft
+                verticalAlignment: Qt.AlignVCenter
+                color: Kirigami.Theme.textColor
+                selectionColor: Kirigami.Theme.highlightColor
+                leftPadding: 8
+                rightPadding: 2
+            }
+        }
+
+        Label {
+            id: widgetHeightPx
+            text: i18nc("pixels", "px")
+            anchors.top: widgetHeightLabel.top
+            anchors.left: widgetHeight.right
+            anchors.leftMargin: 5
+        }
+
+        Item {
+            width: 2
+            height: 2
+            Layout.columnSpan: 3
+        }
+
+        Label {
+                id: widgetWidthLabelInTray
+                text: i18n("Meteogram width in tray") + ":"
+                Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
             }
 
             SpinBox {
-                id: widgetHeight
+                id: widgetWidthInTray
                 live: true
                 Layout.alignment: Qt.AlignVCenter
-                anchors.left: widgetHeightLabel.right
-                anchors.top: widgetHeightLabel.top
+                // anchors.left: widgetWidthLabelInTray.right
+                // anchors.top: widgetWidthLabelInTray.top
                 // anchors.verticalCenter: parent.verticalCenter
                 anchors.topMargin: -8
                 anchors.leftMargin: 5
                 stepSize: 1
-                from: 300
-                value: cfg_widgetHeight
-                to: Screen.desktopAvailableHeight * 0.75
+                from: 300 //650 //800
+                value: cfg_widgetWidthInTray
+                to: Screen.desktopAvailableWidth * 0.9
                 onValueChanged: {
-                    cfg_widgetHeight = widgetHeight.value
+                    cfg_widgetWidthInTray = widgetWidthInTray.value
                 }
 
                 contentItem: TextInput {
-                    text: widgetHeight.value
+                    text: widgetWidthInTray.value
                     horizontalAlignment: Qt.AlignLeft
                     verticalAlignment: Qt.AlignVCenter
                     color: Kirigami.Theme.textColor
@@ -380,111 +416,160 @@ KCM.SimpleKCM {
                     leftPadding: 8
                     rightPadding: 2
                 }
-                // Component.onCompleted: {
-                //     // loadingData.failedAttemptCount = 0
-                //     //EndMe.loadDataFromInternet()
-                //     Reload.reload()
-                // }
             }
 
             Label {
                 text: i18nc("pixels", "px")
-                anchors.top: widgetHeightLabel.top
-                anchors.left: widgetHeight.right
+                anchors.top: widgetWidthLabelInTray.top
+                anchors.left: widgetWidthInTray.right
                 anchors.leftMargin: 5
             }
 
-        // Item {
-        //     CheckBox {
-        //         id: iconVisible
-        //         Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-        //     }
-        //
-        //     Label {
-        //         text: i18n("Icon visible")
-        //         anchors.left: iconVisible.right
-        //         anchors.leftMargin: 4
-        //     }
-        // }
+        Item {
+            width: 2
+            height: 2
+            Layout.columnSpan: 3
+        }
 
-        // Item {
-        //     width: 2
-        //     height: 2
-        //     Layout.columnSpan: 3
-        // }
+        Label {
+            id: widgetHeightLabelInTray
+            text: i18n("Meteogram height in tray") + ":"
+            Layout.alignment: Qt.AlignTop | Qt.AlignRight
+        }
 
-        // Label {
-        //     text: i18n("Inner Margin") + ":"
-        //     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-        // }
-        //
-        // Item {
-        //     SpinBox {
-        //         id: innerMargin
-        //         Layout.alignment: Qt.AlignVCenter
-        //         anchors.verticalCenter: parent.verticalCenter
-        //         stepSize: 1
-        //         from: -999
-        //         value: cfg_innerMargin
-        //         to: 999
-        //         onValueChanged: {
-        //             cfg_innerMargin = innerMargin.value
-        //         }
-        //     }
-        //     Label {
-        //         anchors.verticalCenter: parent.verticalCenter
-        //         anchors.left:innerMargin.right
-        //         anchors.leftMargin: 4
-        //         text: i18nc("pixels", "px")
-        //     }
-        // }
-
-            // Layout.alignment: Qt.AlignVCenter
-            Label {
-                id: hourSpanOmLabel
-                text: i18n("OM forecast length") + ":"
-                Layout.alignment: Qt.AlignTop | Qt.AlignRight
+        SpinBox {
+            id: widgetHeightInTray
+            live: true
+            Layout.alignment: Qt.AlignVCenter
+            anchors.left: widgetHeightLabelInTray.right
+            anchors.top: widgetHeightLabelInTray.top
+            // anchors.verticalCenter: parent.verticalCenter
+            anchors.topMargin: -8
+            anchors.leftMargin: 5
+            stepSize: 1
+            from: 200 //300 200
+            value: cfg_widgetHeightInTray
+            to: Screen.desktopAvailableHeight * 0.75
+            onValueChanged: {
+                cfg_widgetHeightInTray = widgetHeightInTray.value
             }
 
-            SpinBox {
-                id: hourSpanOm
-                live: true
-                Layout.alignment: Qt.AlignVCenter
-                anchors.left: hourSpanOmLabel.right
-                anchors.top: hourSpanOmLabel.top
-                // anchors.verticalCenter: parent.verticalCenter
-                anchors.topMargin: -8
-                anchors.leftMargin: 5
-                stepSize: 1
-                from: 24
-                value: cfg_hourSpanOm
-                to: 144
-                onValueChanged: {
-                    cfg_hourSpanOm = hourSpanOm.value
-                }
+            contentItem: TextInput {
+                text: widgetHeightInTray.value
+                horizontalAlignment: Qt.AlignLeft
+                verticalAlignment: Qt.AlignVCenter
+                color: Kirigami.Theme.textColor
+                selectionColor: Kirigami.Theme.highlightColor
+                leftPadding: 8
+                rightPadding: 2
+            }
+        }
 
-                contentItem: TextInput {
-                    text: hourSpanOm.value
-                    horizontalAlignment: Qt.AlignLeft
-                    verticalAlignment: Qt.AlignVCenter
-                    color: Kirigami.Theme.textColor
-                    selectionColor: Kirigami.Theme.highlightColor
-                    leftPadding: 8
-                    rightPadding: 2
-                }
-                // Component.onCompleted: {
-                //     // loadingData.failedAttemptCount = 0
-                //     // main.loadDataFromInternet()
-                //     Reload.reload()
-                // }
+        Label {
+            id: widgetHeightPxInTray
+            text: i18nc("pixels", "px")
+            anchors.top: widgetHeightLabelInTray.top
+            anchors.left: widgetHeightInTray.right
+            anchors.leftMargin: 5
+        }
+
+        Item {
+            width: 2
+            height: 2
+            Layout.columnSpan: 3
+        }
+
+        Label {
+            id: hourSpanOmLabel
+            text: i18n("Open-Meteo forecast length") + ":"
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+        }
+
+        SpinBox {
+            id: hourSpanOm
+            live: true
+            Layout.alignment: Qt.AlignVCenter
+            // anchors.left: hourSpanOmLabel.right
+            // anchors.top: hourSpanOmLabel.top
+            // anchors.verticalCenter: parent.verticalCenter
+            anchors.topMargin: -8
+            anchors.leftMargin: 5
+            stepSize: 1
+            from: 24
+            value: cfg_hourSpanOm
+            to: 144 //main.inTray ? 48 : 144
+            onValueChanged: {
+                cfg_hourSpanOm = hourSpanOm.value
             }
 
-            Label {
-                text: i18nc("hours", "hrs")
-                anchors.top: hourSpanOmLabel.top
-                anchors.left: hourSpanOm.right
-                anchors.leftMargin: 5
+            contentItem: TextInput {
+                text: hourSpanOm.value
+                horizontalAlignment: Qt.AlignLeft
+                verticalAlignment: Qt.AlignVCenter
+                color: Kirigami.Theme.textColor
+                selectionColor: Kirigami.Theme.highlightColor
+                leftPadding: 8
+                rightPadding: 2
             }
+            // Component.onCompleted: {
+            //     // loadingData.failedAttemptCount = 0
+            //     // main.loadDataFromInternet()
+            //     Reload.reload()
+            // }
+        }
+
+        Label {
+            text: i18nc("hours", "hrs")
+            anchors.top: hourSpanOmLabel.top
+            anchors.left: hourSpanOm.right
+            anchors.leftMargin: 5
+        }
+
+        Item {
+            width: 2
+            height: 1
+            Layout.columnSpan: 3
+        }
+
+        CheckBox {
+            id: weeklyForecastVisible
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+            // anchors.top: mgTrailingZeroesFontSizeLabel.bottom
+            // anchors.topMargin: 13
+        }
+
+        Label {
+            text: i18n("Weekly forecast visible")
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+            // anchors.top: trailingZeroesVisible.top
+            // anchors.topMargin: 2
+        }
+
+        Item {
+            width: 2
+            height: 1
+            Layout.columnSpan: 3
+        }
+
+        CheckBox {
+            id: trailingZeroesVisible
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+            // anchors.top: mgTrailingZeroesFontSizeLabel.bottom
+            // anchors.topMargin: 13
+        }
+
+        Label {
+            text: i18n("Trailing zeroes visible")
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+            // anchors.top: trailingZeroesVisible.top
+            // anchors.topMargin: 2
+        }
+
+        Item {
+            width: 2
+            height: 1
+            Layout.columnSpan: 3
+        }
 
             // CheckBox {
             //     id: precLabelVisChoice
@@ -622,112 +707,90 @@ KCM.SimpleKCM {
         //     anchors.left: parent.left
         //     anchors.leftMargin: Kirigami.Units.largeSpacing //hourSpanOmLabel.left
 
-        Label {
-            id: tempLabelRadioGroup
-            text: i18n("Temperature label") + ":"
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-        }
-        RadioButton {
-            id: tempLabelPositionTop
-            ButtonGroup.group: tempLabelPositionGroup
-            text: i18n("Top")
-            onCheckedChanged: if (checked) cfg_tempLabelPosition = 0;
-        }
-        Item {
-            width: 2
-            height: 2
-            Layout.rowSpan: 2
-        }
-        Item {
-            width: 2
-            height: 2
-            Layout.columnSpan: 1
-        }
-        RadioButton {
-            id: tempLabelPositionBottom
-            ButtonGroup.group: tempLabelPositionGroup
-            text: i18n("Bottom")
-            onCheckedChanged: if (checked) cfg_tempLabelPosition = 1;
-        }
-        Item {
-            width: 2
-            height: 2
-            Layout.rowSpan: 2
-        }
+        // Label {
+        //     id: tempLabelRadioGroup
+        //     text: i18n("Temperature label") + ":"
+        //     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+        // }
+        // RadioButton {
+        //     id: tempLabelPositionTop
+        //     ButtonGroup.group: tempLabelPositionGroup
+        //     text: i18n("Top")
+        //     onCheckedChanged: if (checked) cfg_tempLabelPosition = 0;
+        // }
+        // Item {
+        //     width: 2
+        //     height: 2
+        //     Layout.rowSpan: 2
+        // }
         // Item {
         //     width: 2
         //     height: 2
         //     Layout.columnSpan: 1
         // }
-        RadioButton {
-            id: tempLabelPositionNone
-            ButtonGroup.group: tempLabelPositionGroup
-            text: i18n("None")
-            onCheckedChanged: if (checked) cfg_tempLabelPosition = 2;
-        }
+        // RadioButton {
+        //     id: tempLabelPositionBottom
+        //     ButtonGroup.group: tempLabelPositionGroup
+        //     text: i18n("Bottom")
+        //     onCheckedChanged: if (checked) cfg_tempLabelPosition = 1;
+        // }
+        // Item {
+        //     width: 2
+        //     height: 2
+        //     Layout.rowSpan: 2
+        // }
 
-        Item {
-            Layout.preferredWidth: 200
-            Layout.rowSpan: 3
-            anchors.top: tempLabelRadioGroup.top
-            anchors.right: parent.right
-            anchors.rightMargin: Kirigami.Units.largeSpacing * 3
-            Label {
-                id: pressureLabelRadioGroup
-                text: i18n("Pressure label") + ":"
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-            }
-            RadioButton {
-                id: pressureLabelPositionTop
-                ButtonGroup.group: pressureLabelPositionGroup
-                text: i18n("Top")
-                onCheckedChanged: if (checked) cfg_pressureLabelPosition = 0;
-                anchors.left: pressureLabelRadioGroup.right
-                anchors.leftMargin: 5
-                anchors.topMargin: -2
-                // anchors.top: pressureLabelRadioGroup.top
-            }
-            // Item {
-            //     width: 2
-            //     height: 2
-            //     Layout.rowSpan: 2
-            // }
-            // Item {
-            //     width: 2
-            //     height: 2
-            //     Layout.columnSpan: 1
-            // }
-            RadioButton {
-                id: pressureLabelPositionBottom
-                ButtonGroup.group: pressureLabelPositionGroup
-                text: i18n("Bottom")
-                onCheckedChanged: if (checked) cfg_pressureLabelPosition = 1;
-                anchors.left: pressureLabelRadioGroup.right
-                anchors.leftMargin: 5
-                anchors.top: pressureLabelPositionTop.bottom
-                anchors.topMargin: 5
-            }
-            // Item {
-            //     width: 2
-            //     height: 2
-            //     Layout.rowSpan: 2
-            // }
-            // Item {
-            //     width: 2
-            //     height: 2
-            //     Layout.columnSpan: 1
-            // }
-            RadioButton {
-                id: pressureLabelPositionNone
-                ButtonGroup.group: pressureLabelPositionGroup
-                text: i18n("None")
-                onCheckedChanged: if (checked) cfg_pressureLabelPosition = 2;
-                anchors.left: pressureLabelRadioGroup.right
-                anchors.leftMargin: 5
-                anchors.top: pressureLabelPositionBottom.bottom
-                anchors.topMargin: 5
-            }
-        }
+//         RadioButton {
+//             id: tempLabelPositionNone
+//             ButtonGroup.group: tempLabelPositionGroup
+//             text: i18n("None")
+//             onCheckedChanged: if (checked) cfg_tempLabelPosition = 2;
+//         }
+//
+//         Item {
+//             Layout.preferredWidth: 200
+//             Layout.rowSpan: 3
+//             anchors.top: tempLabelRadioGroup.top
+//             anchors.right: parent.right
+//             anchors.rightMargin: Kirigami.Units.largeSpacing * 3
+//             Label {
+//                 id: pressureLabelRadioGroup
+//                 text: i18n("Pressure label") + ":"
+//                 Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+//             }
+//             RadioButton {
+//                 id: pressureLabelPositionTop
+//                 ButtonGroup.group: pressureLabelPositionGroup
+//                 text: i18n("Top")
+//                 onCheckedChanged: if (checked) cfg_pressureLabelPosition = 0;
+//                 anchors.left: pressureLabelRadioGroup.right
+//                 anchors.leftMargin: 5
+//                 anchors.topMargin: -2
+//                 // anchors.top: pressureLabelRadioGroup.top
+//             }
+//
+//             RadioButton {
+//                 id: pressureLabelPositionBottom
+//                 ButtonGroup.group: pressureLabelPositionGroup
+//                 text: i18n("Bottom")
+//                 onCheckedChanged: if (checked) cfg_pressureLabelPosition = 1;
+//                 anchors.left: pressureLabelRadioGroup.right
+//                 anchors.leftMargin: 5
+//                 anchors.top: pressureLabelPositionTop.bottom
+//                 anchors.topMargin: 5
+//             }
+//
+//             RadioButton {
+//                 id: pressureLabelPositionNone
+//                 ButtonGroup.group: pressureLabelPositionGroup
+//                 text: i18n("None")
+//                 onCheckedChanged: if (checked) cfg_pressureLabelPosition = 2;
+//                 anchors.left: pressureLabelRadioGroup.right
+//                 anchors.leftMargin: 5
+//                 anchors.top: pressureLabelPositionBottom.bottom
+//                 anchors.topMargin: 5
+//             }
+//         }
 
         Item {
             width: 2
@@ -738,7 +801,7 @@ KCM.SimpleKCM {
             Label {
                 id: mgAxisFontSizeLabel
                 text: i18n("Vertical axis font size") + ":"
-                Layout.alignment: Qt.AlignTop | Qt.AlignRight
+                Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
                 // Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
                 // Layout.topMargin: -5
             }
@@ -747,8 +810,8 @@ KCM.SimpleKCM {
                 id: mgAxisFontSize
                 live: true
                 Layout.alignment: Qt.AlignVCenter
-                anchors.left: mgAxisFontSizeLabel.right
-                anchors.top: mgAxisFontSizeLabel.top
+                // anchors.left: mgAxisFontSizeLabel.right
+                // anchors.top: mgAxisFontSizeLabel.top
                 // anchors.verticalCenter: parent.verticalCenter
                 anchors.topMargin: -8
                 anchors.leftMargin: 5
@@ -774,6 +837,7 @@ KCM.SimpleKCM {
             Label {
                 id: mgAxisFontSizePx
                 text: i18nc("pixels", "px")
+                anchors.top: mgAxisFontSizeLabel.top
                 anchors.left: mgAxisFontSize.right
                 anchors.leftMargin: 5
             }
@@ -798,26 +862,26 @@ KCM.SimpleKCM {
                 // }
             // }
 
-            Item {
-                width: 2
-                height: 2
-                Layout.columnSpan: 3
-            }
+            // Item {
+            //     width: 2
+            //     height: 2
+            //     Layout.columnSpan: 3
+            // }
 
             Label {
                 id: mgHoursFontSizeLabel
                 text: i18n("Time font size") + ":"
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-                anchors.top: mgAxisFontSize.bottom
-                anchors.topMargin: 13
+                // anchors.top: mgAxisFontSize.bottom
+                // anchors.topMargin: 13
             }
 
             SpinBox {
                 id: mgHoursFontSize
                 live: true
                 Layout.alignment: Qt.AlignVCenter
-                anchors.left: mgHoursFontSizeLabel.right
-                anchors.top: mgHoursFontSizeLabel.top
+                // anchors.left: mgHoursFontSizeLabel.right
+                // anchors.top: mgHoursFontSizeLabel.top
                 // anchors.verticalCenter: parent.verticalCenter
                 anchors.topMargin: -8
                 anchors.leftMargin: 5
@@ -869,63 +933,97 @@ KCM.SimpleKCM {
             //     }
             // }
 
-        Item {
-            width: 2
-            height: 2
-            Layout.columnSpan: 3
+        // Item {
+        //     width: 2
+        //     height: 2
+        //     Layout.columnSpan: 3
+        // }
+
+        // Layout.alignment: Qt.AlignVCenter
+        Label {
+            id: mgTrailingZeroesFontSizeLabel
+            text: i18n("Trailing zeroes font size") + ":"
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+            // anchors.top: mgHoursFontSize.bottom
+            // anchors.topMargin: 13
         }
 
-            // Layout.alignment: Qt.AlignVCenter
-            Label {
-                id: mgTrailingZeroesFontSizeLabel
-                text: i18n("Trailing zeroes font size") + ":"
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-                anchors.top: mgHoursFontSize.bottom
-                anchors.topMargin: 13
+        SpinBox {
+            id: mgTrailingZeroesFontSize
+            live: true
+            Layout.alignment: Qt.AlignVCenter
+            // anchors.left: mgTrailingZeroesFontSizeLabel.right
+            // anchors.top: mgTrailingZeroesFontSizeLabel.top
+            // anchors.verticalCenter: parent.verticalCenter
+            anchors.topMargin: -8
+            anchors.leftMargin: 5
+            stepSize: 1
+            from: 2
+            value: cfg_mgTrailingZeroesFontSize
+            to: 64
+            onValueChanged: {
+                cfg_mgTrailingZeroesFontSize = mgTrailingZeroesFontSize.value
             }
 
-            SpinBox {
-                id: mgTrailingZeroesFontSize
-                live: true
-                Layout.alignment: Qt.AlignVCenter
-                anchors.left: mgTrailingZeroesFontSizeLabel.right
-                anchors.top: mgTrailingZeroesFontSizeLabel.top
-                // anchors.verticalCenter: parent.verticalCenter
-                anchors.topMargin: -8
-                anchors.leftMargin: 5
-                stepSize: 1
-                from: 2
-                value: cfg_mgTrailingZeroesFontSize
-                to: 64
-                onValueChanged: {
-                    cfg_mgTrailingZeroesFontSize = mgTrailingZeroesFontSize.value
-                }
-
-                contentItem: TextInput {
-                    text: mgTrailingZeroesFontSize.value
-                    horizontalAlignment: Qt.AlignLeft
-                    verticalAlignment: Qt.AlignVCenter
-                    color: Kirigami.Theme.textColor
-                    selectionColor: Kirigami.Theme.highlightColor
-                    leftPadding: 8
-                    rightPadding: 2
-                }
+            contentItem: TextInput {
+                text: mgTrailingZeroesFontSize.value
+                horizontalAlignment: Qt.AlignLeft
+                verticalAlignment: Qt.AlignVCenter
+                color: Kirigami.Theme.textColor
+                selectionColor: Kirigami.Theme.highlightColor
+                leftPadding: 8
+                rightPadding: 2
             }
+        }
 
-            Label {
-                text: i18nc("pixels", "px")
-                anchors.top: mgTrailingZeroesFontSizeLabel.top
-                anchors.left: mgTrailingZeroesFontSize.right
-                anchors.leftMargin: 5
-            }
+        Label {
+            text: i18nc("pixels", "px")
+            anchors.top: mgTrailingZeroesFontSizeLabel.top
+            // anchors.topMargin: 13
+            anchors.left: mgTrailingZeroesFontSize.right
+            anchors.leftMargin: 5
+        }
 
-            // Item {
-            //     width: 2
-            //     height: 2
-            //     Layout.columnSpan: 3
-            // }
+        // Item {
+        //     width: 2
+        //     height: 2
+        //     Layout.columnSpan: 3
+        // }
+
+        // CheckBox {
+        //     id: trailingZeroesVisible
+        //     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+        //     // anchors.top: mgTrailingZeroesFontSizeLabel.bottom
+        //     // anchors.topMargin: 13
+        // }
+        //
+        // Label {
+        //     text: i18n("Trailing zeroes visible")
+        //     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+        //     // anchors.top: trailingZeroesVisible.top
+        //     // anchors.topMargin: 2
+        // }
 
 
+        // Item {
+        //     width: 2
+        //     height: 2
+        //     Layout.columnSpan: 3
+        // }
+        //
+        // CheckBox {
+        //     id: weeklyForecastVisible
+        //     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+        //     // anchors.top: mgTrailingZeroesFontSizeLabel.bottom
+        //     // anchors.topMargin: 13
+        // }
+        //
+        // Label {
+        //     text: i18n("Weekly forecast visible")
+        //     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+        //     // anchors.top: trailingZeroesVisible.top
+        //     // anchors.topMargin: 2
+        // }
 
         //
         // Item {

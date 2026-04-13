@@ -16,8 +16,8 @@
  */
 import QtQuick
 import QtQuick.Layouts
-import org.kde.plasma.components 3.0 as PlasmaComponents
-import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.components as PlasmaComponents
+import org.kde.plasma.core as PlasmaCore
 import Qt5Compat.GraphicalEffects
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
@@ -52,7 +52,7 @@ GridLayout {
     property string iconNameStr: main.iconNameStr.length > 0 ? main.iconNameStr : "\uf07b"
     property string temperatureStr: main.temperatureStr.length > 0 ? main.temperatureStr : "--"
 
-    columnSpacing: iconVisible && textVisible ? (iconAndText.vertical ? innerMargin - 17 : innerMargin - 18) : innerMargin
+    columnSpacing: iconVisible && textVisible ? (iconAndText.vertical ? innerMargin - 17 : innerMargin - 19) : innerMargin //22
     rowSpacing: 0
 
     rows: 1
@@ -74,11 +74,12 @@ GridLayout {
 
         // very large "scale with panel width" system tray icons (>54px) will need manually reduced margins equally on each side to maintain similar scaling with the rest of the icons, because coding that here would interfere with the "small" system tray icons
         Layout.leftMargin: iconAndText.vertical ? (parent.width < 34 ? leftOuterMargin + 3 : parent.width > 44 ? leftOuterMargin + 11 : parent.width > 40 ? leftOuterMargin + 9 : parent.width > 38 ? leftOuterMargin + 7 : leftOuterMargin + 5) : leftOuterMargin - 1
+        //- 1
 
-        Layout.topMargin: iconAndText.vertical ? topOuterMargin - 7 : topOuterMargin
+        Layout.topMargin: iconAndText.vertical ? topOuterMargin - 7 : topOuterMargin + 1
 
         Layout.rightMargin: iconAndText.vertical ? rightOuterMargin :  undefined
-        Layout.bottomMargin: iconAndText.vertical ? bottomOuterMargin : bottomOuterMargin + 2
+        Layout.bottomMargin: iconAndText.vertical ? bottomOuterMargin : bottomOuterMargin + 1 //+ 2
 
         PlasmaComponents.Label {
             id: compactWeatherIcon
@@ -133,7 +134,7 @@ GridLayout {
         Layout.maximumHeight: iconAndText.vertical ? iconAndText.height * 0.84 : Infinity
 
         // very large "scale with panel width" system tray icons (>54px) will need manually reduced margins equally on each side to maintain similar scaling with the rest of the icons, because coding that here would interfere with the "small" system tray icons
-        Layout.rightMargin: iconAndText.vertical ? (parent.width < 34 ? rightOuterMargin + 3 : parent.width > 44 ? rightOuterMargin + 11 : parent.width > 40 ? rightOuterMargin + 9 : parent.width > 38 ? rightOuterMargin + 7 : rightOuterMargin + 5) : rightOuterMargin - 4
+        Layout.rightMargin: iconAndText.vertical ? (parent.width < 34 ? rightOuterMargin + 3 : parent.width > 44 ? rightOuterMargin + 11 : parent.width > 40 ? rightOuterMargin + 9 : parent.width > 38 ? rightOuterMargin + 7 : rightOuterMargin + 5) : rightOuterMargin - 2
 
         Layout.bottomMargin: iconAndText.vertical ? bottomOuterMargin - 13 : bottomOuterMargin - 5
         // bottomOuterMargin - 16

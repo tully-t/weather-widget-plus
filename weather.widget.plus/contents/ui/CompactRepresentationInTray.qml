@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 import QtQuick
-import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.plasmoid
+import org.kde.plasma.core as PlasmaCore
 
 Loader {
     id: compactRepresentation
@@ -24,8 +24,17 @@ Loader {
     anchors.fill: parent
 
     property int defaultWidgetSize: -1
+    property int temperatureType: plasmoid.configuration.temperatureType
+    property bool loadingDataComplete: main.loadingDataComplete //main.loadingDataComplete
 
     sourceComponent: compactIteminTray
+
+    onTemperatureTypeChanged: {
+        if (main.loadingDataComplete === true) {
+            dbgprint2('TemperatureType changed')
+            main.updateCompactItem()
+        }
+    }
 
     CompactIteminTray {
         id: compactIteminTray
@@ -38,7 +47,7 @@ Loader {
 
         hoverEnabled: true
 
-        onClicked: {
+        onClicked: (mouse)=> {
             dbgprint("CompactRepresentationInTray")
             let t = main.expanded
             if (t) {
@@ -52,25 +61,15 @@ Loader {
                 main.loadDataFromInternet()
             } else {
                 main.expanded = !main.expanded
+                // MeteogramInTray.plasmoidExpanded = true
+                // layoutTimer2.start()
+                // MeteogramInTray.expansionCounter()
+                // meteogram3.buildCurves()
             }
         }
 
         onEntered: main.refreshTooltipSubText()
 
     }
-    Component.onCompleted: {
-        if (main.inTray)
-            layoutTimer1.start()
-    }
-    Timer {
-        id: layoutTimer1
-        interval: 100
-        running: false
-        repeat: false
-        onTriggered: {
-            if ((defaultWidgetSize === -1) && ( compactRepresentation.width > 0 ||  compactRepresentation.height)) {
-                defaultWidgetSize = Math.min(compactRepresentation.width, compactRepresentation.height)
-            }
-        }
-    }
+
 }

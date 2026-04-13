@@ -16,8 +16,8 @@
  */
 import QtQuick
 import QtQuick.Layouts
-import org.kde.plasma.components 3.0 as PlasmaComponents
-import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.components as PlasmaComponents
+import org.kde.plasma.core as PlasmaCore
 import Qt5Compat.GraphicalEffects
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
@@ -61,7 +61,7 @@ GridLayout {
     columns: (layoutType === 1) ? 1 : 2
 
     function reLayout() {
-        temperatureText.anchors.left = [compactWeatherIcon.left, compactItem.left, undefined][layoutType]
+        temperatureText.anchors.left = [compactWeatherIcon.left, compactItem.left, compactItem.left][layoutType]
         temperatureText.anchors.right = [compactItem.right, compactItem.right, compactItem.right][layoutType]
         temperatureText.anchors.top = [compactItem.top, undefined, temperatureText.top][layoutType]
         temperatureText.anchors.bottom = [compactItem.bottom, compactItem.bottom, compactItem.bottom][layoutType]
@@ -96,7 +96,7 @@ GridLayout {
 
         Layout.rightMargin: layoutType === 1 ? (iconAndText.vertical ? rightOuterMargin + 3 : rightOuterMargin) :  undefined
 
-        Layout.bottomMargin: iconAndText.vertical && layoutType === 2 ? bottomOuterMargin + 5 : layoutType === 2 ? bottomOuterMargin - 1 : iconAndText.vertical && layoutType === 0 ? bottomOuterMargin - 1 : layoutType === 0 ? bottomOuterMargin : undefined
+        Layout.bottomMargin: iconAndText.vertical && layoutType === 2 ? bottomOuterMargin + 5 : layoutType === 2 ? bottomOuterMargin - 1 : iconAndText.vertical && layoutType === 0 ? bottomOuterMargin - 1 : layoutType === 0 ? undefined : undefined
         // Layout.bottomMargin: !(layoutType === 1) ? bottomOuterMargin - 1 : iconAndTextVertical && layoutType === 2 ? bottomOuterMargin + 5 : undefined
 
         PlasmaComponents.Label {
@@ -150,7 +150,7 @@ GridLayout {
 
         Layout.leftMargin: layoutType === 1 ? (iconAndText.vertical ? leftOuterMargin + 3 : leftOuterMargin) :  undefined
 
-        Layout.topMargin: iconAndText.vertical && layoutType === 0 ? topOuterMargin - 1 : layoutType === 0 ? topOuterMargin : layoutType === 2 ? topOuterMargin : undefined
+        Layout.topMargin: iconAndText.vertical && layoutType === 0 ? topOuterMargin - 1 : layoutType === 0 ? undefined : layoutType === 2 ? topOuterMargin : undefined
         // Layout.topMargin: iconAndText.vertical && layoutType === 0 ? topOuterMargin - 1 : !(layoutType === 1) ? topOuterMargin : undefined
 
         PlasmaComponents.Label {
@@ -161,6 +161,7 @@ GridLayout {
                 family: widgetFontName
                 pixelSize: widgetFontSize
                 pointSize: 0 // we need to unset pointSize otherwise it breaks the Text.Fit size mode
+                // preferTypoLineMetrics: true
             }
             minimumPixelSize: Math.round(Kirigami.Units.gridUnit / 2)
             fontSizeMode: textSizeMode === 0 ? (iconAndText.vertical ? Text.HorizontalFit : Text.VerticalFit) : Text.FixedSize
@@ -169,6 +170,7 @@ GridLayout {
             horizontalAlignment: Text.AlignHCenter
             text: temperatureStr
             anchors.fill: parent
+            // renderType: Text.QtRendering
         }
 
         DropShadow {

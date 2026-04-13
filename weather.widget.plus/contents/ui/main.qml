@@ -87,6 +87,8 @@ PlasmoidItem {
     // property int tempLabelPosition: plasmoid.configuration.tempLabelPosition
     // property int pressureLabelPosition: plasmoid.configuration.pressureLabelPosition
 
+    property int widgetWidthInTray: plasmoid.configuration.widgetWidthInTray
+    property int widgetHeightInTray: plasmoid.configuration.widgetHeightInTray
     property int hourSpanOm: plasmoid.configuration.hourSpanOm
     property int widgetWidth: plasmoid.configuration.widgetWidth
     property int widgetHeight: plasmoid.configuration.widgetHeight
@@ -107,6 +109,7 @@ PlasmoidItem {
     property bool twelveHourClockEnabled: Qt.locale().timeFormat(Locale.ShortFormat).toString().indexOf('AP') > -1
     property bool env_QML_XHR_ALLOW_FILE_READ: plasmoid.configuration.qml_XHR_ALLOW_FILE_READ
     property bool inTray: (plasmoid.containment.containmentType === 129) && ((plasmoid.formFactor === 2) || (plasmoid.formFactor === 3))
+    // property bool expanded: plasmoid.expanded
     readonly property string placesStr: plasmoid.configuration.places
 
     // Cache, Last Load Time, Widget Status
@@ -387,7 +390,8 @@ PlasmoidItem {
         dbgprint(JSON.stringify(currentWeatherModel))
         let icon = currentWeatherModel.iconName
         iconNameStr = (icon > 0) ? IconTools.getIconCode(icon, currentPlace.providerId, currentWeatherModel.isDay) : '\uf07b'
-        temperatureStr = currentWeatherModel.temperature !== 9999 ? UnitUtils.getTemperatureNumberExt(currentWeatherModel.temperature, temperatureType) : '--'
+        temperatureStr = -200 < currentWeatherModel.temperature && currentWeatherModel.temperature < 200 ? UnitUtils.getTemperatureNumberExt(currentWeatherModel.temperature, temperatureType) : '--'
+        // currentWeatherModel.temperature !== 9999 ? UnitUtils.getTemperatureNumberExt(currentWeatherModel.temperature, temperatureType) : '--'
     }
 
     function refreshTooltipSubText() {
@@ -421,10 +425,10 @@ PlasmoidItem {
         if (timezoneType === 0) { tzName = getLocalTimeZone() }
         if (timezoneType === 1) { tzName = "GMT" }
         if (timezoneType === 2) { tzName = currentPlace.timezoneShortName }
-        subText += "<td><font size=\"4\"><font style=\"font-family: weathericons\">\uf051</font>&nbsp;" + currentWeatherModel.sunRiseTime + " " + tzName + "&nbsp;&nbsp;&nbsp;</font></td>"
+        subText += "<td><font size=\"4\"><font style=\"font-family: weathericons\">\uf051</font>&nbsp;" + Qt.formatTime(currentWeatherModel.sunRiseTime) + " " + tzName + "&nbsp;&nbsp;&nbsp;</font></td>"
         subText += "</tr>"
         subText += "<tr>"
-        subText += "<td><font size=\"4\"><font style=\"font-family: weathericons\">\uf052</font>&nbsp;" + currentWeatherModel.sunSetTime + " " + tzName + "</font></td>"
+        subText += "<td><font size=\"4\"><font style=\"font-family: weathericons\">\uf052</font>&nbsp;" + Qt.formatTime(currentWeatherModel.sunSetTime) + " " + tzName + "</font></td>"
         subText += "</tr>"
         subText += "</table>"
 

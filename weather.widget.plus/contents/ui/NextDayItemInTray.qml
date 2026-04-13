@@ -43,12 +43,10 @@ Item {
 
     Item {
         id: dayTitleLine
-        width: parent.width * 0.9
+        width: parent.width
         height: 1
         anchors.top: parent.top
-        anchors.topMargin: periodFontSize * 0.9
-        anchors.left: parent.left
-        anchors.leftMargin: parent.width * 0.05
+        anchors.topMargin: periodFontSize * 0.8
 
         LinearGradient {
             anchors.fill: parent
@@ -71,59 +69,21 @@ Item {
  *
 */
     GridLayout {
-        // anchors.fill: parent
-        anchors.top: parent.top
+        anchors.fill: parent
         anchors.topMargin: periodFontSize
-        // anchors.left: dayTitleLine.left
-        // anchors.right: dayTitleLine.right
 
         columns: 1
-        rowSpacing: 5 //5
+        rowSpacing: 5
 
         height: parent.height - anchors.topMargin
         width: parent.width
 
-        NextDayPeriodItem {
-            id: periodHour3
+        NextDayPeriodItemInTray {
             width: parent.width
             height: periodHeight
-            temperature: temperature0
-            iconName: (iconName0 != undefined) ? iconName0 : ""
+            iconName: (dailyIcon != undefined) ? dailyIcon : ""
             hidden: hidden0
             partOfDay: partOfDay0
-            pixelFontSize: periodFontSize
-        }
-
-        NextDayPeriodItem {
-            id: periodHour6
-            width: parent.width
-            height: periodHeight
-            temperature: temperature1
-            iconName: (iconName1 != undefined) ? iconName1 : ""
-            hidden: hidden1
-            partOfDay: partOfDay1
-            pixelFontSize: periodFontSize
-        }
-
-        NextDayPeriodItem {
-            id: periodHour9
-            width: parent.width
-            height: periodHeight
-            temperature: temperature2
-            iconName: (iconName2 != undefined) ? iconName2 : ""
-            hidden: hidden2
-            partOfDay: partOfDay2
-            pixelFontSize: periodFontSize
-        }
-
-        NextDayPeriodItem {
-            id: periodHour12
-            width: parent.width
-            height: periodHeight
-            temperature: temperature3
-            iconName: (iconName3 != undefined) ? iconName3 : ""
-            hidden: hidden3
-            partOfDay: partOfDay3
             pixelFontSize: periodFontSize
         }
     }

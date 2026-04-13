@@ -21,42 +21,59 @@ import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
 import Qt5Compat.GraphicalEffects
 import QtQuick.Controls
+import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 import "../code/unit-utils.js" as UnitUtils
 import "../code/icons.js" as IconTools
 
-Item {
-    visible: true
-    width: imageWidth
-    height: imageHeight + labelHeight// Day Label + Time Label
+    Item {
+    id: meteogram
+    // visible: true
+    // width: imageWidth
+    // height: imageHeight + labelHeight// Day Label + Time Label
+    width: main.widgetWidth //meteogram.width //main.widgetWidth
+    height: main.widgetHeight //meteogram.height //main.widgetHeight + headingHeight + footerHeight + nextDaysHeight + 14 + 56
 
-    property int widgetWidth: main.widgetWidth
-    property int widgetHeight: main.widgetHeight
+    // implicitWidth: 800 //915
+    // implicitHeight: 300
+
+    // Layout.minimumWidth: main.widgetWidth
+    // Layout.minimumHeight: main.widgetHeight
+
+    // Layout.minimumWidth: main.widgetWidth
+    // Layout.minimumHeight: main.widgetHeight + headingHeight + footerHeight + nextDaysHeight + 14 + 56
+
+    property int widgetWidth: main.widgetWidth //meteogram.width //main.widgetWidth
+    property int widgetHeight: main.widgetHeight //meteogram.height //main.widgetHeight
     property int hourSpanOm: main.hourSpanOm
     property int imageWidth: widgetWidth - (labelWidth * 2) // 800 950
-    property int imageHeight: widgetHeight  - (labelHeight * 1.75) - cloudarea - windarea
+    property int imageHeight: widgetHeight  - (labelHeight * 1.75) - windarea
     property int labelWidth: textMetrics.width
     property int labelHeight: textMetrics.height
+    property int graphAreaWidth: graphArea.width
+    property int graphAreaHeight: graphArea.height
 
     property int mgAxisFontSize: main.mgAxisFontSize
-    property int mgPressureFontSize: main.mgPressureFontSize
+    property int mgPressureFontSize: main.mgAxisFontSize
     property int mgHoursFontSize: main.mgHoursFontSize
     property int mgTrailingZeroesFontSize: main.mgTrailingZeroesFontSize
+    property bool trailingZeroesVisible: plasmoid.configuration.trailingZeroesVisible
+    property bool weeklyForecastVisible: plasmoid.configuration.weeklyForecastVisible
 
     // property bool tempLabelVisible: plasmoid.configuration.tempLabelVisible
     // property bool pressureLabelVisible: plasmoid.configuration.pressureLabelVisible
-    property int tempLabelPosition: plasmoid.configuration.tempLabelPosition
-    property int pressureLabelPosition: plasmoid.configuration.pressureLabelPosition
+    // property int tempLabelPosition: plasmoid.configuration.tempLabelPosition
+    // property int pressureLabelPosition: plasmoid.configuration.pressureLabelPosition
     // property bool precLabelVisChoice: plasmoid.configuration.precLabelVisChoice
 
-    property int cloudarea: 0
     property int windarea: 28
 
     property bool meteogramModelChanged: main.meteogramModelChanged
 
-    property int temperatureYGridCount: 21 // temperatureIncrementDegrees > 21 ? 35 : 21   // Number of vertical grid Temperature elements
+    property double temperatureYGridCount: 21 //21 temperatureIncrementDegrees > 21 ? 35 : 21   // Number of vertical grid Temperature elements
     property double temperatureIncrementDegrees: 0 // Major Step - How much each Temperature grid element rises by in Degrees
     property double temperatureIncrementPixels: imageHeight / (temperatureYGridCount - 1)  // Major Step - How much each Temperature grid element rises by in Pixels
+    // imageHeight
 
     property int pressureSizeY: 101     // Number of virtual grid Pressure Elements
     property int pressureMultiplier: Math.round((pressureSizeY - 1) / (temperatureYGridCount - 1)) // Major Step - How much each Pressure grid element rises by in HPa
@@ -82,13 +99,16 @@ Item {
     property int precipitationLabelMargin: 8
     // property bool precLabelVisible: counter > 0
 
-    property double sampleWidth: imageWidth / (meteogramModel.count - 1)
+    property double sampleWidth: graphArea.width / (meteogramModel.count - 1) //graphArea.width //imageWidth
 
     property int temperatureType: main.temperatureType
     property int timezoneType: main.timezoneType
     property int pressureType: main.pressureType
     property int windSpeedType: main.windSpeedType
     property int precType: main.precType
+
+    // property bool plasmoidExpanded: main.expanded
+    // property int counter: 0
 
     onMeteogramModelChangedChanged: {
         dbgprint2('METEOGRAM changed')
@@ -97,53 +117,73 @@ Item {
         buildCurves()
     }
 
+    // onPlasmoidExpandedChanged: {
+    //     // buildCurves()
+    //     // loadingData.failedAttemptCount = 0
+    //     // meteogram.counter = counter + 1
+    //     // main.loadDataFromInternet()
+    //     // dbgprint2("expansionCounted")
+    //     counter = counter + 1
+    //     expansionCounter()
+    // }
+
     onWidgetWidthChanged: {
-        dbgprint2('WIDTH changed')
-        loadingData.failedAttemptCount = 0
-        main.loadDataFromInternet()
+        // if (main.onDesktop === false) {
+        // buildCurves()
+        // // dbgprint2('Horizontal lines count')
+        // // dbgprint2(horizontalLines.count)
+        // }
+
+        if (main.loadingDataComplete === true) {
+            dbgprint2('Widget width changed')
+            loadingData.failedAttemptCount = 0
+            main.loadDataFromInternet()
+        }
     }
 
     onWidgetHeightChanged: {
-        dbgprint2('WIDTH changed')
-        loadingData.failedAttemptCount = 0
-        main.loadDataFromInternet()
+        // if (main.onDesktop === false) {
+        //     buildCurves()
+        // }
+
+        if (main.loadingDataComplete === true) {
+            dbgprint2('Widget height changed')
+            loadingData.failedAttemptCount = 0
+            main.loadDataFromInternet()
+        }
     }
 
     onHourSpanOmChanged: {
-        dbgprint2('Hour Span changed')
-        loadingData.failedAttemptCount = 0
-        main.loadDataFromInternet()
+        if (main.loadingDataComplete === true) {
+            dbgprint2('Hour Span changed')
+            loadingData.failedAttemptCount = 0
+            main.loadDataFromInternet()
+        }
     }
 
-    onTemperatureTypeChanged: {
-        dbgprint2('TemperatureType changed')
-        loadingData.failedAttemptCount = 0
-        main.loadDataFromInternet()
-    }
+    // onWeeklyForecastVisibleChanged: {
+    //     // buildCurves()
+    //     if (main.loadingDataComplete === true) {
+    //         dbgprint2('Hour Span changed')
+    //         loadingData.failedAttemptCount = 0
+    //         main.loadDataFromInternet()
+    //     }
+    //     // if (main.widgetWidth < 650) {
+    //     //     dbgprint2('weeklyForecastVisible changed')
+    //     //     main.widgetWidth = plasmoid.configuration.widgetWidth
+    //     //     // loadingData.failedAttemptCount = 0
+    //     //     // main.loadDataFromInternet()
+    //     // }
+    // }
 
-    onTimezoneTypeChanged: {
-        dbgprint2('TimezoneType changed')
-        loadingData.failedAttemptCount = 0
-        main.loadDataFromInternet()
-    }
-
-    onPressureTypeChanged: {
-        dbgprint2('PressureType changed')
-        loadingData.failedAttemptCount = 0
-        main.loadDataFromInternet()
-    }
-
-    onPrecTypeChanged: {
-        dbgprint2('PrecType changed')
-        loadingData.failedAttemptCount = 0
-        main.loadDataFromInternet()
-    }
-
-    onWindSpeedTypeChanged: {
-        dbgprint2('WindSpeedType changed')
-        loadingData.failedAttemptCount = 0
-        main.loadDataFromInternet()
-    }
+    // onHourSpanOmChanged: {
+    //     dbgprint2('Hour Span changed')
+    //     // loadingData.failedAttemptCount = 0
+    //     // main.loadDataFromInternet()
+    //     buildMeteogramData()
+    //     processMeteogramData()
+    //     buildCurves()
+    // }
 
 
     ListModel {
@@ -169,47 +209,93 @@ Item {
         text: "999999"
     }
 
-    Item {
-        id: meteogram
-        width: imageWidth + (labelWidth * 2)
-        height: imageHeight + (labelHeight) + cloudarea + windarea
-    }
-
-    Rectangle {
-        id: bufferArea
-        width: imageWidth
-        height: imageHeight + 42 //54
-        anchors.top: meteogram.top
-        anchors.left: meteogram.left
-        anchors.leftMargin: labelWidth
-        anchors.rightMargin: labelWidth
-        anchors.topMargin: labelHeight  + cloudarea
-        border.color:gridColor
-        color: "transparent"
-    }
+    // Item {
+    //     id: meteogram
+    //     width: imageWidth + (labelWidth * 2)
+    //     height: imageHeight + (labelHeight) + windarea
+    // }
 
     Rectangle {
         id: graphArea
         width: imageWidth
         height: imageHeight
-        anchors.top: meteogram.top
-        anchors.left: meteogram.left
+        // anchors.fill: meteogram
+        anchors.top: meteogram2.top
+        anchors.topMargin: labelHeight + 21 //27
+        anchors.left: meteogram2.left
         anchors.leftMargin: labelWidth
-        anchors.rightMargin: labelWidth
-        anchors.topMargin: labelHeight  + cloudarea + 27
+
+        // anchors.right: meteogram.right
+        // anchors.rightMargin: labelWidth
+        //
+        // anchors.bottom: meteogram.bottom
+
+        border.color: "transparent"
+        color: "transparent"
+    }
+
+    Rectangle {
+        id: bufferArea
+        width: imageWidth
+        height: imageHeight + 42 //54 42
+        // anchors.fill: meteogram
+        anchors.top: meteogram2.top
+        anchors.topMargin: labelHeight
+        anchors.left: meteogram2.left
+        anchors.leftMargin: labelWidth
+
+        // anchors.right: meteogram.right
+        // anchors.rightMargin: labelWidth
+        //
+        // anchors.bottom: meteogram.bottom
+        // anchors.bottomMargin: -10 // -(graphArea.height / (temperatureYGridCount - 1) * 1.2) //-18
+
         border.color:gridColor
         color: "transparent"
     }
 
     ListView {
-        id: horizontalLines1
+        id: horizontalLines
         model: verticalGridModel
         anchors.fill: graphArea
+        anchors.top: graphArea.top
+        height: graphAreaHeight
+
+        // anchors.top: meteogram.top
+        // anchors.topMargin: labelHeight + 21 //27
+        // anchors.left: meteogram.left
+        // anchors.leftMargin: labelWidth
+        // anchors.right: meteogram.right
+        // anchors.rightMargin: labelWidth
+        // anchors.bottom: meteogram.bottom
+
         interactive: false
+        snapMode: ListView.SnapToItem
+        boundsBehavior: Flickable.StopAtBounds
+        displayMarginBeginning: 1
+        displayMarginEnd: 2 //-2
+
+        property double gridItemHeight: imageHeight / (temperatureYGridCount - 1)
+        //temperatureIncrementPixels
+        // imageHeight / (temperatureYGridCount - 1)
+        // verticalGridModel.count === 0 ? 0 :
+        // temperatureYGridCount
+        //graphAreaHeight
+
+        // property double hourItemWidth: hourGridModel.count === 0 ? 0 : graphArea.width / (hourGridModel.count - 1)
+
+        // Component.onCompleted: {
+        //     positionViewAtBeginning()
+        //     // forceLayout()
+        //     // decrementCurrentIndex()
+        // }
+
         delegate: Item {
-            height: graphArea.height / (temperatureYGridCount - 1)
-            width: imageWidth
-            visible:  num % 2 === 0
+            height: horizontalLines.gridItemHeight
+            //graphAreaHeight / (temperatureYGridCount - 1) //graphArea.height, temperatureYGridCount
+            width: graphAreaWidth //graphArea.width //imageWidth
+            visible:  num % 2 === 0 //&& index < temperatureYGridCount
+            // anchors.top: index < 1 ? parent.top : undefined
 
             Rectangle {
                 id: gridLine
@@ -222,10 +308,10 @@ Item {
                 height: labelHeight
                 width: labelWidth
                 horizontalAlignment: Text.AlignRight
-                anchors.left: gridLine.left
                 anchors.top: gridLine.top
-                anchors.leftMargin: -labelWidth - 6
                 anchors.topMargin: -labelHeight / 2
+                anchors.left: gridLine.left
+                anchors.leftMargin: -labelWidth - 6
                 font.pixelSize: mgAxisFontSize
                 font.pointSize: -1
             }
@@ -251,13 +337,13 @@ Item {
         width: labelWidth
         horizontalAlignment: Text.AlignLeft //(UnitUtils.getPressureEnding(pressureType).length > 4) ? Text.AlignRight : Text.AlignLeft
         anchors.right: (graphArea.right)
-        anchors.rightMargin: pressureType === 2 ? -labelWidth * 1.1 : -labelWidth * 1.15 //textMetrics.width
-        visible: pressureLabelPosition === 2 ? false : true
+        anchors.rightMargin: -labelWidth * 1.1 //textMetrics.width //pressureType === 2 ? -labelWidth * 1.05 : -labelWidth * 1.15
+        // visible: pressureLabelPosition === 2 ? false : true
         font.pixelSize: mgAxisFontSize
         font.pointSize: -1
         color: pressureColor
-        anchors.bottom: pressureLabelPosition === 0 ? bufferArea.top : bufferArea.bottom //graphArea.top
-        anchors.bottomMargin: pressureLabelPosition === 0 ? -labelHeight : 0 //6
+        anchors.top: bufferArea.top
+        anchors.topMargin: -3
     }
 
     PlasmaComponents.Label {
@@ -267,29 +353,33 @@ Item {
         horizontalAlignment: Text.AlignRight //(UnitUtils.getPressureEnding(pressureType).length > 4) ? Text.AlignRight : Text.AlignLeft
         anchors.left: graphArea.left
         anchors.leftMargin: -labelWidth * 1.15 //textMetrics.width
-        visible: tempLabelPosition === 2 ? false : true
+        // visible: tempLabelPosition === 2 ? false : true
         font.pixelSize: mgAxisFontSize
         font.pointSize: -1
         // color: gridColorBrightHighlight
         // opacity: 0.6
-        anchors.top: tempLabelPosition === 1 ? bufferArea.bottom : bufferArea.top //graphArea.top
-        anchors.topMargin: tempLabelPosition === 1 ? -labelHeight : 0 //6
+        anchors.top: bufferArea.top //graphArea.top
+        // anchors.topMargin: tempLabelPosition === 1 ? -labelHeight : 0 //6
         // anchors.bottom: bufferArea.top //graphArea.top
         // anchors.bottomMargin: -labelHeight //6
+        anchors.topMargin: -3
     }
 
     ListView {
         id: hourGrid
         model: hourGridModel
-        property double hourItemWidth: hourGridModel.count === 0 ? 0 : imageWidth / (hourGridModel.count - 1)
+        property double hourItemWidth: hourGridModel.count === 0 ? 0 : graphArea.width / (hourGridModel.count - 1) //graphArea.width //imageWidth
         anchors.fill: bufferArea
-        anchors.leftMargin: 1
-        anchors.rightMargin : 1
+        // anchors.leftMargin: 1
+        // anchors.rightMargin : 1
         interactive: false
         orientation: ListView.Horizontal
+        displayMarginEnd: 1
+
         delegate: Item {
             height: labelHeight
             width: hourGrid.hourItemWidth
+            anchors.leftMargin: labelWidth
 
             property int hourFrom: dateFrom.getHours()
             property string hourFromStr: UnitUtils.getHourText(hourFrom, twelveHourClockEnabled)
@@ -312,7 +402,6 @@ Item {
                 anchors.leftMargin: labelWidth
                 anchors.top: parent.top
             }
-            anchors.leftMargin: labelWidth
 
             PlasmaComponents.Label {
                 id: hourText
@@ -327,7 +416,6 @@ Item {
                 anchors.horizontalCenter: verticalLine.horizontalCenter
                 font.pixelSize: mgHoursFontSize //10 11
                 font.pointSize: -1
-                // font.family: "Neuropol X Cd Sb"
                 visible: textVisible
             }
 
@@ -339,7 +427,7 @@ Item {
                 anchors.left: hourText.right
                 font.pixelSize: mgTrailingZeroesFontSize //5 6
                 font.pointSize: -1
-                visible: textVisible
+                visible: textVisible && trailingZeroesVisible
             }
             function windFrom(rotation) {
                 rotation = (Math.round( rotation / 22.5 ) * 22.5)
@@ -416,7 +504,7 @@ Item {
                 anchors.leftMargin: parent.width / 2.5 //parent.width / 2
                 font.pixelSize: 11
                 font.pointSize: -1
-                visible: (dayBegins && (index < (hourGridModel.count - 5))) || ((index === 0) && (hourFrom < 18))
+                visible: (dayBegins && (index < (hourGridModel.count - 10))) || ((index === 0) && (hourFrom < 16)) // 12, 15  10,12
             }
 
             Rectangle {
@@ -456,7 +544,7 @@ Item {
                 z: 999
                 font.family: 'weathericons'
                 text: (differenceHours === 1 && textVisible) || index === hourGridModel.count-1 || index === 0 || iconName === '' ? '' : IconTools.getIconCode(iconName, currentPlace.providerId, timePeriod)
-                visible: iconName != "\uf07b" && (y > 10) && (y < graphArea.height)
+                visible: iconName != "\uf07b" //&& (y > 10)// && (y < graphArea.height)
                 Component.onCompleted: {
                 }
             }
@@ -509,10 +597,26 @@ Item {
     Item {
         z: 1
         id: canvases
-        anchors.fill: graphArea // graphArea
-        anchors.top: graphArea.top
-        anchors.bottom: graphArea.bottom
-        clip: true
+        // anchors.fill: graphArea // graphArea
+        // anchors.top: graphArea.top
+        // anchors.bottom: graphArea.bottom
+
+        // anchors.left: graphArea.left
+        // anchors.right: graphArea.right
+        clip: false //true
+
+        // width: graphArea.width
+        // height: graphArea.height
+        // anchors.fill: graphArea
+
+        width: imageWidth
+        height: imageHeight
+
+        anchors.top: meteogram2.top
+        anchors.topMargin: labelHeight + 21 //27
+        anchors.left: meteogram2.left
+        anchors.leftMargin: labelWidth
+
         Canvas {
             id: meteogramCanvasPressure
             anchors.fill: parent
@@ -539,16 +643,19 @@ Item {
 
         Canvas {
             id: meteogramCanvasWarmTemp
-            anchors.top: parent.top
-            anchors.topMargin: -parent.anchors.topMargin
-            // clip: false
-            width: parent.width
-            height: graphArea.height - temperatureIncrementPixels * (temperatureIncrementDegrees - 1) + 0
+            anchors.fill: parent
 
-            onWidthChanged: {
+            // anchors.top: parent.top //anchors.fill: parent.fill
+            // anchors.topMargin: -parent.anchors.topMargin
+            // // anchors.bottom: parent.bottom
+            // // clip: false
+            // width: parent.width
+            // height: graphArea.height - temperatureIncrementPixels * (temperatureIncrementDegrees - 1) + 0 //imageHeight //graphArea.height
 
-                meteogramCanvasWarmTemp.requestPaint()
-            }
+            // onWidthChanged: {
+            //
+            //     meteogramCanvasWarmTemp.requestPaint()
+            // }
 
             contextType: '2d'
 
@@ -561,6 +668,7 @@ Item {
                 var ctx=getContext("2d")
                 if (ctx !== null) {
                     ctx.clearRect(0, 0, width, height)
+
                     ctx.strokeStyle = temperatureWarmColor
                     ctx.lineWidth = 2
                     ctx.path = temperaturePathWarm
@@ -571,17 +679,23 @@ Item {
 
         Item {
 
+            id: meteogramCanvasColdTempContainer
+
             anchors.fill: parent
             anchors.topMargin: meteogramCanvasWarmTemp.height
-            clip: true
+            clip: false //true
 
             Canvas {
                 id: meteogramCanvasColdTemp
-                anchors.top: parent.top
-                width: imageWidth
-                height: imageHeight
-                anchors.topMargin: -parent.anchors.topMargin
+                anchors.fill: parent
+
+                // anchors.top: parent.top
+                // width: imageWidth //parent.width //imageWidth
+                // height: imageHeight //parent.height //imageHeight
+                // anchors.topMargin: -parent.anchors.topMargin
+
                 contextType: '2d'
+                clip: false
 
                 Path {
                     id: temperaturePathCold
@@ -693,7 +807,7 @@ Item {
     }
 
     function buildCurves() {
-        dbgprint2("buildCurves")
+        // dbgprint2("buildCurves")
         var newPathElements = []
         var newPressureElements = []
 
@@ -733,6 +847,7 @@ Item {
 
         var minValue = null
         var maxValue = null
+        var i = 0
 
         for (i = 0; i < dataArraySize; i++) {
             var obj = meteogramModel.get(i)
@@ -752,22 +867,22 @@ Item {
 
         var tempRange = maxValue - minValue
 
-        if (Math.abs(tempRange) > 20) {
+        if (Math.abs(tempRange) > 19) {
             temperatureYGridCount = 35
-            temperatureIncrementPixels = imageHeight / (35 - 1)
-        } else if (Math.abs(tempRange) > 35) {
+            // temperatureIncrementPixels = imageHeight / (temperatureYGridCount - 1)
+        } else if (Math.abs(tempRange) > 34) {
             temperatureYGridCount = 41
-            temperatureIncrementPixels = imageHeight / (41 - 1)
+            // temperatureIncrementPixels = imageHeight / (temperatureYGridCount - 1)
         } else {
             temperatureYGridCount = 21
-            temperatureIncrementPixels = imageHeight / (21 - 1)
+            // temperatureIncrementPixels = imageHeight / (temperatureYGridCount - 1)
         }
 
         var mid = (maxValue - minValue) / 2 + minValue
         var halfSize = temperatureYGridCount / 2
         temperatureIncrementDegrees = Math.round(- (mid - halfSize))
 
-        for (var i = 0; i <= temperatureYGridCount; i++) {
+        for (var i = 0; i <= 41; i++) {
             verticalGridModel.append({ num: i })
         }
 
@@ -776,4 +891,26 @@ Item {
         dbgprint(mid)
         dbgprint(temperatureIncrementDegrees)
     }
+
+    // function expansionCounter() {
+    //
+    //     // var a = 0
+    //     var counter2 = counter
+    //
+    //     // if (main.expanded) {
+    //     //     counter2 = counter + 1
+    //     // }
+    //
+    //     if (counter < 2) {
+    //         // if (counter < 2 && main.expanded) {
+    //         dbgprint2("expansionCounted")
+    //         // buildCurves()
+    //         main.loadDataFromInternet()
+    //     }
+    //
+    //     // if (counter < 3 && main.expanded) {
+    //     //     loadingData.failedAttemptCount = 0
+    //     //     buildCurves()
+    //     // }
+    // }
 }

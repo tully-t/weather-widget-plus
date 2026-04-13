@@ -291,7 +291,7 @@ Item {
                 //omPtr++
             }
 
-            if ((y < 3) && (x < 7)) {
+            if ((y < 3) && (x < 6)) {
                 nextDaysModel.append(nextDaysData)
             }
             dbgprint("nextDaysModel Count:" + nextDaysModel.count)

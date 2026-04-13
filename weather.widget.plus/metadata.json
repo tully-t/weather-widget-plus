@@ -28,7 +28,7 @@
         "Description[zh_CN]": "添加 Open Weather Map",
         "Icon": "weather-clouds",
         "Id": "weather.widget.plus",
-        "Version": "4.6",
+        "Version": "4.7",
         "License": "GPL-2.0+",
         "Website": "https://github.com/tully-t/weather-widget-plus"
     },

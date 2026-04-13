@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/tully-t/weather-widget-plus\n"
-"POT-Creation-Date: 2025-10-12 10:13-0700\n"
+"POT-Creation-Date: 2026-04-12 13:18-0700\n"
 "PO-Revision-Date: 2025-05-02 20:28-0700\n"
-"Last-Translator: Kepa Badiola <badiol@yahoo.es>\n"
+"Last-Translator: Tully Turk <turk.tully@proton.me>\n"
 "Language-Team: spanish <LL@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -22,8 +22,8 @@ msgid "Weather Widget Plus"
 msgstr "Widget del Clima Plus"
 
 #: ../../weather.widget.plus/metadata.desktop
-msgid "Plasmoid showing weather information from Met.no server"
-msgstr "Plasmoide que muestra información meteorológica del servidor Met.no"
+msgid "Plasmoid showing weather information"
+msgstr "Plasmoide que muestra información meteorológica"
 
 #: ../../weather.widget.plus/contents/code/data-loader.js
 msgid "%1 min ago"
@@ -100,6 +100,7 @@ msgstr "Diseño"
 
 #: ../../weather.widget.plus/contents/config/config.qml
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+#: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 msgid "Meteogram"
 msgstr "Meteograma"
 
@@ -286,14 +287,6 @@ msgid "OM forecast data provided by Open-Meteo"
 msgstr "Datos de pronóstico de OM provistos por Open-Meteo"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-msgid "Change City Name"
-msgstr "Cambia el nombre de la ciudad"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-msgid "Enter city name"
-msgstr "Introduce el nombre de la ciudad"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Add OpenWeather Map Location"
 msgstr "Añadir Ubicacion del mapa de OpenWeather"
 
@@ -308,10 +301,10 @@ msgstr "Encuentra la ID de tu ciudad buscando aquí:"
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid ""
 "and then paste the whole URL into the corresponding field\n"
-"e.g. http://openweathermap.org/city/2946447 for Bonn, Germany"
+"e.g. https://old.openweathermap.org/city/2946447 for Bonn, Germany"
 msgstr ""
 "...y pega aquí la URL completa\n"
-"ejemplo: http://openweathermap.org/city/2946447 para Bonn, Alemania"
+"ejemplo: http://old.openweathermap.org/city/2946447 para Bonn, Alemania"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Add Met.no Map Location"
@@ -372,15 +365,23 @@ msgstr "Icono"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Meteogram width"
-msgstr "Ancho del meteograma"
+msgstr "Anchura del meteograma"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Meteogram height"
 msgstr "Altura del meteograma"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "OM forecast length"
-msgstr "Duración del pronóstico OM"
+msgid "Meteogram width in tray"
+msgstr "Anchura del meteograma en la bandeja"
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Meteogram height in tray"
+msgstr "Altura del meteograma en la bandeja"
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Open-Meteo forecast length"
+msgstr "Duración del pronóstico Open-Meteo"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgctxt "hours"
@@ -388,24 +389,12 @@ msgid "hrs"
 msgstr "hrs"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Temperature label"
-msgstr "Etiqueta de la temperatura"
+msgid "Weekly forecast visible"
+msgstr "Pronóstico semanal visible"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Top"
-msgstr "Alta"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Bottom"
-msgstr "Baja"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "None"
-msgstr "Ninguna"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Pressure label"
-msgstr "Etiqueta de la presión"
+msgid "Trailing zeroes visible"
+msgstr "Ceros finales visible"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Vertical axis font size"
@@ -448,6 +437,7 @@ msgid "My local-time"
 msgstr "Mi horario local"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
+#: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 #: ../../weather.widget.plus/contents/ui/FullRepresentation.qml
 #: ../../weather.widget.plus/contents/ui/providers/OpenWeatherMap.qml
 msgid "UTC"
@@ -456,6 +446,10 @@ msgstr "UTC"
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "Location Timezone"
 msgstr "Zona Horaria de la Ubicación"
+
+#: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
+msgid "List"
+msgstr "Lista"
 
 #: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 #: ../../weather.widget.plus/contents/ui/FullRepresentation.qml
@@ -475,13 +469,12 @@ msgid "%1 ago"
 msgstr "hace %1"
 
 #: ../../weather.widget.plus/contents/ui/main.qml
-msgid "near future"
+msgid "next hour"
 msgstr "futuro próximo"
 
 #: ../../weather.widget.plus/contents/ui/providers/MetNo.qml
-msgid "Forecast data provided by the Norwegian Meteorological Institute"
-msgstr ""
-"Datos del pronóstico provistos por el Instituto Noruego de Meteorología"
+msgid "Forecast data provided by Met.no"
+msgstr "Datos del pronóstico provistos por Met.no"
 
 #: ../../weather.widget.plus/contents/ui/providers/OpenMeteo.qml
 msgid "Forecast data provided by Open-Meteo"
@@ -490,6 +483,47 @@ msgstr "Datos del pronóstico provistos por Open-Meteo"
 #: ../../weather.widget.plus/contents/ui/providers/OpenWeatherMap.qml
 msgid "Forecast data provided by OpenWeather"
 msgstr "Datos del pronóstico provistos por OpenWeather"
+
+#~ msgid "Plasmoid showing weather information from Met.no server"
+#~ msgstr "Plasmoide que muestra información meteorológica del servidor Met.no"
+
+#~ msgid "Change City Name"
+#~ msgstr "Cambia el nombre de la ciudad"
+
+#~ msgid "Enter city name"
+#~ msgstr "Introduce el nombre de la ciudad"
+
+#~ msgid ""
+#~ "and then paste the whole URL into the corresponding field\n"
+#~ "e.g. http://openweathermap.org/city/2946447 for Bonn, Germany"
+#~ msgstr ""
+#~ "...y pega aquí la URL completa\n"
+#~ "ejemplo: http://openweathermap.org/city/2946447 para Bonn, Alemania"
+
+#~ msgid "OM forecast length"
+#~ msgstr "Duración del pronóstico OM"
+
+#~ msgid "Temperature label"
+#~ msgstr "Etiqueta de la temperatura"
+
+#~ msgid "Top"
+#~ msgstr "Alta"
+
+#~ msgid "Bottom"
+#~ msgstr "Baja"
+
+#~ msgid "None"
+#~ msgstr "Ninguna"
+
+#~ msgid "Pressure label"
+#~ msgstr "Etiqueta de la presión"
+
+#~ msgid "near future"
+#~ msgstr "futuro próximo"
+
+#~ msgid "Forecast data provided by the Norwegian Meteorological Institute"
+#~ msgstr ""
+#~ "Datos del pronóstico provistos por el Instituto Noruego de Meteorología"
 
 #~ msgid "General"
 #~ msgstr "General"

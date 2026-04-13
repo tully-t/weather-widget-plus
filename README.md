@@ -107,7 +107,13 @@ Start a discussion to propose new features or ask questions!
 
 Please open an issue if you notice any bugs, errors, or unexpected behavior.
 
-Pull or merge requests are appreciated.
+Pull requests are appreciated.
+
+### Policy on LLM usage
+
+Disclosure of LLM usage in commits and pull requests is required. Contributions free of LLM output are encouraged. Poor-quality contributions will not be merged.
+
+The lead developer of Weather Widget Plus (tully-t) codes without the interference of an LLM.
 
 ### License
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/tully-t/weather-widget-plus\n"
-"POT-Creation-Date: 2025-10-12 10:13-0700\n"
+"POT-Creation-Date: 2026-04-12 13:18-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Олександр Афанасьєв <retaskclub@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,8 +22,8 @@ msgid "Weather Widget Plus"
 msgstr "Віджет погоди Плюс"
 
 #: ../../weather.widget.plus/metadata.desktop
-msgid "Plasmoid showing weather information from Met.no server"
-msgstr "Плазмоїд, що відображає інформацію про погоду із сервера Met.no"
+msgid "Plasmoid showing weather information"
+msgstr ""
 
 #: ../../weather.widget.plus/contents/code/data-loader.js
 msgid "%1 min ago"
@@ -98,7 +98,7 @@ msgstr "Вигляд"
 msgid "Layout"
 msgstr "Макет"
 
-#: ../../weather.widget.plus/contents/config/config.qml ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+#: ../../weather.widget.plus/contents/config/config.qml ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 msgid "Meteogram"
 msgstr "Метеограма"
 
@@ -276,14 +276,6 @@ msgid "OM forecast data provided by Open-Meteo"
 msgstr "Прогнозні дані OM надані Open-Meteo"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-msgid "Change City Name"
-msgstr "Змінити назву міста"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-msgid "Enter city name"
-msgstr "Введіть назву міста"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Add OpenWeather Map Location"
 msgstr "Додати місцезнаходження OpenWeather"
 
@@ -298,10 +290,10 @@ msgstr "Знайдіть ідентифікатор свого міста, шу�
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid ""
 "and then paste the whole URL into the corresponding field\n"
-"e.g. http://openweathermap.org/city/2946447 for Bonn, Germany"
+"e.g. https://old.openweathermap.org/city/2946447 for Bonn, Germany"
 msgstr ""
 "і потім вставте всю URL-адресу у відповідне поле\n"
-"наприклад, http://openweathermap.org/city/2946447 для Бонна, Німеччина"
+"наприклад, http://old.openweathermap.org/city/2946447 для Бонна, Німеччина"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Add Met.no Map Location"
@@ -368,8 +360,16 @@ msgid "Meteogram height"
 msgstr "Висота метеограми"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "OM forecast length"
-msgstr "Тривалість прогнозу OM"
+msgid "Meteogram width in tray"
+msgstr ""
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Meteogram height in tray"
+msgstr ""
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Open-Meteo forecast length"
+msgstr "Тривалість прогнозу Open-Meteo"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgctxt "hours"
@@ -377,24 +377,12 @@ msgid "hrs"
 msgstr "год"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Temperature label"
-msgstr "Мітка температури"
+msgid "Weekly forecast visible"
+msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Top"
-msgstr "Згори"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Bottom"
-msgstr "Знизу"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "None"
-msgstr "Немає"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Pressure label"
-msgstr "Мітка тиску"
+msgid "Trailing zeroes visible"
+msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Vertical axis font size"
@@ -436,13 +424,17 @@ msgstr "Швидкість вітру"
 msgid "My local-time"
 msgstr "Місцевий час"
 
-#: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml ../../weather.widget.plus/contents/ui/FullRepresentation.qml ../../weather.widget.plus/contents/ui/providers/OpenWeatherMap.qml
+#: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml ../../weather.widget.plus/contents/ui/FullRepresentation.qml ../../weather.widget.plus/contents/ui/providers/OpenWeatherMap.qml
 msgid "UTC"
 msgstr "UTC"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "Location Timezone"
 msgstr "Часовий пояс місцезнаходження"
+
+#: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
+msgid "List"
+msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml ../../weather.widget.plus/contents/ui/FullRepresentation.qml
 msgid "Reload"
@@ -461,11 +453,11 @@ msgid "%1 ago"
 msgstr "%1 тому"
 
 #: ../../weather.widget.plus/contents/ui/main.qml
-msgid "near future"
+msgid "next hour"
 msgstr "найближчим часом"
 
 #: ../../weather.widget.plus/contents/ui/providers/MetNo.qml
-msgid "Forecast data provided by the Norwegian Meteorological Institute"
+msgid "Forecast data provided by Met.no"
 msgstr "Прогнозні дані надані Норвезьким метеорологічним інститутом"
 
 #: ../../weather.widget.plus/contents/ui/providers/OpenMeteo.qml
@@ -475,3 +467,43 @@ msgstr "Прогнозні дані надані Open-Meteo"
 #: ../../weather.widget.plus/contents/ui/providers/OpenWeatherMap.qml
 msgid "Forecast data provided by OpenWeather"
 msgstr "Прогнозні дані надані OpenWeather"
+
+#~ msgid "Plasmoid showing weather information from Met.no server"
+#~ msgstr "Плазмоїд, що відображає інформацію про погоду із сервера Met.no"
+
+#~ msgid "Change City Name"
+#~ msgstr "Змінити назву міста"
+
+#~ msgid "Enter city name"
+#~ msgstr "Введіть назву міста"
+
+#~ msgid ""
+#~ "and then paste the whole URL into the corresponding field\n"
+#~ "e.g. http://openweathermap.org/city/2946447 for Bonn, Germany"
+#~ msgstr ""
+#~ "і потім вставте всю URL-адресу у відповідне поле\n"
+#~ "наприклад, http://openweathermap.org/city/2946447 для Бонна, Німеччина"
+
+#~ msgid "OM forecast length"
+#~ msgstr "Тривалість прогнозу OM"
+
+#~ msgid "Temperature label"
+#~ msgstr "Мітка температури"
+
+#~ msgid "Top"
+#~ msgstr "Згори"
+
+#~ msgid "Bottom"
+#~ msgstr "Знизу"
+
+#~ msgid "None"
+#~ msgstr "Немає"
+
+#~ msgid "Pressure label"
+#~ msgstr "Мітка тиску"
+
+#~ msgid "near future"
+#~ msgstr "найближчим часом"
+
+#~ msgid "Forecast data provided by the Norwegian Meteorological Institute"
+#~ msgstr "Прогнозні дані надані Норвезьким метеорологічним інститутом"

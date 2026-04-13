@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/tully-t/weather-widget-plus\n"
-"POT-Creation-Date: 2025-10-12 10:13-0700\n"
-"PO-Revision-Date: 2022-09-29 17:35+0700\n"
-"Last-Translator: Pavel Ovchinnikov <opavel@internet.ru>\n"
+"POT-Creation-Date: 2026-04-12 13:18-0700\n"
+"PO-Revision-Date: 2026-04-12 13:18-0700\n"
+"Last-Translator: izen57 <github.com/izen57>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -26,8 +26,8 @@ msgid "Weather Widget Plus"
 msgstr "Виджет погоды плюс"
 
 #: ../../weather.widget.plus/metadata.desktop
-msgid "Plasmoid showing weather information from Met.no server"
-msgstr "Плазмоид, показывающий информацию о погоде с сервера Met.no"
+msgid "Plasmoid showing weather information"
+msgstr ""
 
 #: ../../weather.widget.plus/contents/code/data-loader.js
 msgid "%1 min ago"
@@ -116,6 +116,7 @@ msgstr "Макет"
 
 #: ../../weather.widget.plus/contents/config/config.qml
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+#: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 msgid "Meteogram"
 msgstr "Метеограмма"
 
@@ -298,14 +299,6 @@ msgid "OM forecast data provided by Open-Meteo"
 msgstr "Данные о прогнозе погоды на OM предоставлены Open-Meteo"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-msgid "Change City Name"
-msgstr "Изменить название города"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-msgid "Enter city name"
-msgstr "Введите название города"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Add OpenWeather Map Location"
 msgstr "Добавить местоположение для OpenWeather"
 
@@ -320,10 +313,10 @@ msgstr "Найдите ID вашего города здесь"
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid ""
 "and then paste the whole URL into the corresponding field\n"
-"e.g. http://openweathermap.org/city/2946447 for Bonn, Germany"
+"e.g. https://old.openweathermap.org/city/2946447 for Bonn, Germany"
 msgstr ""
 "и затем вставьте URL полностью в соответствующее поле.\n"
-"Например, http://openweathermap.org/city/2747891 для Роттердама (Нидерланды)"
+"Например, http://old.openweathermap.org/city/2747891 для Роттердама (Нидерланды)"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Add Met.no Map Location"
@@ -391,8 +384,16 @@ msgid "Meteogram height"
 msgstr "Высота метеограммы"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "OM forecast length"
-msgstr "Длительность прогноза OM"
+msgid "Meteogram width in tray"
+msgstr ""
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Meteogram height in tray"
+msgstr ""
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Open-Meteo forecast length"
+msgstr "Длительность прогноза Open-Meteo"
 
 # продолжительность прогноза
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
@@ -401,24 +402,12 @@ msgid "hrs"
 msgstr "часов"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Temperature label"
-msgstr "Подпись оси температур"
+msgid "Weekly forecast visible"
+msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Top"
-msgstr "Сверху"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Bottom"
-msgstr "Сниху"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "None"
-msgstr "Не показывать"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Pressure label"
-msgstr "Подпись оси давлений"
+msgid "Trailing zeroes visible"
+msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Vertical axis font size"
@@ -461,6 +450,7 @@ msgid "My local-time"
 msgstr "Местное время"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
+#: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 #: ../../weather.widget.plus/contents/ui/FullRepresentation.qml
 #: ../../weather.widget.plus/contents/ui/providers/OpenWeatherMap.qml
 msgid "UTC"
@@ -469,6 +459,10 @@ msgstr "UTC"
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "Location Timezone"
 msgstr "Часовой пояс местоположения"
+
+#: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
+msgid "List"
+msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 #: ../../weather.widget.plus/contents/ui/FullRepresentation.qml
@@ -488,11 +482,11 @@ msgid "%1 ago"
 msgstr "%1 назад"
 
 #: ../../weather.widget.plus/contents/ui/main.qml
-msgid "near future"
+msgid "next hour"
 msgstr "ближайшее время"
 
 #: ../../weather.widget.plus/contents/ui/providers/MetNo.qml
-msgid "Forecast data provided by the Norwegian Meteorological Institute"
+msgid "Forecast data provided by Met.no"
 msgstr ""
 "Данные о прогнозе погоды предоставлены Норвежским метеорологическим "
 "институтом"
@@ -504,6 +498,49 @@ msgstr "Данные о прогнозе погоды предоставлены
 #: ../../weather.widget.plus/contents/ui/providers/OpenWeatherMap.qml
 msgid "Forecast data provided by OpenWeather"
 msgstr "Данные о прогнозе погоды предоставлены OpenWeather"
+
+#~ msgid "Plasmoid showing weather information from Met.no server"
+#~ msgstr "Плазмоид, показывающий информацию о погоде с сервера Met.no"
+
+#~ msgid "Change City Name"
+#~ msgstr "Изменить название города"
+
+#~ msgid "Enter city name"
+#~ msgstr "Введите название города"
+
+#~ msgid ""
+#~ "and then paste the whole URL into the corresponding field\n"
+#~ "e.g. http://openweathermap.org/city/2946447 for Bonn, Germany"
+#~ msgstr ""
+#~ "и затем вставьте URL полностью в соответствующее поле.\n"
+#~ "Например, http://openweathermap.org/city/2747891 для Роттердама "
+#~ "(Нидерланды)"
+
+#~ msgid "OM forecast length"
+#~ msgstr "Длительность прогноза OM"
+
+#~ msgid "Temperature label"
+#~ msgstr "Подпись оси температур"
+
+#~ msgid "Top"
+#~ msgstr "Сверху"
+
+#~ msgid "Bottom"
+#~ msgstr "Сниху"
+
+#~ msgid "None"
+#~ msgstr "Не показывать"
+
+#~ msgid "Pressure label"
+#~ msgstr "Подпись оси давлений"
+
+#~ msgid "near future"
+#~ msgstr "ближайшее время"
+
+#~ msgid "Forecast data provided by the Norwegian Meteorological Institute"
+#~ msgstr ""
+#~ "Данные о прогнозе погоды предоставлены Норвежским метеорологическим "
+#~ "институтом"
 
 #~ msgid "General"
 #~ msgstr "Основное"
@@ -525,7 +562,8 @@ msgstr "Данные о прогнозе погоды предоставлены
 
 #~ msgid "NOTE: Setting layout type for in-tray plasmoid has no effect."
 #~ msgstr ""
-#~ "ВНИМАНИЕ. Настройка типа макета не влияет на внешний вид плазмоида в лотке."
+#~ "ВНИМАНИЕ. Настройка типа макета не влияет на внешний вид плазмоида в "
+#~ "лотке."
 
 #~ msgid "In-Tray Settings"
 #~ msgstr "Настройки лотка"
@@ -536,8 +574,8 @@ msgstr "Данные о прогнозе погоды предоставлены
 #~ "tray \"Entries\" settings."
 #~ msgstr ""
 #~ "ВНИМАНИЕ. По истечении указанного времени виджет будет скрыт в системном "
-#~ "лотке, пока не обновятся данные погоды. Также в разделе \"Элементы\" настроек "
-#~ "системного лотка можно установить значение \"Показывать всегда\"."
+#~ "лотке, пока не обновятся данные погоды. Также в разделе \"Элементы\" "
+#~ "настроек системного лотка можно установить значение \"Показывать всегда\"."
 
 #~ msgid "Place Identifier"
 #~ msgstr "Идентификатор места"

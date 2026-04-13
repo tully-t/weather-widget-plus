@@ -33,6 +33,8 @@ Loader {
     property int defaultWidgetSize: -1
     property int widgetOrder: main.widgetOrder
     property int layoutType: main.layoutType
+    property int temperatureType: plasmoid.configuration.temperatureType
+    property bool loadingDataComplete: main.loadingDataComplete
 
     sourceComponent: layoutType === 2 ? compactItem : widgetOrder === 1 ? compactItemReverse : compactItem
 
@@ -40,6 +42,13 @@ Loader {
     Layout.fillHeight: !compactRepresentation.vertical
     Layout.minimumWidth: item.Layout.minimumWidth
     Layout.minimumHeight: item.Layout.minimumHeight
+
+    onTemperatureTypeChanged: {
+        if (loadingDataComplete === true) {
+        dbgprint2('TemperatureType changed')
+        main.updateCompactItem()
+        }
+    }
 
     Component {
         id: compactItem

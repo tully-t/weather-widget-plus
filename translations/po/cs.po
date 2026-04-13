@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/tully-t/weather-widget-plus\n"
-"POT-Creation-Date: 2025-10-12 10:13-0700\n"
+"POT-Creation-Date: 2026-04-12 13:18-0700\n"
 "PO-Revision-Date: 2025-11-17 13:16+0100\n"
 "Last-Translator: Martin Kotelnik <clearmartin@seznam.cz>\n"
 "Language-Team: Martin Kotelnik <clearmartin@seznam.cz>\n"
@@ -22,8 +22,8 @@ msgid "Weather Widget Plus"
 msgstr "Weather Widget Plus"
 
 #: ../../weather.widget.plus/metadata.desktop
-msgid "Plasmoid showing weather information from Met.no server"
-msgstr "Widget pro předpověď počasí"
+msgid "Plasmoid showing weather information"
+msgstr ""
 
 #: ../../weather.widget.plus/contents/code/data-loader.js
 msgid "%1 min ago"
@@ -100,6 +100,7 @@ msgstr "Zobrazení"
 
 #: ../../weather.widget.plus/contents/config/config.qml
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+#: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 msgid "Meteogram"
 msgstr "Meteogram"
 
@@ -282,14 +283,6 @@ msgid "OM forecast data provided by Open-Meteo"
 msgstr "Data předpovědi OM poskytlo Open-Meteo"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-msgid "Change City Name"
-msgstr "Změnit jméno města"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
-msgid "Enter city name"
-msgstr "Zadejte město"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Add OpenWeather Map Location"
 msgstr "Přidat lokaci pro OpenWeather"
 
@@ -304,10 +297,8 @@ msgstr "Najděte ID vašeho města zde"
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid ""
 "and then paste the whole URL into the corresponding field\n"
-"e.g. http://openweathermap.org/city/2946447 for Bonn, Germany"
-msgstr ""
-"a poté vložte celoé URL do odpovídajícího pole\n"
-"např. https://openweathermap.org/city/3079843 pro Abertamy, Česko"
+"e.g. https://old.openweathermap.org/city/2946447 for Bonn, Germany"
+msgstr "např. https://old.openweathermap.org/city/3079843 pro Abertamy, Česko"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Add Met.no Map Location"
@@ -376,8 +367,16 @@ msgid "Meteogram height"
 msgstr "Výška Meteogramu"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "OM forecast length"
-msgstr "Délka předpovědi OM"
+msgid "Meteogram width in tray"
+msgstr ""
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Meteogram height in tray"
+msgstr ""
+
+#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
+msgid "Open-Meteo forecast length"
+msgstr "Délka předpovědi Open-Meteo"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgctxt "hours"
@@ -385,24 +384,12 @@ msgid "hrs"
 msgstr "hod"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Temperature label"
-msgstr "Jednotka teploty"
+msgid "Weekly forecast visible"
+msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Top"
-msgstr "Nahoře"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Bottom"
-msgstr "Dole"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "None"
-msgstr "Žádná"
-
-#: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
-msgid "Pressure label"
-msgstr "Jednotka tlaku"
+msgid "Trailing zeroes visible"
+msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Vertical axis font size"
@@ -445,6 +432,7 @@ msgid "My local-time"
 msgstr "Můj místní čas"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
+#: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 #: ../../weather.widget.plus/contents/ui/FullRepresentation.qml
 #: ../../weather.widget.plus/contents/ui/providers/OpenWeatherMap.qml
 msgid "UTC"
@@ -453,6 +441,10 @@ msgstr "UTC"
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "Location Timezone"
 msgstr "Časové pásmo"
+
+#: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
+msgid "List"
+msgstr ""
 
 #: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 #: ../../weather.widget.plus/contents/ui/FullRepresentation.qml
@@ -472,11 +464,11 @@ msgid "%1 ago"
 msgstr "před %1"
 
 #: ../../weather.widget.plus/contents/ui/main.qml
-msgid "near future"
+msgid "next hour"
 msgstr "brzy bude"
 
 #: ../../weather.widget.plus/contents/ui/providers/MetNo.qml
-msgid "Forecast data provided by the Norwegian Meteorological Institute"
+msgid "Forecast data provided by Met.no"
 msgstr "Data předpovědi poskytl Norský Meteorologický Institut"
 
 #: ../../weather.widget.plus/contents/ui/providers/OpenMeteo.qml
@@ -486,6 +478,46 @@ msgstr "Data předpovědi poskytlo Open-Meteo"
 #: ../../weather.widget.plus/contents/ui/providers/OpenWeatherMap.qml
 msgid "Forecast data provided by OpenWeather"
 msgstr "Data předpovědi poskytlo OpenWeather"
+
+#~ msgid "Plasmoid showing weather information from Met.no server"
+#~ msgstr "Widget pro předpověď počasí"
+
+#~ msgid "Change City Name"
+#~ msgstr "Změnit jméno města"
+
+#~ msgid "Enter city name"
+#~ msgstr "Zadejte město"
+
+#~ msgid ""
+#~ "and then paste the whole URL into the corresponding field\n"
+#~ "e.g. http://openweathermap.org/city/2946447 for Bonn, Germany"
+#~ msgstr ""
+#~ "a poté vložte celoé URL do odpovídajícího pole\n"
+#~ "např. https://openweathermap.org/city/3079843 pro Abertamy, Česko"
+
+#~ msgid "OM forecast length"
+#~ msgstr "Délka předpovědi OM"
+
+#~ msgid "Temperature label"
+#~ msgstr "Jednotka teploty"
+
+#~ msgid "Top"
+#~ msgstr "Nahoře"
+
+#~ msgid "Bottom"
+#~ msgstr "Dole"
+
+#~ msgid "None"
+#~ msgstr "Žádná"
+
+#~ msgid "Pressure label"
+#~ msgstr "Jednotka tlaku"
+
+#~ msgid "near future"
+#~ msgstr "brzy bude"
+
+#~ msgid "Forecast data provided by the Norwegian Meteorological Institute"
+#~ msgstr "Data předpovědi poskytl Norský Meteorologický Institut"
 
 #~ msgid "General"
 #~ msgstr "Obecné"
