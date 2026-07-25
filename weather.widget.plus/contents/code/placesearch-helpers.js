@@ -268,6 +268,219 @@ function getDisplayName(shortCode) {
     })
     return __FOUND["displayName"]
 }
+
+var globalSearchIndex = []
+var globalSearchLoaded = false
+var globalSearchLoading = false
+var loadedCountryCodes = {}
+
+function preloadCSVForSearch(callback) {
+    if (globalSearchLoaded || globalSearchLoading) {
+        if (callback) callback()
+        return
+    }
+    globalSearchLoading = true
+
+    var priorityCountries = ["IN", "US", "GB", "CA", "AU", "DE", "FR", "JP", "BR", "IT", "ES", "PK", "BD", "LK", "NP"]
+    var loadedCount = 0
+    var total = priorityCountries.length
+
+    priorityCountries.forEach(function(cc) {
+        var url
+        if (typeof env_QML_XHR_ALLOW_FILE_READ !== 'undefined' && env_QML_XHR_ALLOW_FILE_READ) {
+            url = Qt.resolvedUrl("./db/" + cc + ".csv")
+        } else {
+            url = "http://weatherwidgetqt6.000webhostapp.com/" + cc + ".csv"
+        }
+        var xhr = new XMLHttpRequest
+        xhr.open("GET", url)
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                loadedCount++
+                if (xhr.status === 200 && xhr.responseText.length > 0) {
+                    var tmpDB = xhr.responseText.split(/\r?\n/)
+                    var countryName = getDisplayName(cc)
+                    for (var i = 0; i < tmpDB.length - 1; i++) {
+                        var parsed = parseCSVLineExt(tmpDB[i], cc, countryName)
+                        if (parsed) {
+                            globalSearchIndex.push(parsed)
+                        }
+                    }
+                }
+                loadedCountryCodes[cc] = true
+                if (loadedCount >= total) {
+                    globalSearchIndex.sort(function(a, b) {
+                        return a.searchKey.localeCompare(b.searchKey)
+                    })
+                    globalSearchLoaded = true
+                    globalSearchLoading = false
+                    if (callback) callback()
+                }
+            }
+        }
+        xhr.send()
+    })
+}
+
+function searchLocalCSV(query) {
+    if (!globalSearchLoaded || query.length < 2) {
+        return []
+    }
+    var q = query.toLowerCase().trim()
+    var results = []
+    for (var i = 0; i < globalSearchIndex.length; i++) {
+        if (globalSearchIndex[i].searchKey.indexOf(q) !== -1) {
+            results.push({
+                location: globalSearchIndex[i].location,
+                area: globalSearchIndex[i].area,
+                country: globalSearchIndex[i].country,
+                latitude: globalSearchIndex[i].latitude,
+                longitude: globalSearchIndex[i].longitude,
+                altitude: globalSearchIndex[i].altitude,
+                timezoneId: globalSearchIndex[i].timezoneId,
+                timezoneDisplay: TZData.TZData[globalSearchIndex[i].timezoneId] ? TZData.TZData[globalSearchIndex[i].timezoneId].displayName : ""
+            })
+            if (results.length >= 15) break
+        }
+    }
+    return results
+}
+
+var nominatimRequestPending = false
+var nominatimTimer = 0
+
+function searchNominatim(query, callback) {
+    if (nominatimRequestPending) return
+    var now = new Date().getTime()
+    if (now - nominatimTimer < 1100) {
+        return
+    }
+    nominatimRequestPending = true
+    nominatimTimer = now
+    var xhr = new XMLHttpRequest
+    xhr.timeout = 10000
+    xhr.open("GET", "https://geocoding-api.open-meteo.com/v1/search?name=" + encodeURIComponent(query) + "&count=8&language=en&format=json")
+    xhr.onerror = function() {
+        nominatimRequestPending = false
+        callback([])
+    }
+    xhr.ontimeout = function() {
+        nominatimRequestPending = false
+        callback([])
+    }
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            nominatimRequestPending = false
+            if (xhr.status === 200) {
+                try {
+                    var data = JSON.parse(xhr.responseText)
+                    var results = []
+                    if (data.results) {
+                        for (var i = 0; i < data.results.length; i++) {
+                            var item = data.results[i]
+                            var tzId = -1
+                            var tzDisplay = ""
+                            if (item.timezone && typeof TZData !== 'undefined' && TZData.TZData) {
+                                for (var t = 0; t < TZData.TZData.length; t++) {
+                                    var tzName = TZData.TZData[t].displayName.replace(/_/gi, " ")
+                                    if (tzName.toLowerCase().indexOf(item.timezone.toLowerCase().replace(/_/gi, " ")) !== -1) {
+                                        tzId = TZData.TZData[t].id
+                                        tzDisplay = TZData.TZData[t].displayName.replace(/_/gi, " ")
+                                        break
+                                    }
+                                }
+                            }
+                            results.push({
+                                location: item.name || query,
+                                area: item.admin1 || (item.country || ""),
+                                country: item.country || "",
+                                latitude: parseFloat(item.latitude),
+                                longitude: parseFloat(item.longitude),
+                                altitude: item.elevation || 0,
+                                timezoneId: tzId,
+                                timezoneDisplay: tzDisplay
+                            })
+                        }
+                    }
+                    callback(results)
+                } catch(e) {
+                    callback([])
+                }
+            } else {
+                callback([])
+            }
+        }
+    }
+    xhr.send()
+}
+
+var ipDetectionPending = false
+var lastDetectionTime = 0
+
+function detectLocationByIP(callback) {
+    if (ipDetectionPending) return
+    ipDetectionPending = true
+    var xhr = new XMLHttpRequest
+    xhr.timeout = 10000
+    xhr.open("GET", "http://ip-api.com/json/?fields=city,regionName,country,lat,lon,timezone")
+    xhr.onerror = function() {
+        ipDetectionPending = false
+        callback(null)
+    }
+    xhr.ontimeout = function() {
+        ipDetectionPending = false
+        callback(null)
+    }
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            ipDetectionPending = false
+            if (xhr.status === 200) {
+                try {
+                    var data = JSON.parse(xhr.responseText)
+                    if (data.lat && data.lon) {
+                        lastDetectionTime = new Date().getTime()
+                        callback({
+                            city: data.city || "",
+                            region: data.regionName || "",
+                            country: data.country || "",
+                            latitude: parseFloat(data.lat),
+                            longitude: parseFloat(data.lon),
+                            timezone: data.timezone || ""
+                        })
+                        return
+                    }
+                } catch(e) {
+                }
+            }
+            callback(null)
+        }
+    }
+    xhr.send()
+}
+
+function getLastDetectionTime() {
+    return lastDetectionTime
+}
+
+function parseCSVLineExt(csvLine, countryCode, countryName) {
+    if (!csvLine || csvLine.length === 0) return null
+    var items = csvLine.split(/\t/)
+    if (items.length < 6) return null
+    var tzId = parseInt(items[5])
+    var tzDisplay = TZData.TZData[tzId] ? TZData.TZData[tzId].displayName : ""
+    return {
+        area: (items[0] || "").trim(),
+        location: (items[1] || "").trim(),
+        latitude: parseFloat(items[2]),
+        longitude: parseFloat(items[3]),
+        altitude: parseInt(items[4]) || 0,
+        timezoneId: tzId,
+        searchKey: ((items[1] || "") + " " + (items[0] || "") + " " + countryName).toLowerCase().trim(),
+        country: countryName,
+        countryCode: countryCode
+    }
+}
+
 function updateListView(filter) {
     filteredCSVData.clear()
     for (var f = 0; f < myCSVData.rowCount; f++) {
@@ -276,20 +489,16 @@ function updateListView(filter) {
             filteredCSVData.appendRow(myCSVData.getRow(f))
         }
     }
-    dbgprint("filteredCSVData.rowCount=" + filteredCSVData.rowCount)
 }
 function loadCSVDatabase(countryName) {
-    dbgprint("Entered loadCSVDatabase")
-    dbgprint("QML_XHR_ALLOW_FILE_READ = 1 : " + env_QML_XHR_ALLOW_FILE_READ)
     if (countryName.length === 0) {
         return
     }
     myCSVData.clear()
-    var URL = ("http://weatherwidgetqt6.000webhostapp.com/" + getshortCode(countryName) + ".csv") // LIVE ONLY
-    if (env_QML_XHR_ALLOW_FILE_READ) {
-        URL =  Qt.resolvedUrl("./db/" + getshortCode(countryName) + ".csv")   // DEBUGGING ONLY
+    var URL = ("http://weatherwidgetqt6.000webhostapp.com/" + getshortCode(countryName) + ".csv")
+    if (typeof env_QML_XHR_ALLOW_FILE_READ !== 'undefined' && env_QML_XHR_ALLOW_FILE_READ) {
+        URL =  Qt.resolvedUrl("./db/" + getshortCode(countryName) + ".csv")
     }
-    dbgprint("URL = " + URL)
     var xhr = new XMLHttpRequest
     xhr.open("GET", URL)
     xhr.onreadystatechange = function() {
@@ -299,7 +508,9 @@ function loadCSVDatabase(countryName) {
             for (var i = 0; i < tmpDB.length - 1; i++) {
                 myCSVData.appendRow(parseCSVLine(tmpDB[i]))
             }
-            updateListView(locationEdit.text)
+            if (typeof locationEdit !== 'undefined') {
+                updateListView(locationEdit.text)
+            }
         }
     }
     xhr.send()
@@ -308,7 +519,6 @@ function parseCSVLine(csvLine) {
     function stripquotes(str) {
         return str.replace(/['"]+/g, '')
     }
-// dbgprint(csvLine)
     var items = csvLine.split(/\t/)
     return ({
                 Area: stripquotes((items[0])),

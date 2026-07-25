@@ -43,6 +43,7 @@ KCM.SimpleKCM {
                 placeIdentifier: placeObj.placeIdentifier,
                 placeAlias: placeObj.placeAlias,
                 timezoneID: (placeObj.timezoneID !== undefined) ? placeObj.timezoneID : -1,
+                isCurrentLocation: (placeObj.isCurrentLocation !== undefined) ? placeObj.isCurrentLocation : false,
             })
         })
         let timezoneArray = TZData.TZData.sort(dynamicSort("displayName"))
@@ -79,7 +80,8 @@ KCM.SimpleKCM {
                 providerId: placeObj.providerId,
                 placeIdentifier: placeObj.placeIdentifier,
                 placeAlias: placeObj.placeAlias,
-                timezoneID: (placeObj.timezoneID !== undefined) ? placeObj.timezoneID : -1
+                timezoneID: (placeObj.timezoneID !== undefined) ? placeObj.timezoneID : -1,
+                isCurrentLocation: (placeObj.isCurrentLocation !== undefined) ? placeObj.isCurrentLocation : false
 
             })
         }
@@ -185,6 +187,9 @@ KCM.SimpleKCM {
             display: "timezoneID"
             // title: "Action"
         }
+        TableModelColumn {
+            display: "isCurrentLocation"
+        }
     }
 
     TableModel {
@@ -280,7 +285,7 @@ KCM.SimpleKCM {
             TableView {
                 id: mytableView
                 anchors.fill: parent
-                property var columnWidths: [14, 59, 27]
+                property var columnWidths: [14, 59, 27, 0]
                 columnWidthProvider: function (column) {
                     let aw = placesTable.width - placesTable.effectiveScrollBarWidth
                     return parseInt(aw * columnWidths[column] / 100 )
@@ -538,6 +543,61 @@ KCM.SimpleKCM {
                     addMetnoCityIdDialog.placeNumberID=-1
                     addMetnoCityIdDialog.open()
                 }
+            }
+        }
+
+        Row {
+            Item {
+                width: 2
+                height: Kirigami.Units.largeSpacing * 2
+            }
+
+            Button {
+                id: detectButton
+                icon.name: 'find-location'
+                text: i18n("Detect Current Location")
+                onClicked: {
+                    detectButton.enabled = false
+                    detectButton.text = i18n("Detecting...")
+                    Helper.detectLocationByIP(function(result) {
+                        if (result) {
+                            var displayName = result.city
+                            if (result.region) displayName += ", " + result.region
+                            if (result.country) displayName += ", " + result.country
+                            displayName += " (Current Location)"
+                            var tzId = -1
+                            var tzName = result.timezone || ""
+                            for (var i = 0; i < timezoneDataModel.count; i++) {
+                                var tzDisplay = timezoneDataModel.get(i).displayName.toLowerCase()
+                                if (tzDisplay.indexOf(tzName.toLowerCase().replace("_", " ")) !== -1) {
+                                    tzId = timezoneDataModel.get(i).id
+                                    break
+                                }
+                            }
+                            placesModel.appendRow({
+                                providerId: 'om',
+                                placeIdentifier: "latitude=" + result.latitude + "&longitude=" + result.longitude + "&altitude=0",
+                                placeAlias: displayName,
+                                timezoneID: tzId,
+                                isCurrentLocation: true
+                            })
+                            placesModelChanged()
+                            detectStatusLabel.text = i18n("Location detected: ") + displayName
+                            detectStatusLabel.visible = true
+                        } else {
+                            detectStatusLabel.text = i18n("Detection failed. Check internet connection.")
+                            detectStatusLabel.visible = true
+                        }
+                        detectButton.enabled = true
+                        detectButton.text = i18n("Detect Current Location")
+                    })
+                }
+            }
+            Label {
+                id: detectStatusLabel
+                visible: false
+                anchors.verticalCenter: parent.verticalCenter
+                color: Kirigami.Theme.textColor
             }
         }
 
@@ -904,14 +964,17 @@ KCM.SimpleKCM {
                         providerId: 'owm',
                         placeIdentifier: resultString,
                         placeAlias: newOwmCityAlias.text,
-                        timezoneID: -1
+                        timezoneID: -1,
+                        isCurrentLocation: false
                     })
                 } else {
+                    var existingRow = placesModel.getRow(addOwmCityIdDialog.placeNumberID)
                     placesModel.setRow(addOwmCityIdDialog.placeNumberID,{
                         providerId: 'owm',
                         placeIdentifier: resultString,
                         placeAlias: newOwmCityAlias.text,
-                        timezoneID: -1
+                        timezoneID: -1,
+                        isCurrentLocation: (existingRow.isCurrentLocation !== undefined) ? existingRow.isCurrentLocation : false
                     })
                 }
                 placesModelChanged()
@@ -1030,6 +1093,111 @@ KCM.SimpleKCM {
                 id: metNoColumnLayout
                 spacing: 8
                 RowLayout {
+                    Layout.fillWidth: true
+                    Label {
+                        text: i18n("Search") + ":"
+                        Layout.alignment: Qt.AlignVCenter
+                    }
+                    TextField {
+                        id: metnoSearchField
+                        Layout.fillWidth: true
+                        placeholderText: i18n("Type city name to search...")
+                        onTextEdited: {
+                            metnoSearchTimer.restart()
+                        }
+                    }
+                    Button {
+                        text: i18n("Online")
+                        onClicked: {
+                            metnoSearchOnlineButton.enabled = false
+                            Helper.searchNominatim(metnoSearchField.text, function(results) {
+                                metnoSearchOnlineButton.enabled = true
+                                metnoSearchResultsModel.clear()
+                                for (var i = 0; i < results.length; i++) {
+                                    metnoSearchResultsModel.append(results[i])
+                                }
+                                if (results.length === 0) {
+                                    metnoSearchStatusLabel.text = i18n("No results found online")
+                                    metnoSearchStatusLabel.visible = true
+                                } else {
+                                    metnoSearchStatusLabel.visible = false
+                                }
+                                if (metnoSearchResultsModel.count > 0) {
+                                    metnoSearchResultsView.visible = true
+                                }
+                            })
+                        }
+                        id: metnoSearchOnlineButton
+                    }
+                }
+                Timer {
+                    id: metnoSearchTimer
+                    interval: 300
+                    onTriggered: {
+                        var query = metnoSearchField.text.trim()
+                        if (query.length < 2) {
+                            metnoSearchResultsModel.clear()
+                            metnoSearchResultsView.visible = false
+                            metnoSearchStatusLabel.visible = false
+                            return
+                        }
+                        Helper.preloadCSVForSearch(function() {
+                            var results = Helper.searchLocalCSV(query)
+                            metnoSearchResultsModel.clear()
+                            if (results.length === 0) {
+                                metnoSearchStatusLabel.text = i18n("No matches in local DB. Try 'Online' search.")
+                                metnoSearchStatusLabel.visible = true
+                                metnoSearchResultsView.visible = false
+                            } else {
+                                metnoSearchStatusLabel.visible = false
+                                for (var i = 0; i < results.length; i++) {
+                                    metnoSearchResultsModel.append(results[i])
+                                }
+                                metnoSearchResultsView.visible = true
+                            }
+                        })
+                    }
+                }
+                Label {
+                    id: metnoSearchStatusLabel
+                    visible: false
+                    font.italic: true
+                    color: Kirigami.Theme.textColor
+                }
+                ScrollView {
+                    id: metnoSearchResultsView
+                    visible: false
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 120
+                    clip: true
+                    ListView {
+                        id: metnoSearchResultsList
+                        model: ListModel { id: metnoSearchResultsModel }
+                        delegate: ItemDelegate {
+                            width: metnoSearchResultsList.width
+                            text: model.location + (model.area ? ", " + model.area : "") + (model.country ? ", " + model.country : "") + " (" + parseFloat(model.latitude).toFixed(3) + ", " + parseFloat(model.longitude).toFixed(3) + ")"
+                            onClicked: {
+                                newMetnoCityAlias.text = model.location + (model.country ? ", " + model.country : "")
+                                newMetnoCityLatitudeField.text = Number(parseFloat(model.latitude)).toLocaleString(Qt.locale(), "f", 4)
+                                newMetnoCityLongitudeField.text = Number(parseFloat(model.longitude)).toLocaleString(Qt.locale(), "f", 4)
+                                newMetnoCityAltitudeField.text = model.altitude || 0
+                                updateUrl()
+                                if (model.timezoneId !== undefined && model.timezoneId >= 0) {
+                                    addMetnoCityIdDialog.timezoneID = model.timezoneId
+                                    for (var tzIdx = 0; tzIdx < timezoneDataModel.count; tzIdx++) {
+                                        if (timezoneDataModel.get(tzIdx).id === Number(model.timezoneId)) {
+                                            tzComboBox.currentIndex = tzIdx
+                                            break
+                                        }
+                                    }
+                                }
+                                metnoSearchResultsView.visible = false
+                            }
+                        }
+                    }
+                }
+
+                RowLayout {
                     id: metNoRow1
                     Layout.preferredWidth: metNoRowLayout.width
                     Label {
@@ -1041,7 +1209,6 @@ KCM.SimpleKCM {
                         focus: true
                         Layout.alignment: Qt.AlignVCenter
                         Layout.preferredWidth: (omRowLayout.labelWidth * 3.5)
-                        // placeholderText: i18n("City Name")
                         onTextEdited: {
                             updateUrl()
                         }
@@ -1052,20 +1219,9 @@ KCM.SimpleKCM {
                         }
                     }
                     Item {
-                        // spacer item
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        // Rectangle { anchors.fill: parent; color: "#ffaaaa" } // to visualize the spacer
                     }
-                    // Button {
-                    //     text: i18n("Search")
-                    //
-                    //     Layout.alignment: Qt.AlignRight
-                    //     onClicked: {
-                    //         addMetnoCityIdDialog.close()
-                    //         searchWindow.open()
-                    //     }
-                    // }
                 }
 
                 RowLayout {
@@ -1320,14 +1476,17 @@ KCM.SimpleKCM {
                     providerId: 'metno',
                     placeIdentifier: resultString,
                     placeAlias: newMetnoCityAlias.text,
-                    timezoneID: addMetnoCityIdDialog.timezoneID
+                    timezoneID: addMetnoCityIdDialog.timezoneID,
+                    isCurrentLocation: false
                 })
             } else {
+                var existingRow = placesModel.getRow(addMetnoCityIdDialog.placeNumberID)
                 placesModel.setRow(addMetnoCityIdDialog.placeNumberID,{
                     providerId: 'metno',
                     placeIdentifier: resultString,
                     placeAlias: newMetnoCityAlias.text,
-                    timezoneID: addMetnoCityIdDialog.timezoneID
+                    timezoneID: addMetnoCityIdDialog.timezoneID,
+                    isCurrentLocation: (existingRow.isCurrentLocation !== undefined) ? existingRow.isCurrentLocation : false
                 })
             }
             placesModelChanged()
@@ -1374,6 +1533,111 @@ KCM.SimpleKCM {
                 id: omColumnLayout
                 spacing: 8
                 RowLayout {
+                    Layout.fillWidth: true
+                    Label {
+                        text: i18n("Search") + ":"
+                        Layout.alignment: Qt.AlignVCenter
+                    }
+                    TextField {
+                        id: omSearchField
+                        Layout.fillWidth: true
+                        placeholderText: i18n("Type city name to search...")
+                        onTextEdited: {
+                            omSearchTimer.restart()
+                        }
+                    }
+                    Button {
+                        text: i18n("Online")
+                        onClicked: {
+                            omSearchOnlineButton.enabled = false
+                            Helper.searchNominatim(omSearchField.text, function(results) {
+                                omSearchOnlineButton.enabled = true
+                                omSearchResultsModel.clear()
+                                for (var i = 0; i < results.length; i++) {
+                                    omSearchResultsModel.append(results[i])
+                                }
+                                if (results.length === 0) {
+                                    omSearchStatusLabel.text = i18n("No results found online")
+                                    omSearchStatusLabel.visible = true
+                                } else {
+                                    omSearchStatusLabel.visible = false
+                                }
+                                if (omSearchResultsModel.count > 0) {
+                                    omSearchResultsView.visible = true
+                                }
+                            })
+                        }
+                        id: omSearchOnlineButton
+                    }
+                }
+                Timer {
+                    id: omSearchTimer
+                    interval: 300
+                    onTriggered: {
+                        var query = omSearchField.text.trim()
+                        if (query.length < 2) {
+                            omSearchResultsModel.clear()
+                            omSearchResultsView.visible = false
+                            omSearchStatusLabel.visible = false
+                            return
+                        }
+                        Helper.preloadCSVForSearch(function() {
+                            var results = Helper.searchLocalCSV(query)
+                            omSearchResultsModel.clear()
+                            if (results.length === 0) {
+                                omSearchStatusLabel.text = i18n("No matches in local DB. Try 'Online' search.")
+                                omSearchStatusLabel.visible = true
+                                omSearchResultsView.visible = false
+                            } else {
+                                omSearchStatusLabel.visible = false
+                                for (var i = 0; i < results.length; i++) {
+                                    omSearchResultsModel.append(results[i])
+                                }
+                                omSearchResultsView.visible = true
+                            }
+                        })
+                    }
+                }
+                Label {
+                    id: omSearchStatusLabel
+                    visible: false
+                    font.italic: true
+                    color: Kirigami.Theme.textColor
+                }
+                ScrollView {
+                    id: omSearchResultsView
+                    visible: false
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 120
+                    clip: true
+                    ListView {
+                        id: omSearchResultsList
+                        model: ListModel { id: omSearchResultsModel }
+                        delegate: ItemDelegate {
+                            width: omSearchResultsList.width
+                            text: model.location + (model.area ? ", " + model.area : "") + (model.country ? ", " + model.country : "") + " (" + parseFloat(model.latitude).toFixed(3) + ", " + parseFloat(model.longitude).toFixed(3) + ")"
+                            onClicked: {
+                                newOmCityAlias.text = model.location + (model.country ? ", " + model.country : "")
+                                newOmCityLatitudeField.text = Number(parseFloat(model.latitude)).toLocaleString(Qt.locale(), "f", 4)
+                                newOmCityLongitudeField.text = Number(parseFloat(model.longitude)).toLocaleString(Qt.locale(), "f", 4)
+                                newOmCityAltitudeField.text = model.altitude || 0
+                                updateOmUrl()
+                                if (model.timezoneId !== undefined && model.timezoneId >= 0) {
+                                    addOmCityIdDialog.timezoneID = model.timezoneId
+                                    for (var tzIdx = 0; tzIdx < timezoneDataModel.count; tzIdx++) {
+                                        if (timezoneDataModel.get(tzIdx).id === Number(model.timezoneId)) {
+                                            tzComboBoxOm.currentIndex = tzIdx
+                                            break
+                                        }
+                                    }
+                                }
+                                omSearchResultsView.visible = false
+                            }
+                        }
+                    }
+                }
+
+                RowLayout {
                     id: omRow1
                     Layout.preferredWidth: omRowLayout.width
                     Label {
@@ -1384,7 +1648,6 @@ KCM.SimpleKCM {
                         id: newOmCityAlias
                         focus: true
                         Layout.alignment: Qt.AlignVCenter
-                        // placeholderText: i18n("City Name")
                         Layout.preferredWidth: (omRowLayout.labelWidth * 3.5)
                         onTextEdited: {
                             updateOmUrl()
@@ -1396,20 +1659,9 @@ KCM.SimpleKCM {
                         }
                     }
                     Item {
-                        // spacer item
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        // Rectangle { anchors.fill: parent; color: "#ffaaaa" } // to visualize the spacer
                     }
-                    // Button {
-                    //     text: i18n("Search")
-                    //
-                    //     Layout.alignment: Qt.AlignRight
-                    //     onClicked: {
-                    //         addMetnoCityIdDialog.close()
-                    //         searchWindow.open()
-                    //     }
-                    // }
                 }
 
                 RowLayout {
@@ -1689,14 +1941,17 @@ KCM.SimpleKCM {
                     providerId: 'om',
                     placeIdentifier: resultString,
                     placeAlias: newOmCityAlias.text,
-                    timezoneID: addOmCityIdDialog.timezoneID
+                    timezoneID: addOmCityIdDialog.timezoneID,
+                    isCurrentLocation: false
                 })
             } else {
+                var existingRow = placesModel.getRow(addOmCityIdDialog.placeNumberID)
                 placesModel.setRow(addOmCityIdDialog.placeNumberID,{
                     providerId: 'om',
                     placeIdentifier: resultString,
                     placeAlias: newOmCityAlias.text,
-                    timezoneID: addOmCityIdDialog.timezoneID
+                    timezoneID: addOmCityIdDialog.timezoneID,
+                    isCurrentLocation: (existingRow.isCurrentLocation !== undefined) ? existingRow.isCurrentLocation : false
                 })
             }
             placesModelChanged()

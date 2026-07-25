@@ -29,6 +29,7 @@ import "../code/config-utils.js" as ConfigUtils
 import "../code/icons.js" as IconTools
 import "../code/unit-utils.js" as UnitUtils
 import "../code/timezoneData.js" as TZ
+import "../code/placesearch-helpers.js" as LocationHelper
 
 PlasmoidItem {
     id: main
@@ -280,6 +281,41 @@ PlasmoidItem {
         dbgprint("placeIndex now: " + plasmoid.configuration.placeIndex)
         var placeObject = places[placeIndex]
 
+        if (placeObject.isCurrentLocation === true) {
+            handleCurrentLocationRefresh(placeObject, placeIndex)
+            return
+        }
+
+        loadPlace(placeObject)
+    }
+    function handleCurrentLocationRefresh(placeObject, placeIndex) {
+        LocationHelper.detectLocationByIP(function(result) {
+            if (result) {
+                var lat = result.latitude
+                var lon = result.longitude
+                var newIdentifier = "latitude=" + lat + "&longitude=" + lon + "&altitude=0"
+                if (placeObject.placeIdentifier !== newIdentifier || placeObject.placeIdentifier === "") {
+                    placeObject.placeIdentifier = newIdentifier
+                    var places = ConfigUtils.getPlacesArray()
+                    places[placeIndex].placeIdentifier = newIdentifier
+                    placeObject.timezoneID = -1
+                    for (var j = 0; j < TZ.TZData.length; j++) {
+                        if (TZ.TZData[j].displayName.toLowerCase().replace(/_/gi, " ").indexOf(result.timezone.toLowerCase().replace(/_/gi, " ")) !== -1) {
+                            placeObject.timezoneID = j
+                            break
+                        }
+                    }
+                    if (placeObject.timezoneID >= 0) {
+                        places[placeIndex].timezoneID = placeObject.timezoneID
+                    }
+                    plasmoid.configuration.places = JSON.stringify(places)
+                    dbgprint("Current location updated: " + newIdentifier)
+                }
+            }
+            loadPlace(placeObject)
+        })
+    }
+    function loadPlace(placeObject) {
         currentPlace.identifier = placeObject.placeIdentifier
         currentPlace.alias = placeObject.placeAlias
         currentPlace.timezoneID = placeObject.timezoneID
