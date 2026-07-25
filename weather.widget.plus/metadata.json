@@ -27,10 +27,10 @@
         "Description[sv]": "Plasmoid som visar väderinformation",
         "Description[zh_CN]": "添加 Open Weather Map",
         "Icon": "weather-clouds",
-        "Id": "weather.widget.plus",
-        "Version": "4.7",
+        "Id": "weather.widget.plus.enhanced",
+        "Version": "4.7.1",
         "License": "GPL-2.0+",
-        "Website": "https://github.com/tully-t/weather-widget-plus"
+        "Website": "https://github.com/Satyam709/weather-widget-enhanced"
     },
     "X-Plasma-API-Minimum-Version": "6.0",
     "X-Plasma-NotificationAreaCategory": "SystemServices",

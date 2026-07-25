@@ -490,10 +490,7 @@ function loadCSVDatabase(countryName) {
         return
     }
     myCSVData.clear()
-    var URL = ("http://weatherwidgetqt6.000webhostapp.com/" + getshortCode(countryName) + ".csv")
-    if (typeof env_QML_XHR_ALLOW_FILE_READ !== 'undefined' && env_QML_XHR_ALLOW_FILE_READ) {
-        URL =  Qt.resolvedUrl("./db/" + getshortCode(countryName) + ".csv")
-    }
+    var URL = Qt.resolvedUrl("./db/" + getshortCode(countryName) + ".csv")
     var xhr = new XMLHttpRequest
     xhr.open("GET", URL)
     xhr.onreadystatechange = function() {

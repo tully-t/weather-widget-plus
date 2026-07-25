@@ -1,15 +1,15 @@
 
 ## New Translations
 
-- Fill out [`template.pot`](template.pot) with your translations then open a [new issue](https://github.com/tully-t/weather-widget-plus/issues/new), name the file `your-language-here.txt`, attach the txt file to the issue (drag and drop).
+- Fill out [`template.pot`](template.pot) with your translations then open a [new issue](https://github.com/Satyam709/weather-widget-enhanced/issues/new), name the file `your-language-here.txt`, attach the txt file to the issue (drag and drop).
 
 ## If you can make a pull request:
 
-- `git clone https://github.com/tully-t/weather-widget-plus`
-- `cd weather-widget-plus/translations/po`
+- `git clone https://github.com/Satyam709/weather-widget-enhanced`
+- `cd weather-widget-enhanced/translations/po`
 - Copy the `template.pot` file and name it your locale's code (Eg: `en`/`de`/`fr`) with the extension `.po`. Your region's locale code can be found at: https://stackoverflow.com/questions/3191664/list-of-all-locales-and-their-short-codes/28357857#28357857
 - Fill out all the `msgstr ""` in your new .po file
-- `sh ./build.sh` (Run the weather-widget-plus/translations/po/build.sh script)
+- `sh ./build.sh` (Run the weather-widget-enhanced/translations/po/build.sh script)
 - Submit your pull request with your changes
 
 ### Scripts

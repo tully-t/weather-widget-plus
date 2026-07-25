@@ -64,15 +64,15 @@ Right click on the panel/desktop -> Add or Manage Widgets... -> Get New... -> Do
 
 #### GitHub CLI:
 
-`git clone https://github.com/tully-t/weather-widget-plus`
+`git clone https://github.com/Satyam709/weather-widget-enhanced`
 
-`cd weather-widget-plus`
+`cd weather-widget-enhanced`
 
 `cp -r weather.widget.plus/ ~/.local/share/plasma/plasmoids/weather.widget.plus`
 
 #### GitHub GUI:
 
-- Download and extract weather-widget-plus.zip
+- Download and extract weather-widget-enhanced.zip
 
 then
 
@@ -113,7 +113,7 @@ Pull requests are appreciated.
 
 Disclosure of LLM usage in commits and pull requests is required. Contributions free of LLM output are encouraged. Poor-quality contributions will not be merged.
 
-The lead developer of Weather Widget Plus (tully-t) codes without the interference of an LLM.
+The lead developer of the original Weather Widget Plus (tully-t) codes without the interference of an LLM.
 
 ### License
 

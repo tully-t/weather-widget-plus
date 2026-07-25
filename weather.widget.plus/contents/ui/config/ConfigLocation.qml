@@ -772,7 +772,7 @@ KCM.SimpleKCM {
                 hoverEnabled: true
 
                 onClicked: {
-                    Qt.openUrlExternally('https://github.com/tully-t/weather-widget-plus')
+                    Qt.openUrlExternally('https://github.com/Satyam709/weather-widget-enhanced')
                 }
 
                 onEntered: {

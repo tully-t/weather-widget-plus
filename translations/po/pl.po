@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"Report-Msgid-Bugs-To: https://github.com/tully-t/weather-widget-plus\n"
+"Report-Msgid-Bugs-To: https://github.com/Satyam709/weather-widget-enhanced\n"
 "POT-Creation-Date: 2026-04-12 13:18-0700\n"
 "PO-Revision-Date: 2026-02-10 12:00+0100\n"
 "Last-Translator: RygorrMortis <rygorrmortis@github.com>\n"
