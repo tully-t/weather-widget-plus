@@ -82,11 +82,13 @@ Item {
         currentLocationText.text = t
     }
 
-    PlasmaComponents.Label {
-        id: currentLocationText
-
+    RowLayout {
+        id: locationRow
         anchors.left: parent.left
         anchors.top: parent.top
+
+    PlasmaComponents.Label {
+        id: currentLocationText
         verticalAlignment: Text.AlignTop
 
         text: ""
@@ -96,6 +98,23 @@ Item {
             dbgprint2(currentLocationText.text)
             nextDaysCount = nextDaysModel.count
         }
+    }
+
+    PlasmaComponents.ToolButton {
+        id: refreshLocationButton
+        visible: main.currentPlaceIsDetected
+        icon.name: "view-refresh"
+        text: qsTr("Re-detect location")
+        display: PlasmaComponents.AbstractButton.IconOnly
+        Layout.alignment: Qt.AlignVCenter
+        onClicked: {
+            main.setNextPlace(true)
+        }
+        PlasmaComponents.ToolTip {
+            text: qsTr("Re-detect your current location")
+        }
+    }
+
     }
 
     PlasmaComponents.Label {

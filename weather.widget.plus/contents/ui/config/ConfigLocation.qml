@@ -574,15 +574,34 @@ KCM.SimpleKCM {
                                     break
                                 }
                             }
-                            placesModel.appendRow({
-                                providerId: 'om',
-                                placeIdentifier: "latitude=" + result.latitude + "&longitude=" + result.longitude + "&altitude=0",
-                                placeAlias: displayName,
-                                timezoneID: tzId,
-                                isCurrentLocation: true
-                            })
+                            var placeIdentifier = "latitude=" + result.latitude + "&longitude=" + result.longitude + "&altitude=0"
+                            var foundExisting = -1
+                            for (var r = 0; r < placesModel.rowCount; r++) {
+                                if (placesModel.getRow(r).isCurrentLocation === true) {
+                                    foundExisting = r
+                                    break
+                                }
+                            }
+                            if (foundExisting >= 0) {
+                                placesModel.setRow(foundExisting, {
+                                    providerId: 'om',
+                                    placeIdentifier: placeIdentifier,
+                                    placeAlias: displayName,
+                                    timezoneID: tzId,
+                                    isCurrentLocation: true
+                                })
+                                detectStatusLabel.text = i18n("Location updated: ") + displayName
+                            } else {
+                                placesModel.appendRow({
+                                    providerId: 'om',
+                                    placeIdentifier: placeIdentifier,
+                                    placeAlias: displayName,
+                                    timezoneID: tzId,
+                                    isCurrentLocation: true
+                                })
+                                detectStatusLabel.text = i18n("Location detected: ") + displayName
+                            }
                             placesModelChanged()
-                            detectStatusLabel.text = i18n("Location detected: ") + displayName
                             detectStatusLabel.visible = true
                         } else {
                             detectStatusLabel.text = i18n("Detection failed. Check internet connection.")

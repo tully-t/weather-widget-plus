@@ -153,6 +153,7 @@ PlasmoidItem {
                                 })
 
     property int placesCount
+    property bool currentPlaceIsDetected: false
 
     property var timerData: ({
                                  reloadIntervalMin: 0 ,   // Download Attempt Frequency in minutes
@@ -321,6 +322,7 @@ PlasmoidItem {
         currentPlace.timezoneID = placeObject.timezoneID
         currentPlace.providerId = placeObject.providerId
         currentPlace.provider = setCurrentProviderAccordingId(placeObject.providerId)
+        currentPlaceIsDetected = (placeObject.isCurrentLocation === true)
 
         if (placeObject.timezoneID === undefined) {
             currentPlace.timezoneID = -1

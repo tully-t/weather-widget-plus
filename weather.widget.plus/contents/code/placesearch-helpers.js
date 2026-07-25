@@ -286,17 +286,11 @@ function preloadCSVForSearch(callback) {
     var total = priorityCountries.length
 
     priorityCountries.forEach(function(cc) {
-        var url
-        if (typeof env_QML_XHR_ALLOW_FILE_READ !== 'undefined' && env_QML_XHR_ALLOW_FILE_READ) {
-            url = Qt.resolvedUrl("./db/" + cc + ".csv")
-        } else {
-            url = "http://weatherwidgetqt6.000webhostapp.com/" + cc + ".csv"
-        }
+        var url = Qt.resolvedUrl("./db/" + cc + ".csv")
         var xhr = new XMLHttpRequest
         xhr.open("GET", url)
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
-                loadedCount++
                 if (xhr.status === 200 && xhr.responseText.length > 0) {
                     var tmpDB = xhr.responseText.split(/\r?\n/)
                     var countryName = getDisplayName(cc)
@@ -308,6 +302,7 @@ function preloadCSVForSearch(callback) {
                     }
                 }
                 loadedCountryCodes[cc] = true
+                loadedCount++
                 if (loadedCount >= total) {
                     globalSearchIndex.sort(function(a, b) {
                         return a.searchKey.localeCompare(b.searchKey)
