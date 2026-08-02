@@ -2,15 +2,16 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 # 吴相东 <wuxiangdong156@gmail.com>, 2016.
+# zsd2024 <zsd_2024@outlook.com>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/tully-t/weather-widget-plus\n"
 "POT-Creation-Date: 2026-04-12 13:18-0700\n"
-"PO-Revision-Date: 2022-01-03 22:17+0000\n"
-"Last-Translator: 吴相东 <wuxiangdong156@gmail.com>\n"
-"Language-Team: 吴相东 <wuxiangdong156@gmail.com>\n"
+"PO-Revision-Date: 2026-08-02 00:00+0000\n"
+"Last-Translator: zsd2024 <zsd_2024@outlook.com>\n"
+"Language-Team: Chinese (Simplified) <zsd_2024@outlook.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,27 +20,27 @@ msgstr ""
 
 #: ../../weather.widget.plus/metadata.desktop
 msgid "Weather Widget Plus"
-msgstr ""
+msgstr "天气小部件增强版"
 
 #: ../../weather.widget.plus/metadata.desktop
 msgid "Plasmoid showing weather information"
-msgstr ""
+msgstr "显示天气信息的 Plasma 小部件"
 
 #: ../../weather.widget.plus/contents/code/data-loader.js
 msgid "%1 min ago"
-msgstr ""
+msgstr "%1 分钟前"
 
 #: ../../weather.widget.plus/contents/code/data-loader.js
 msgid "%1 hrs ago"
-msgstr ""
+msgstr "%1 小时前"
 
 #: ../../weather.widget.plus/contents/code/data-loader.js
 msgid "%1 days ago"
-msgstr ""
+msgstr "%1 天前"
 
 #: ../../weather.widget.plus/contents/code/data-loader.js
 msgid "long ago"
-msgstr ""
+msgstr "很久以前"
 
 #: ../../weather.widget.plus/contents/code/unit-utils.js
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
@@ -54,7 +55,7 @@ msgstr "华氏度"
 #: ../../weather.widget.plus/contents/code/unit-utils.js
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "K"
-msgstr ""
+msgstr "K"
 
 #: ../../weather.widget.plus/contents/code/unit-utils.js
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
@@ -102,7 +103,7 @@ msgstr "布局"
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 #: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 msgid "Meteogram"
-msgstr ""
+msgstr "气象图"
 
 #: ../../weather.widget.plus/contents/config/config.qml
 msgid "Units"
@@ -111,62 +112,62 @@ msgstr "单位"
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgctxt "Use default font"
 msgid "Default"
-msgstr ""
+msgstr "默认"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Widget font"
-msgstr ""
+msgstr "部件字体"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Text size mode"
-msgstr ""
+msgstr "文字大小模式"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Automatic fit"
-msgstr ""
+msgstr "自动适应"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Exact size"
-msgstr ""
+msgstr "固定大小"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Text size"
-msgstr ""
+msgstr "文字大小"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgctxt "pixels"
 msgid "px"
-msgstr ""
+msgstr "像素"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Text visible"
-msgstr ""
+msgstr "显示文字"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Text drop shadow"
-msgstr ""
+msgstr "文字阴影"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Icon size mode"
-msgstr ""
+msgstr "图标大小模式"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Icon size"
-msgstr ""
+msgstr "图标大小"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Icon visible"
-msgstr ""
+msgstr "显示图标"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Icon drop shadow"
-msgstr ""
+msgstr "图标阴影"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "System tray timeout"
-msgstr ""
+msgstr "系统托盘超时"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgctxt "Abbreviation for seconds"
@@ -175,7 +176,7 @@ msgstr "秒"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Layout type"
-msgstr ""
+msgstr "布局类型"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Horizontal"
@@ -183,7 +184,7 @@ msgstr "水平"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Layout type is not available in the system tray"
-msgstr ""
+msgstr "布局类型在系统托盘中不可用"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Vertical"
@@ -195,40 +196,40 @@ msgstr "紧凑"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Widget order"
-msgstr ""
+msgstr "部件顺序"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Icon first"
-msgstr ""
+msgstr "图标优先"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid ""
 "Widget order is not available in either the system tray or the Compact layout"
-msgstr ""
+msgstr "部件顺序在系统托盘或紧凑布局中不可用"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Text first"
-msgstr ""
+msgstr "文字优先"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Top Margin"
-msgstr ""
+msgstr "上边距"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Left Margin"
-msgstr ""
+msgstr "左边距"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Inner Margin"
-msgstr ""
+msgstr "内边距"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Right Margin"
-msgstr ""
+msgstr "右边距"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Bottom Margin"
-msgstr ""
+msgstr "下边距"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Source"
@@ -237,7 +238,7 @@ msgstr "来源"
 #. i18n("Place Identifier") });
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "City Name"
-msgstr ""
+msgstr "城市名称"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Action"
@@ -245,7 +246,7 @@ msgstr "动作"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Reload interval"
-msgstr ""
+msgstr "刷新间隔"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgctxt "Abbreviation for minutes"
@@ -254,35 +255,35 @@ msgstr "分钟"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Middle-click the widget to reload manually"
-msgstr ""
+msgstr "中键单击部件手动刷新"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Plasmoid version"
-msgstr ""
+msgstr "Plasma 小部件版本"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Weather icons created by Erik Flowers"
-msgstr ""
+msgstr "天气图标由 Erik Flowers 制作"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Met.no forecast data provided by The Norwegian Meteorological Institute"
-msgstr ""
+msgstr "Met.no 预报数据由挪威气象研究所提供"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Sunrise/sunset data provided by Sunrise - Sunset"
-msgstr ""
+msgstr "日出/日落数据由 Sunrise - Sunset 提供"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "OWM forecast data provided by OpenWeather"
-msgstr ""
+msgstr "OWM 预报数据由 OpenWeather 提供"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "OM forecast data provided by Open-Meteo"
-msgstr ""
+msgstr "OM 预报数据由 Open-Meteo 提供"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Add OpenWeather Map Location"
-msgstr ""
+msgstr "添加 OpenWeather 位置"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Paste URL here"
@@ -290,139 +291,141 @@ msgstr "在此粘贴网址"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Find your city ID by searching here"
-msgstr ""
+msgstr "在此搜索以找到城市 ID"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid ""
 "and then paste the whole URL into the corresponding field\n"
 "e.g. https://old.openweathermap.org/city/2946447 for Bonn, Germany"
 msgstr ""
+"然后将完整 URL 粘贴到相应字段\n"
+"例如 https://old.openweathermap.org/city/2946447 对应德国波恩"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Add Met.no Map Location"
-msgstr ""
+msgstr "添加 Met.no 位置"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Latitude"
-msgstr "Latitude"
+msgstr "纬度"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Longitude"
-msgstr "长身材"
+msgstr "经度"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Altitude"
-msgstr ""
+msgstr "海拔"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "Timezone"
-msgstr ""
+msgstr "时区"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Find your city data by searching here"
-msgstr ""
+msgstr "在此搜索以找到城市数据"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "and then paste the appropriate data into the corresponding fields"
-msgstr ""
+msgstr "然后将相应数据粘贴到对应字段"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "e.g. Latitude: 19.4284 Longitude: -99.1276 Altitude: 2240"
-msgstr ""
+msgstr "例如 纬度: 19.4284 经度: -99.1276 海拔: 2240"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "for Mexico City, Mexico"
-msgstr ""
+msgstr "对应墨西哥城"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid " (Maximum of 4 decimal places)"
-msgstr ""
+msgstr "（最多 4 位小数）"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Add Open-Meteo Map Location"
-msgstr ""
+msgstr "添加 Open-Meteo 位置"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Desktop mode"
-msgstr ""
+msgstr "桌面模式"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Icon"
-msgstr ""
+msgstr "图标"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Meteogram width"
-msgstr ""
+msgstr "气象图宽度"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Meteogram height"
-msgstr ""
+msgstr "气象图高度"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Meteogram width in tray"
-msgstr ""
+msgstr "托盘气象图宽度"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Meteogram height in tray"
-msgstr ""
+msgstr "托盘气象图高度"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Open-Meteo forecast length"
-msgstr ""
+msgstr "Open-Meteo 预报时长"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgctxt "hours"
 msgid "hrs"
-msgstr ""
+msgstr "小时"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Weekly forecast visible"
-msgstr ""
+msgstr "显示周预报"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Trailing zeroes visible"
-msgstr ""
+msgstr "显示尾部零"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Vertical axis font size"
-msgstr ""
+msgstr "纵轴字体大小"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Time font size"
-msgstr ""
+msgstr "时间字体大小"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Trailing zeroes font size"
-msgstr ""
+msgstr "尾部零字体大小"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "Temperature"
-msgstr ""
+msgstr "温度"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "Pressure"
-msgstr ""
+msgstr "气压"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "Precipitation"
-msgstr ""
+msgstr "降水量"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "mm"
-msgstr ""
+msgstr "毫米"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "in"
-msgstr ""
+msgstr "英寸"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "Wind speed"
-msgstr ""
+msgstr "风速"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "My local-time"
@@ -437,16 +440,16 @@ msgstr "UTC"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigUnits.qml
 msgid "Location Timezone"
-msgstr ""
+msgstr "位置时区"
 
 #: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 msgid "List"
-msgstr ""
+msgstr "列表"
 
 #: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 #: ../../weather.widget.plus/contents/ui/FullRepresentation.qml
 msgid "Reload"
-msgstr ""
+msgstr "刷新"
 
 #: ../../weather.widget.plus/contents/ui/FullRepresentation.qml
 msgid "Next Location"
@@ -454,7 +457,7 @@ msgstr "下一个位置"
 
 #: ../../weather.widget.plus/contents/ui/FullRepresentation.qml
 msgid "Previous Location"
-msgstr ""
+msgstr "上一个位置"
 
 #: ../../weather.widget.plus/contents/ui/main.qml
 msgid "%1 ago"
@@ -462,137 +465,16 @@ msgstr "%1 前"
 
 #: ../../weather.widget.plus/contents/ui/main.qml
 msgid "next hour"
-msgstr ""
+msgstr "下一小时"
 
 #: ../../weather.widget.plus/contents/ui/providers/MetNo.qml
 msgid "Forecast data provided by Met.no"
-msgstr ""
+msgstr "预报数据由 Met.no 提供"
 
 #: ../../weather.widget.plus/contents/ui/providers/OpenMeteo.qml
 msgid "Forecast data provided by Open-Meteo"
-msgstr ""
+msgstr "预报数据由 Open-Meteo 提供"
 
 #: ../../weather.widget.plus/contents/ui/providers/OpenWeatherMap.qml
 msgid "Forecast data provided by OpenWeather"
-msgstr ""
-
-#~ msgid "Plasmoid showing weather information from Met.no server"
-#~ msgstr "添加 Open Weather Map"
-
-#~ msgid "near future"
-#~ msgstr "不久后"
-
-#~ msgid "General"
-#~ msgstr "常规"
-
-#~ msgid "NOTE: Setting layout type for in-tray plasmoid has no effect."
-#~ msgstr "注意:设置布局类型对系统托盘里的部件无效."
-
-#~ msgid "In-Tray Settings"
-#~ msgstr "托盘部件设置"
-
-#~ msgid ""
-#~ "NOTE: After this timeout widget will be hidden in system tray until "
-#~ "refreshed. You can always set the widget to be always \"Shown\" in system "
-#~ "tray \"Entries\" settings."
-#~ msgstr ""
-#~ "注意: 过了此时间后部件将会被隐藏至托盘中,直到天气更新后重新显示.你可以通过"
-#~ "系统托盘 \"项目\"设置中将其设置为总是显示."
-
-#~ msgid "Place Identifier"
-#~ msgstr "地区ID"
-
-#~ msgid "Displayed as"
-#~ msgstr "显示名称"
-
-#~ msgid "Miscellaneous"
-#~ msgstr "杂项"
-
-#~ msgid "Change Displayed As"
-#~ msgstr "显示名称"
-
-#~ msgid "Enter place alias"
-#~ msgstr "输入城市名称"
-
-#~ msgid "Add Open Weather Map Place"
-#~ msgstr "添加 Open Weather Map"
-
-#~ msgid "City alias"
-#~ msgstr "城市名称"
-
-#~ msgid ""
-#~ "...and paste here the whole URL\n"
-#~ "e.g. http://openweathermap.org/city/2946447 for Bonn, Germany."
-#~ msgstr ""
-#~ "在此粘贴网址\n"
-#~ "例如: http://openweathermap.org/city/2946447 德国,波恩."
-
-#~ msgid "Add Met.no Map Place"
-#~ msgstr "添加 Met.no"
-
-#~ msgid "Plasmoid showing weather information from met.no server"
-#~ msgstr "添加 Open Weather Map"
-
-#~ msgid "Layout type:"
-#~ msgstr "布局类型:"
-
-#~ msgid "Active timeout:"
-#~ msgstr "显示时间:"
-
-#~ msgid "Find your city ID by searching here:"
-#~ msgstr "搜索这里找到你的城市ID:"
-
-#~ msgid "Plasmoid version:"
-#~ msgstr "部件版本:"
-
-#~ msgid "Reload interval:"
-#~ msgstr "载入间隔:"
-
-#~ msgid "Temperature:"
-#~ msgstr "温度:"
-
-#~ msgid "Pressure:"
-#~ msgstr "气压:"
-
-#~ msgid "Wind speed:"
-#~ msgstr "风速"
-
-#~ msgid "Timezone:"
-#~ msgstr "时区:"
-
-#~ msgid "Resume Updating"
-#~ msgstr "恢复"
-
-#~ msgid "Pause Updating"
-#~ msgstr "暂停"
-
-#~ msgid "today"
-#~ msgstr "今天"
-
-#~ msgid "Offline mode"
-#~ msgstr "离线模式"
-
-#~ msgid "Loading image..."
-#~ msgstr "载入图片中..."
-
-#~ msgid "Render meteogram for yr.no"
-#~ msgstr "绘制 yr.no 天气图表"
-
-#~ msgid "Add yr.no Place"
-#~ msgstr "添加 yr.no"
-
-#~ msgid ""
-#~ "Find your town string in yr.no (english version)\n"
-#~ "and use the URL from your browser to add a new location. E.g. paste "
-#~ "this:\n"
-#~ "http://www.yr.no/place/Germany/North_Rhine-Westphalia/Bonn/"
-#~ msgstr ""
-#~ "在 yr.no 中找到您城市的英文字串\n"
-#~ "并从您的浏览器中使用该 URL 加入新位置。例如:\n"
-#~ "http://www.yr.no/place/Germany/North_Rhine-Westphalia/Bonn/"
-
-#~ msgid "humidity"
-#~ msgstr "湿度"
-
-#~ msgid "clouds"
-#~ msgstr "云"
+msgstr "预报数据由 OpenWeather 提供"
