@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/tully-t/weather-widget-plus\n"
 "POT-Creation-Date: 2026-04-12 13:18-0700\n"
-"PO-Revision-Date: 2026-04-12 13:18-0700\n"
-"Last-Translator: izen57 <github.com/izen57>\n"
+"PO-Revision-Date: 2026-08-04 15:07+0400\n"
+"Last-Translator: Andrei Stepanov <github.com/adem4ik>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -27,31 +27,34 @@ msgstr "Виджет погоды плюс"
 
 #: ../../weather.widget.plus/metadata.desktop
 msgid "Plasmoid showing weather information"
-msgstr ""
+msgstr "Плазмоид с информацией о погоде"
 
+# плазмоид, похоже, использует неверные формы, потому «мин.»
 #: ../../weather.widget.plus/contents/code/data-loader.js
 msgid "%1 min ago"
 msgid_plural "%1 min ago"
-msgstr[0] "%1 минуту назад"
-msgstr[1] "%1 минуты назад"
-msgstr[2] "%1 минут назад"
-msgstr[3] "%1 минуту назад"
+msgstr[0] "%1 мин. назад"
+msgstr[1] "%1 мин. назад"
+msgstr[2] "%1 мин. назад"
+msgstr[3] "%1 мин. назад"
 
+# плазмоид, похоже, использует неверные формы, потому «ч»
 #: ../../weather.widget.plus/contents/code/data-loader.js
 msgid "%1 hrs ago"
 msgid_plural "%1 hrs ago"
-msgstr[0] "%1 час назад"
-msgstr[1] "%1 часа назад"
-msgstr[2] "%1 часов назад"
-msgstr[3] "%1 час назад"
+msgstr[0] "%1 ч назад"
+msgstr[1] "%1 ч назад"
+msgstr[2] "%1 ч назад"
+msgstr[3] "%1 ч назад"
 
+# плазмоид, похоже, использует неверные формы, потому «дн.»
 #: ../../weather.widget.plus/contents/code/data-loader.js
 msgid "%1 days ago"
 msgid_plural "%1 days ago"
-msgstr[0] "%1 дней назад"
-msgstr[1] "%1 день назад"
-msgstr[2] "%1 дня назад"
-msgstr[3] "%1 дней назад"
+msgstr[0] "%1 дн. назад"
+msgstr[1] "%1 дн. назад"
+msgstr[2] "%1 дн. назад"
+msgstr[3] "%1 дн. назад"
 
 #: ../../weather.widget.plus/contents/code/data-loader.js
 msgid "long ago"
@@ -139,11 +142,11 @@ msgstr "Режим размера текста"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Automatic fit"
-msgstr "Автоматический"
+msgstr "Автоподбор"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Exact size"
-msgstr "Заданный вручную"
+msgstr "Точный размер"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Text size"
@@ -154,11 +157,11 @@ msgstr "Размер текста"
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgctxt "pixels"
 msgid "px"
-msgstr "пикс"
+msgstr "пкс"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Text visible"
-msgstr "Текст виден"
+msgstr "Показывать текст"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Text drop shadow"
@@ -166,19 +169,19 @@ msgstr "Тень от текста"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Icon size mode"
-msgstr "Режим размера иконки"
+msgstr "Режим размера значка"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Icon size"
-msgstr "Размер иконки"
+msgstr "Размер значка"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Icon visible"
-msgstr "Иконка видна"
+msgstr "Показывать значок"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "Icon drop shadow"
-msgstr "Тень от иконки"
+msgstr "Тень от значка"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgid "System tray timeout"
@@ -187,7 +190,7 @@ msgstr "Время ожидания в лотке"
 #: ../../weather.widget.plus/contents/ui/config/ConfigAppearance.qml
 msgctxt "Abbreviation for seconds"
 msgid "sec"
-msgstr "сек"
+msgstr "с"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Layout type"
@@ -215,7 +218,7 @@ msgstr "Порядок в виджете"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid "Icon first"
-msgstr "Сначала иконка"
+msgstr "Сначала значок"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLayout.qml
 msgid ""
@@ -261,12 +264,12 @@ msgstr "Действие"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Reload interval"
-msgstr "Интервал перезагрузки"
+msgstr "Период обновления"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgctxt "Abbreviation for minutes"
 msgid "min"
-msgstr "мин"
+msgstr "мин."
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Middle-click the widget to reload manually"
@@ -274,16 +277,16 @@ msgstr "Нажмите колёсиком на виджете, чтобы обн
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Plasmoid version"
-msgstr "Версия Plasmoid"
+msgstr "Версия плазмоида"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Weather icons created by Erik Flowers"
-msgstr "Иконки погоды созданы Эриком Флауэрсом"
+msgstr "Значки погоды созданы Эриком Флауэрсом"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Met.no forecast data provided by The Norwegian Meteorological Institute"
 msgstr ""
-"Данные о прогнозе погоды на Met.no предоставлены Норвежским "
+"Данные прогноза погоды на Met.no предоставлены Норвежским "
 "метеорологическим институтом"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
@@ -292,11 +295,11 @@ msgstr "Данные о восходе/закате предоставлены S
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "OWM forecast data provided by OpenWeather"
-msgstr "Данные о прогнозе погоды на OWM предоставлены OpenWeather"
+msgstr "Данные прогноза погоды на OWM предоставлены OpenWeather"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "OM forecast data provided by Open-Meteo"
-msgstr "Данные о прогнозе погоды на OM предоставлены Open-Meteo"
+msgstr "Данные прогноза погоды на OM предоставлены Open-Meteo"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Add OpenWeather Map Location"
@@ -315,8 +318,8 @@ msgid ""
 "and then paste the whole URL into the corresponding field\n"
 "e.g. https://old.openweathermap.org/city/2946447 for Bonn, Germany"
 msgstr ""
-"и затем вставьте URL полностью в соответствующее поле.\n"
-"Например, http://old.openweathermap.org/city/2747891 для Роттердама (Нидерланды)"
+"и затем вставьте URL-адрес полностью в соответствующее поле.\n"
+"Например, https://old.openweathermap.org/city/524901 для Москвы (Россия)"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Add Met.no Map Location"
@@ -361,7 +364,7 @@ msgstr "для Санкт-Петербурга, Россия"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid " (Maximum of 4 decimal places)"
-msgstr " (максимум 4 знака после запятой)."
+msgstr " (максимум 4 знака после запятой)"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigLocation.qml
 msgid "Add Open-Meteo Map Location"
@@ -369,11 +372,11 @@ msgstr "Добавить местоположение для Open-Meteo"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Desktop mode"
-msgstr "Режим рабочего стола"
+msgstr "Режим на рабочем столе"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Icon"
-msgstr "Иконка"
+msgstr "Значок"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Meteogram width"
@@ -385,11 +388,11 @@ msgstr "Высота метеограммы"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Meteogram width in tray"
-msgstr ""
+msgstr "Ширина метеограммы в лотке"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Meteogram height in tray"
-msgstr ""
+msgstr "Высота метеограммы в лотке"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Open-Meteo forecast length"
@@ -403,11 +406,11 @@ msgstr "часов"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Weekly forecast visible"
-msgstr ""
+msgstr "Показывать недельный прогноз"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Trailing zeroes visible"
-msgstr ""
+msgstr "Показывать конечные нули"
 
 #: ../../weather.widget.plus/contents/ui/config/ConfigMeteogram.qml
 msgid "Vertical axis font size"
@@ -462,7 +465,7 @@ msgstr "Часовой пояс местоположения"
 
 #: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 msgid "List"
-msgstr ""
+msgstr "Список"
 
 #: ../../weather.widget.plus/contents/ui/FullRepresentationInTray.qml
 #: ../../weather.widget.plus/contents/ui/FullRepresentation.qml
@@ -483,21 +486,19 @@ msgstr "%1 назад"
 
 #: ../../weather.widget.plus/contents/ui/main.qml
 msgid "next hour"
-msgstr "ближайшее время"
+msgstr "в ближайший час"
 
 #: ../../weather.widget.plus/contents/ui/providers/MetNo.qml
 msgid "Forecast data provided by Met.no"
-msgstr ""
-"Данные о прогнозе погоды предоставлены Норвежским метеорологическим "
-"институтом"
+msgstr "Данные прогноза погоды предоставлены Met.no"
 
 #: ../../weather.widget.plus/contents/ui/providers/OpenMeteo.qml
 msgid "Forecast data provided by Open-Meteo"
-msgstr "Данные о прогнозе погоды предоставлены Open-Meteo"
+msgstr "Данные прогноза погоды предоставлены Open-Meteo"
 
 #: ../../weather.widget.plus/contents/ui/providers/OpenWeatherMap.qml
 msgid "Forecast data provided by OpenWeather"
-msgstr "Данные о прогнозе погоды предоставлены OpenWeather"
+msgstr "Данные прогноза погоды предоставлены OpenWeather"
 
 #~ msgid "Plasmoid showing weather information from Met.no server"
 #~ msgstr "Плазмоид, показывающий информацию о погоде с сервера Met.no"
