@@ -8,6 +8,7 @@ KCM.SimpleKCM {
     property int cfg_temperatureType
     property int cfg_pressureType
     property int cfg_windSpeedType
+    property int cfg_windDirectionType
     property int cfg_timezoneType
     property int cfg_precType
 
@@ -69,6 +70,18 @@ KCM.SimpleKCM {
         }
     }
 
+    onCfg_windDirectionTypeChanged: {
+        switch (cfg_windDirectionType) {
+            case 0:
+                windDirectionTypeRadioDegrees.checked = true
+                break
+            case 1:
+                windDirectionTypeRadioCardinal.checked = true
+                break
+            default:
+        }
+    }
+
     onCfg_timezoneTypeChanged: {
         switch (cfg_timezoneType) {
             case 0:
@@ -89,6 +102,7 @@ KCM.SimpleKCM {
         cfg_pressureTypeChanged()
         cfg_precTypeChanged()
         cfg_windSpeedTypeChanged()
+        cfg_windDirectionTypeChanged()
         cfg_timezoneTypeChanged()
     }
 
@@ -106,6 +120,10 @@ KCM.SimpleKCM {
 
     ButtonGroup {
         id: windSpeedTypeGroup
+    }
+
+    ButtonGroup {
+        id: windDirectionTypeGroup
     }
 
     ButtonGroup {
@@ -301,6 +319,39 @@ KCM.SimpleKCM {
             ButtonGroup.group: windSpeedTypeGroup
             text: i18n("km/h")
             onCheckedChanged: if (checked) cfg_windSpeedType = 2
+        }
+
+        Item {
+            width: 2
+            height: 6
+            Layout.columnSpan: 3
+        }
+
+        Label {
+            text: i18n("Wind direction") + ":"
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+        }
+        RadioButton {
+            id: windDirectionTypeRadioDegrees
+            ButtonGroup.group: windDirectionTypeGroup
+            text: i18n("Degrees")
+            onCheckedChanged: if (checked) cfg_windDirectionType = 0
+        }
+        Item {
+            width: 2
+            height: 2
+            Layout.rowSpan: 1
+        }
+        Item {
+            width: 2
+            height: 2
+            Layout.columnSpan: 1
+        }
+        RadioButton {
+            id: windDirectionTypeRadioCardinal
+            ButtonGroup.group: windDirectionTypeGroup
+            text: i18n("Cardinal")
+            onCheckedChanged: if (checked) cfg_windDirectionType = 1
         }
 
         Item {

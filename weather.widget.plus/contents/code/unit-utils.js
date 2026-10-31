@@ -108,6 +108,22 @@ function getWindSpeedEnding(windSpeedType) {
     return i18n("m/s")
 }
 
+/*
+ * WIND DIRECTION
+ */
+var WindDirectionType = {
+    DEGREES: 0,
+    CARDINAL: 1
+}
+
+function getWindDirectionText(degrees, windDirectionType) {
+    if (windDirectionType === WindDirectionType.CARDINAL) {
+        var directions = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW','N']
+        return directions[Math.round(degrees / 22.5)]
+    }
+    return degrees + '°'
+}
+
 function getHourText(hourNumber, twelveHourClockEnabled) {
     var result = hourNumber
     if (twelveHourClockEnabled) {
