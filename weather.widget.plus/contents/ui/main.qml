@@ -105,6 +105,7 @@ PlasmoidItem {
     property int timezoneType: plasmoid.configuration.timezoneType
     property int pressureType: plasmoid.configuration.pressureType
     property int windSpeedType: plasmoid.configuration.windSpeedType
+    property int windDirectionType: plasmoid.configuration.windDirectionType
     property int precType: plasmoid.configuration.precType
     property bool twelveHourClockEnabled: Qt.locale().timeFormat(Locale.ShortFormat).toString().indexOf('AP') > -1
     property bool env_QML_XHR_ALLOW_FILE_READ: plasmoid.configuration.qml_XHR_ALLOW_FILE_READ
@@ -410,7 +411,7 @@ PlasmoidItem {
         var windDirectionIcon = IconTools.getWindDirectionIconCode(wind1)
         var lastReloadedSubText = lastReloadedText
         var subText = ""
-        subText += "<br /><br /><font size=\"4\" style=\"font-family: weathericons;\">" + windDirectionIcon + "</font><font size=\"4\"> " + wind1 + "\u00B0 &nbsp; @ " + UnitUtils.getWindSpeedText(currentWeatherModel.windSpeedMps, windSpeedType) + "</font>"
+        subText += "<br /><br /><font size=\"4\" style=\"font-family: weathericons;\">" + windDirectionIcon + "</font><font size=\"4\"> " + UnitUtils.getWindDirectionText(wind1, windDirectionType) + " &nbsp; @ " + UnitUtils.getWindSpeedText(currentWeatherModel.windSpeedMps, windSpeedType) + "</font>"
         subText += "<br /><font size=\"4\">" + UnitUtils.getPressureText(currentWeatherModel.pressureHpa, pressureType) + "</font>"
         subText += "<br /><table>"
         if ((currentWeatherModel.humidity !== undefined) && (currentWeatherModel.cloudiness !== undefined)) {
